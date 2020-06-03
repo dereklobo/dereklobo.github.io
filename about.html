@@ -92,6 +92,13 @@
                 margin-bottom: 30px;
             }
         </style>
+        <script type="text/javascript">
+            function changeTitle( profile ) {
+                document.title = profile.entry[0].displayName;
+            }
+        </script>
+             
+        <script src="https://s.gravatar.com/avatar/37f58fba42763a391a0eb1a2897e6712?s=80.json?callback=changeTitle" type="text/javascript"></script>
     </head>
     <body>
         <div class="position-ref full-height">
@@ -103,10 +110,14 @@
                 <div class="title m-b-md">
                     Derek Lobo
                 </div>
+                <div class="m-b-md">
+                    <img src="https://s.gravatar.com/avatar/37f58fba42763a391a0eb1a2897e6712?s=80" alt="Derek Lobo's photo">
+                </div>
+                
                 <div class="about m-b-md">
                     Greetings! I'm a full-stack PHP web developer,
                     <br/>
-                    curious about technology.
+                    curious about technology and nature.
                     <br/> 
                     I enjoy biking, swimming, hiking and trying new cuisines.
                     
@@ -116,6 +127,7 @@
                 <div class="links">
                     <a href="https://www.linkedin.com/in/derekloboit/">LindkedIn</a>
                     <a href="https://github.com/dereklobo">GitHub</a>
+                    <a href="https://laracasts.com/@DerekLobo">Laracasts</a>
                     <a href="https://www.interaction-design.org/derek-lobo">IDF</a>
                 </div>
             </div>
