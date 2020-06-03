@@ -3,9 +3,8 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="A Roman Catholic, 
-            on a journey to help those who come his way. 
-            He also happen to be a curious software engineer, an outdoor enthusiast and a foodie."
+        <meta name="description" content="On a journey to help those who come my way. 
+            I also happen to be a curious software engineer, an outdoor enthusiast and a foodie."
         >
         <meta name="author" content="Derek Lobo">
 
@@ -97,8 +96,17 @@
                 document.title = profile.entry[0].displayName;
             }
         </script>
-             
         <script src="https://s.gravatar.com/avatar/37f58fba42763a391a0eb1a2897e6712?s=80.json?callback=changeTitle" type="text/javascript"></script>
+
+         <!-- Global site tag (gtag.js) - Google Analytics -->
+         <script async src="https://www.googletagmanager.com/gtag/js?id=UA-168463636-1"></script>
+         <script>
+             window.dataLayer = window.dataLayer || [];
+             function gtag(){dataLayer.push(arguments);}
+             gtag('js', new Date());
+ 
+             gtag('config', 'UA-168463636-1');
+         </script>
     </head>
     <body>
         <div class="position-ref full-height">
@@ -126,8 +134,9 @@
         
                 <div class="links">
                     <a href="https://www.linkedin.com/in/derekloboit/">LindkedIn</a>
-                    <a href="https://github.com/dereklobo">GitHub</a>
-                    <a href="https://laracasts.com/@DerekLobo">Laracasts</a>
+                    <a href="https://github.com/dereklobo"><span class="icon  icon--github"></span> GitHub</a>
+                    <a href="https://laracasts.com/@DerekLobo">Laracasts<sub>Team</sub></a>
+                    <a href="https://laracasts.com/@Derek-Lobo">Laracasts<sub>Personal</sub></a>
                     <a href="https://www.interaction-design.org/derek-lobo">IDF</a>
                 </div>
             </div>
