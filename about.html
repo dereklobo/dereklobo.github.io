@@ -3,6 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
         <meta name="description" content="On a journey to help those who come my way. 
             I also happen to be a curious software engineer, an outdoor enthusiast and a foodie."
         >
@@ -95,8 +96,12 @@
             function changeTitle( profile ) {
                 document.title = profile.entry[0].displayName;
             }
+            particlesJS.load('particles-js', 'particles.json');
         </script>
         <script src="https://s.gravatar.com/avatar/37f58fba42763a391a0eb1a2897e6712?s=80.json?callback=changeTitle" type="text/javascript"></script>
+
+        <!-- particles -->
+        <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 
          <!-- Global site tag (gtag.js) - Google Analytics -->
          <script async src="https://www.googletagmanager.com/gtag/js?id=UA-168463636-1"></script>
@@ -110,10 +115,10 @@
     </head>
     <body>
         <div class="position-ref full-height">
-                <div class="top-right links">
-                    <a href="index.html">Links</a>
-                </div>
-        
+            <div class="top-right links">
+                <a href="index.html">Links</a>
+            </div>
+    
             <div class="content">
                 <div class="title m-b-md">
                     Derek Lobo
@@ -129,7 +134,7 @@
                     <br/> 
                     I enjoy biking, swimming, hiking and trying new cuisines.
                     
-                     
+                    
                 </div>
         
                 <div class="links">
@@ -140,6 +145,12 @@
                     <a href="https://www.interaction-design.org/derek-lobo">IDF</a>
                 </div>
             </div>
+            <div class="m-b-md" id="particles-js"></div>
         </div>
+        
+        
+
+        <script src="particles.js"></script>
+       
     </body>
 </html>
