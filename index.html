@@ -38,16 +38,21 @@
         <!-- Styles -->
         <link rel="stylesheet" href="css/main.css">
 
+        <!-- Spam Referal blocker -->
+        <script src="https://github.com/MohamedBassem/spam-referrals-blocker/releases/download/v0.2/spam-referrals-blocker.min.js"></script>
+
         <!-- Global site tag (gtag.js) - Google Analytics -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=UA-168463636-1"></script>
-        <script>
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
 
-            gtag('config', 'UA-168463636-1');
-        </script>
+        <script type="text/javascript">
+            if( !isSpamReferral() ){
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
 
+                gtag('config', 'UA-168463636-1');
+            }
+         </script>
     </head>
     <body>
         <div class="full-height">
