@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="en">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
         <meta name="description" content="On a journey to help those who come my way. 
-            I also happen to be a curious software engineer, an outdoor enthusiast and a foodie."
+            I also happen to be a curious software engineer, an outdoor enthusiast and a foodie. - Derek Lobo"
         >
         <meta name="author" content="Derek Lobo">
 
@@ -37,66 +37,13 @@
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
 
         <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Nunito', sans-serif;
-                font-weight: 200;
-                height: 100vh;
-                margin: 0;
-            }
+        <link rel="stylesheet" href="css/main.css">
 
-            .full-height {
-                height: 100vh;
-            }
-
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-            .about {
-                font-size: 24px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 13px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
+        <!-- Script -->
         <script type="text/javascript">
             function changeTitle( profile ) {
                 document.title = profile.entry[0].displayName;
             }
-            particlesJS.load('particles-js', 'particles.json');
         </script>
         <script src="https://s.gravatar.com/avatar/37f58fba42763a391a0eb1a2897e6712?s=80.json?callback=changeTitle" type="text/javascript"></script>
 
@@ -115,26 +62,25 @@
     </head>
     <body>
         <div class="position-ref full-height">
-            <div class="top-right links">
-                <a href="index.html">Links</a>
+            <div class="top-right links" role="navigation">
+                <a href="index.html" aria-label="Home page of Derek Lobo">Home</a>
             </div>
     
             <div class="content">
-                <div class="title m-b-md">
+                <div class="title m-b-md" role="banner">
                     Derek Lobo
                 </div>
+                
                 <div class="m-b-md">
                     <img src="https://s.gravatar.com/avatar/37f58fba42763a391a0eb1a2897e6712?s=80" alt="Derek Lobo's photo">
                 </div>
                 
-                <div class="about m-b-md">
+                <div class="about m-b-md" role="main">
                     Greetings! I'm a full-stack PHP web developer,
                     <br/>
                     curious about technology and nature.
                     <br/> 
                     I enjoy biking, swimming, hiking and trying new cuisines.
-                    
-                    
                 </div>
         
                 <div class="links">
@@ -146,11 +92,11 @@
                 </div>
             </div>
             <div class="m-b-md" id="particles-js"></div>
-        </div>
-        
-        
+            <script src="particles.js"></script>
 
-        <script src="particles.js"></script>
-       
+            <footer class="footer" role="contentinfo">
+                <a class="contact" href="mailto:loboiderek@gmail.com">contact</a>
+            </footer>
+        </div> 
     </body>
 </html>
