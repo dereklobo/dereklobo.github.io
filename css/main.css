@@ -65,3 +65,66 @@ html, body {
     text-decoration: none;
     text-transform: uppercase;
 }
+
+.main{
+    background: white;
+    grid-row: 1 / -1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+    .image{
+        position: relative;
+    }
+
+    .circle1, .circle2{
+        border: 1px solid grey;
+        border-radius: 50%;
+        box-sizing: border-box;
+        transition: all 1.5s;
+        position: absolute;
+    }
+
+    .circle1{
+        height: 80px;
+        width: 80px;
+        border-color: grey transparent grey grey;
+        left: -5px;
+        top: -5px;
+    }
+
+    .circle2{
+        height: 76px;
+        width:76px;
+        border-color:rgba(3, 168, 124, 1) grey rgba(3, 168, 124, 1) transparent;
+        top: -3px;
+        left: -3px;
+    }
+
+    .circle1,.circle2 {
+            -webkit-animation: rotation 2s infinite linear;
+    }
+
+    @-webkit-keyframes rotation {
+        from {
+                -webkit-transform: rotate(0deg);
+        }
+        to {
+                -webkit-transform: rotate(359deg);
+        }
+    }
+
+    .image:hover .circle1, .image:hover .circle2{
+        transform: rotate(360deg);
+        /* cursor: pointer; */
+    }
+
+    img{
+        height: 70px;
+        width: 70px;
+        border-radius: 50%;
+        z-index: 1;
+    }
+
