@@ -50,6 +50,7 @@ html, body {
 
 .m-b-md {
     margin-bottom: 30px;
+    font-weight: 200;
 }
 
 .footer {
@@ -121,10 +122,15 @@ html, body {
         /* cursor: pointer; */
     }
 
-    img{
+    .profile-photo{
         height: 70px;
         width: 70px;
         border-radius: 50%;
         z-index: 1;
     }
+
+    body {
+        color: #636b6f !important;
+    }
+
 

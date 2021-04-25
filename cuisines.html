@@ -1,22 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+
+<html>
     <head>
         <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-        <meta name="description" content="On a journey to help those who come my way. 
-            I also happen to be a curious software engineer, an outdoor enthusiast and a foodie. - Derek Lobo"
-        >
+        <meta name="description" content="South Indian and other cuisines">
         <meta name="author" content="Derek Lobo">
         <meta property="og:site_name" content="Derek Lobo's Developer, personal website">
         <meta property="og:title" content="Derek Lobo" />
-        <meta property="og:description" content="On a journey to help those who come my way. 
-            I also happen to be a curious software engineer, an outdoor enthusiast and a foodie." />
+        <meta property="og:description" content="South Indian and other cuisines" />
         <meta property="og:image" itemprop="image" content="https://www.gravatar.com/avatar/37f58fba42763a391a0eb1a2897e6712?s=400">
-        <meta property="og:image:alt" content="Derek Lobo's photo" />
+        <meta property="og:image:alt" content="South Indian and other cuisines" />
         <meta property="og:type" content="website" />
 
-        <title>About - Derek Lobo - Developer</title>
+        <title>Cuisines</title>
 
         <!-- Favicon -->
         <link rel="apple-touch-icon-precomposed" sizes="57x57" href="favicon/apple-touch-icon-57x57.png" />
@@ -47,23 +46,16 @@
         <!-- Styles -->
         <link rel="stylesheet" href="css/main.css">
 
-        <!-- Script -->
-        <script type="text/javascript">
-            function changeTitle( profile ) {
-                document.title = profile.entry[0].displayName;
-            }
-        </script>
-        <script src="https://s.gravatar.com/avatar/37f58fba42763a391a0eb1a2897e6712?s=80.json?callback=changeTitle" type="text/javascript"></script>
-
-        <!-- particles -->
-        <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
         <!-- Spam Referal blocker -->
         <script src="https://github.com/MohamedBassem/spam-referrals-blocker/releases/download/v0.2/spam-referrals-blocker.min.js"></script>
 
-         <!-- Global site tag (gtag.js) - Google Analytics -->
-         <script async src="https://www.googletagmanager.com/gtag/js?id=UA-168463636-1"></script>
-         <script type="text/javascript">
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-168463636-1"></script>
+
+        <script type="text/javascript">
             if( !isSpamReferral() ){
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){dataLayer.push(arguments);}
@@ -71,46 +63,51 @@
 
                 gtag('config', 'UA-168463636-1');
             }
-         </script>
+        </script>
     </head>
     <body>
-        <div class="position-ref full-height">
+        <div class="full-height">
             <div class="top-right links" role="navigation">
                 <a href="index.html" aria-label="Home page of Derek Lobo">Home</a>
             </div>
             <div class="content">
                 <div class="title m-b-md" role="banner">
-                    Derek Lobo
+                    Manglorean Cuisine
+                </div>
+                <div class="links" role="main">
+                    <!-- <a href="" aria-label="" >South Indian</a> -->
+                    
                 </div>
                 
-                <div class="m-b-md main">
-                    <div class="image">
-                        <div class="circle1"></div>
-                        <div class="circle2"></div>
-                        <img class="profile-photo"  src="https://www.gravatar.com/avatar/37f58fba42763a391a0eb1a2897e6712?s=100" alt="Derek Lobo's photo">
+            <!-- </div> -->
+            <div class="container">
+                <div class="row">
+                    <h1 class="font-weight-light"></h1>
+                  
+                    <div class="container">
+                        <div class="row px-5">
+                            <div class="col-12">
+                                <!-- <h3 class="mt-5">Recipes:</h3> -->
+                                <div class="card-columns">
+                                   
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h4 class="card-title">Sorpotel - Dukra Maas</h4>
+                                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little
+                                                bit longer.</p>
+                                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                        </div>
+                                        <img class="card-img-bottom" src="images/dukra_maas.jpg" alt="Card image cap">
+                                    </div>
+                                </div>
+                            </div>
+                    
+                        </div>
                     </div>
                 </div>
-
-                <div class="about m-b-md" role="main">
-                    Greetings! I'm a full-stack PHP web developer,
-                    <br/>
-                    curious about technology and nature.
-                    <br/> 
-                    I enjoy biking, swimming, hiking and trying new <a href="cuisines.html" aria-label="new cuisines">cuisines</a>.
-                </div>
-                <div class="links">
-                    <a href="https://www.linkedin.com/in/idereklobo/" aria-label="View Derek Lobo's linkedin profile">LindkedIn</a>
-                    <a href="https://github.com/dereklobo" aria-label="View Derek Lobo's github profile"><span class="icon  icon--github"></span> GitHub</a>
-                    <a href="https://laracasts.com/@DerekLobo" aria-label="View Derek Lobo's laracast's WPY team profile">Laracasts<sub>Team</sub></a>
-                    <a href="https://laracasts.com/@Derek-Lobo" aria-label="View Derek Lobo's laracast's personal profile">Laracasts<sub>Personal</sub></a>
-                    <a href="https://www.interaction-design.org/derek-lobo" aria-label="View Derek Lobo's interaction design foundation profile">IDF</a>
-                </div>
             </div>
-            <div class="m-b-md" id="particles-js"></div>
-            <script src="particles.js"></script>
-            <footer class="footer" role="contentinfo">
-                <a class="contact" href="mailto:loboiderek@icloud.com" aria-label="Compose Email to Derek Lobo">contact</a>
-            </footer>
-        </div> 
+
+        </div>
+       
     </body>
 </html>
