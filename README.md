@@ -1,7 +1,7 @@
-# Welcome to my GitHub profile
+# Hi there 👋,  welcome to my GitHub profile
 
 ## About me
-I'm Derek, a full-stack PHP web developer! 
+I'm Derek, a full-stack web developer! 
 
 ### Likes
 * Biking
