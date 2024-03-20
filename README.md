@@ -10,4 +10,4 @@ I'm Derek, a full-stack web developer!
 * Trying new cuisines
 
 ## Contact me
-Find me over on the [LinkedIn](https://www.linkedin.com/in/idereklobo/)
+Find me over on the [LinkedIn](https://www.linkedin.com/in/idereklobo/) network
