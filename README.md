@@ -11,4 +11,4 @@ Experience using Laravel (v10), Vue.js (v2, v3), InertiaJS (v1.0), Bootstrap (v5
 * Trying new cuisines
 
 ## Contact me
-Find me over on the [LinkedIn](https://www.linkedin.com/in/idereklobo/)
+Find me over on the [LinkedIn](https://www.linkedin.com/in/idereklobo/) network
