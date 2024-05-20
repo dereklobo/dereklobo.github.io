@@ -25,6 +25,11 @@ html, body {
     position: absolute;
     right: 10px;
     top: 18px;
+    @media screen and (max-width: 600px) {
+        position:fixed;
+        right: 5px;
+        top: 18px;
+    }
 }
 
 .content {
@@ -33,6 +38,9 @@ html, body {
 
 .title {
     font-size: 84px;
+    @media screen and (max-width: 600px) {
+        margin-top: 40px;
+    }
 }
 .about {
     font-size: 24px;
