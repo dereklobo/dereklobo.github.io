@@ -8,7 +8,7 @@ I'm Derek, a full-stack PHP web developer, curious about technology and nature.
 [![Derek's GitHub stats](https://streak-stats.demolab.com?user=dereklobo)](https://git.io/streak-stats) -->
 
 ## Skills
-Laravel, Vue JS, HTML, CSS
+Laravel, React, Vue JS, HTML, CSS
 
 ### Likes
 * Biking
