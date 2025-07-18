@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Travel Destinations - Derek Lobo</title>
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+    <link rel="stylesheet" href="css/main.css">
+    <style>
+        .map-container {
+            position: relative;
+            width: 800px;
+            max-width: 100%;
+            margin: 40px auto;
+        }
+        .world-map {
+            width: 100%;
+            display: block;
+            border-radius: 12px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+        }
+        .pin {
+            position: absolute;
+            width: 32px;
+            height: 32px;
+            cursor: pointer;
+        }
+        /* Visited: red pin, Wish list: blue pin */
+        .pin.visited {
+            background: url('https://cdn-icons-png.flaticon.com/512/684/684908.png') no-repeat center center;
+            background-size: contain;
+            filter: hue-rotate(-30deg) saturate(2); /* red */
+        }
+        .pin.wishlist {
+            background: url('https://cdn-icons-png.flaticon.com/512/684/684908.png') no-repeat center center;
+            background-size: contain;
+            filter: hue-rotate(180deg) saturate(2); /* blue */
+        }
+        .pin-label {
+            position: absolute;
+            left: 36px;
+            top: 0;
+            background: rgba(255,255,255,0.95);
+            padding: 2px 8px;
+            border-radius: 6px;
+            font-size: 0.95em;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+            white-space: nowrap;
+            pointer-events: none;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s;
+        }
+        .pin:hover .pin-label,
+        .pin:focus .pin-label {
+            opacity: 1;
+        }
+        /* Hide label by default for Amsterdam and Dublin */
+        .pin.pin-amsterdam .pin-label,
+        .pin.pin-dublin .pin-label {
+            opacity: 0;
+        }
+        .pin.pin-amsterdam:hover .pin-label,
+        .pin.pin-dublin:hover .pin-label {
+            opacity: 1;
+        }
+        /* Pin positions (approximate for Mercator map) */
+        .pin-toronto   { left: 205px; top: 120px; }
+        .pin-dublin    { left: 390px; top: 120px; }
+        .pin-amsterdam { left: 410px; top: 130px; }
+        .pin-toulouse  { left: 410px; top: 170px; }
+        .pin-lourdes   { left: 400px; top: 190px; }
+        .pin-porto     { left: 380px; top: 180px; }
+        .pin-lisbon    { left: 370px; top: 200px; }
+        .pin-faro      { left: 375px; top: 215px; }
+    </style>
+</head>
+<body>
+    <div class="position-ref full-height">
+        <div class="top-right links" role="navigation">
+            <a href="index.html" aria-label="Home page of Derek Lobo">Home</a>
+        </div>
+        <div class="content">
+            <div class="title m-b-md" role="banner">
+                Derek Lobo
+            </div>
+            <div class="about m-b-md" role="main">
+                <h2>Travel Destinations</h2>
+                <p>
+                    Here are some cities I've visited (<span style="color:rgb(148, 14, 14);">red pins</span>) and wish to visit (<span style="color:#0980ce;">blue pins</span>). Hover over pins for city names!
+                </p>
+            </div>
+            <div class="map-container">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/World_map_-_low_resolution.svg/1200px-World_map_-_low_resolution.svg.png" alt="World Map" class="world-map">
+                <!-- Visited Cities (red pins) -->
+                <div class="pin pin-toronto visited" title="Toronto" tabindex="0">
+                    <span class="pin-label">Toronto</span>
+                </div>
+                <div class="pin pin-toulouse visited" title="Toulouse" tabindex="0">
+                    <span class="pin-label">Toulouse</span>
+                </div>
+                <div class="pin pin-lourdes visited" title="Lourdes" tabindex="0">
+                    <span class="pin-label">Lourdes</span>
+                </div>
+                <div class="pin pin-porto visited" title="Porto" tabindex="0">
+                    <span class="pin-label">Porto</span>
+                </div>
+                <div class="pin pin-lisbon visited" title="Lisbon" tabindex="0">
+                    <span class="pin-label">Lisbon</span>
+                </div>
+                <div class="pin pin-faro visited" title="Faro" tabindex="0">
+                    <span class="pin-label">Faro</span>
+                </div>
+                <!-- Wish List Cities (blue pins) -->
+                <div class="pin pin-dublin wishlist" title="Dublin" tabindex="0">
+                    <span class="pin-label">Dublin</span>
+                </div>
+                <div class="pin pin-amsterdam wishlist" title="Amsterdam" tabindex="0">
+                    <span class="pin-label">Amsterdam</span>
+                </div>
+            </div>
+        </div>
+        <footer class="footer" role="contentinfo">
+            <a class="contact" href="mailto:loboiderek@icloud.com" aria-label="Compose Email to Derek Lobo">contact</a>
+        </footer>
+    </div>
+</body>
+</html>
