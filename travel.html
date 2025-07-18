@@ -3,15 +3,15 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Explore Derek Lobo's travel destinations, including cities visited and wish list locations, displayed on an interactive world map.">
+    <meta name="description" content="Derek Lobo's travel list of countries and cities visited.">
     <meta name="author" content="Derek Lobo">
     <meta property="og:site_name" content="Derek Lobo's personal website">
-    <meta property="og:title" content="Travel Destinations - Derek Lobo" />
-    <meta property="og:description" content="Discover the cities Derek Lobo has visited and wishes to visit, shown as pins on a world map." />
+    <meta property="og:title" content="Travel List - Derek Lobo" />
+    <meta property="og:description" content="A modern table of countries and cities visited by Derek Lobo." />
     <meta property="og:image" itemprop="image" content="https://www.gravatar.com/avatar/37f58fba42763a391a0eb1a2897e6712?s=400">
     <meta property="og:image:alt" content="Derek Lobo's photo" />
     <meta property="og:type" content="website" />
-    <title>Travel Destinations - Derek Lobo</title>
+    <title>Travel List - Derek Lobo</title>
     <!-- Favicon -->
     <link rel="apple-touch-icon-precomposed" sizes="57x57" href="favicon/apple-touch-icon-57x57.png" />
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="favicon/apple-touch-icon-114x114.png" />
@@ -34,142 +34,144 @@
     <meta name="msapplication-square150x150logo" content="mstile-150x150.png" />
     <meta name="msapplication-wide310x150logo" content="mstile-310x150.png" />
     <meta name="msapplication-square310x310logo" content="mstile-310x310.png" />
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-    <link rel="stylesheet" href="css/main.css">
-    <style>
-        .map-container {
-            position: relative;
-            width: 800px;
-            max-width: 100%;
-            margin: 40px auto;
-        }
-        .world-map {
-            width: 100%;
-            display: block;
-            border-radius: 12px;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
-        }
-        .pin {
-            position: absolute;
-            width: 32px;
-            height: 32px;
-            cursor: pointer;
-            outline: none;
-        }
-        .pin:focus {
-            box-shadow: 0 0 0 3px #0980ce;
-        }
-        /* Visited: red pin, Wish list: blue pin */
-        .pin.visited {
-            background: url('https://cdn-icons-png.flaticon.com/512/684/684908.png') no-repeat center center;
-            background-size: contain;
-            filter: hue-rotate(-30deg) saturate(2); /* red */
-        }
-        .pin.wishlist {
-            background: url('https://cdn-icons-png.flaticon.com/512/684/684908.png') no-repeat center center;
-            background-size: contain;
-            filter: hue-rotate(180deg) saturate(2); /* blue */
-        }
-        .pin-label {
-            position: absolute;
-            left: 36px;
-            top: 0;
-            background: #222;
-            color: #fff;
-            padding: 2px 8px;
-            border-radius: 6px;
-            font-size: 0.95em;
-            box-shadow: 0 1px 4px rgba(0,0,0,0.07);
-            white-space: nowrap;
-            pointer-events: none;
-            opacity: 0;
-            transition: opacity 0.2s;
-        }
-        .pin:hover .pin-label,
-        .pin:focus .pin-label {
-            opacity: 1;
-        }
-        /* Pin positions (approximate for Mercator map) */
-        .pin-toronto   { left: 29.5%; top: 32.5%; }
-        .pin-dublin    { left: 47.2%; top: 23.8%; }
-        .pin-amsterdam { left: 49.2%; top: 25.2%; }
-        .pin-toulouse  { left: 48.2%; top: 29.2%; }
-        .pin-lourdes   { left: 47.7%; top: 30.7%; }
-        .pin-porto     { left: 45.2%; top: 29.2%; }
-        .pin-lisbon    { left: 44.7%; top: 31.2%; }
-        .pin-faro      { left: 44.9%; top: 32.2%; }
-    </style>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-    <nav class="top-right links" role="navigation" aria-label="Main navigation">
-        <a href="index.html" aria-label="Home page of Derek Lobo">Home</a>
+<body class="bg-gradient-to-br from-gray-50 via-blue-50 to-green-100 min-h-screen">
+    <nav class="flex justify-end p-4" role="navigation" aria-label="Main navigation">
+        <a href="index.html" class="text-blue-700 font-semibold hover:underline" aria-label="Home page of Derek Lobo">Home</a>
     </nav>
-    <main class="content" role="main">
-        <header>
-            <h1 class="title m-b-md" role="banner">Derek Lobo</h1>
+    <main class="max-w-5xl mx-auto p-4" role="main">
+        <header class="mb-8">
+            <h1 class="text-3xl font-extrabold text-gray-800 mb-2 flex items-center gap-3">
+                <svg class="w-10 h-10" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <g>
+                        <ellipse cx="20" cy="20" rx="12" ry="14" fill="#34d399"/>
+                        <ellipse cx="44" cy="20" rx="12" ry="14" fill="#34d399"/>
+                        <ellipse cx="32" cy="40" rx="12" ry="14" fill="#34d399"/>
+                        <rect x="30" y="40" width="4" height="18" rx="2" fill="#065f46"/>
+                    </g>
+                </svg>
+                Travel List
+            </h1>
+            <p class="text-lg text-gray-600">Countries and cities visited, with highlights and flags.</p>
         </header>
-        <section class="about m-b-md">
-            <h2>Travel Destinations</h2>
-            <p>
-                Here are some cities I've visited (<span style="color:rgb(148, 14, 14);font-weight:bold;">red pins</span>) and wish to visit (<span style="color:#0980ce;font-weight:bold;">blue pins</span>). Hover over pins or use Tab to reveal city names!
-            </p>
+        <section class="mb-8">
+            <h2 class="text-xl font-bold text-gray-700 mb-3">Countries Visited</h2>
+            <ul class="flex flex-wrap gap-4">
+                <li>
+                    <a href="travel-Ireland.html" class="flex items-center gap-2 px-4 py-2 rounded-lg bg-gradient-to-r from-green-300 to-green-500 text-green-900 font-semibold shadow hover:scale-105 transition" aria-label="Ireland travel details">
+                        <img src="https://cdn.jsdelivr.net/npm/svg-country-flags@1.2.10/svg/ie.svg" alt="Ireland flag" class="w-6 h-6 rounded shadow" />
+                        Ireland
+                    </a>
+                </li>
+                <li>
+                    <span class="flex items-center gap-2 px-4 py-2 rounded-lg bg-gradient-to-r from-blue-300 to-blue-500 text-blue-900 font-semibold shadow">
+                        <img src="https://cdn.jsdelivr.net/npm/svg-country-flags@1.2.10/svg/ca.svg" alt="Canada flag" class="w-6 h-6 rounded shadow" />
+                        Canada
+                    </span>
+                </li>
+                <li>
+                    <span class="flex items-center gap-2 px-4 py-2 rounded-lg bg-gradient-to-r from-red-200 to-red-400 text-red-900 font-semibold shadow">
+                        <img src="https://cdn.jsdelivr.net/npm/svg-country-flags@1.2.10/svg/pt.svg" alt="Portugal flag" class="w-6 h-6 rounded shadow" />
+                        Portugal
+                    </span>
+                </li>
+                <li>
+                    <span class="flex items-center gap-2 px-4 py-2 rounded-lg bg-gradient-to-r from-yellow-200 to-yellow-400 text-yellow-900 font-semibold shadow">
+                        <img src="https://cdn.jsdelivr.net/npm/svg-country-flags@1.2.10/svg/nl.svg" alt="Netherlands flag" class="w-6 h-6 rounded shadow" />
+                        Netherlands
+                    </span>
+                </li>
+                <li>
+                    <span class="flex items-center gap-2 px-4 py-2 rounded-lg bg-gradient-to-r from-gray-300 to-gray-500 text-gray-900 font-semibold shadow">
+                        <img src="https://cdn.jsdelivr.net/npm/svg-country-flags@1.2.10/svg/gb-nir.svg" alt="Northern Ireland flag" class="w-6 h-6 rounded shadow" />
+                        Northern Ireland
+                    </span>
+                </li>
+            </ul>
         </section>
-        <section class="map-container" aria-label="World map with travel destinations">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/World_map_-_low_resolution.svg/1200px-World_map_-_low_resolution.svg.png"
-                 alt="World map showing travel destinations as pins" class="world-map">
-            <!-- Visited Cities (red pins) -->
-            <!-- <div class="pin pin-toronto visited" title="Toronto" tabindex="0" aria-label="Toronto, visited">
-                <span class="pin-label" aria-hidden="false">Toronto</span>
-            </div> -->
-            <div class="pin pin-toronto visited" tabindex="0" aria-label="Toronto, visited">
-                <span class="pin-svg" aria-hidden="true">
-                    <svg width="24" height="40" viewBox="0 0 24 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <!-- Pin stem -->
-                    <rect x="10" y="18" width="4" height="18" rx="2" fill="#B22222"/>
-                    <!-- Pin head -->
-                    <ellipse cx="12" cy="12" rx="8" ry="8" fill="#B22222" stroke="#fff" stroke-width="2"/>
-                    <!-- Pin shadow for depth -->
-                    <ellipse cx="12" cy="14" rx="6" ry="2" fill="#000" opacity="0.1"/>
-                    </svg>
-                </span>
-                <span class="pin-label">Toronto</span>
-            </div>
-            <div class="pin pin-dublin wishlist" tabindex="0" aria-label="Dublin, wish list">
-                <span class="pin-svg" aria-hidden="true">
-                    <svg width="24" height="40" viewBox="0 0 24 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <rect x="10" y="18" width="4" height="18" rx="2" fill="#0980ce"/>
-                    <ellipse cx="12" cy="12" rx="8" ry="8" fill="#0980ce" stroke="#fff" stroke-width="2"/>
-                    <ellipse cx="12" cy="14" rx="6" ry="2" fill="#000" opacity="0.1"/>
-                    </svg>
-                </span>
-                <span class="pin-label">Dublin</span>
-            </div>
-            <div class="pin pin-toulouse visited" title="Toulouse" tabindex="0" aria-label="Toulouse, visited">
-                <span class="pin-label" aria-hidden="false">Toulouse</span>
-            </div>
-            <div class="pin pin-lourdes visited" title="Lourdes" tabindex="0" aria-label="Lourdes, visited">
-                <span class="pin-label" aria-hidden="false">Lourdes</span>
-            </div>
-            <div class="pin pin-porto visited" title="Porto" tabindex="0" aria-label="Porto, visited">
-                <span class="pin-label" aria-hidden="false">Porto</span>
-            </div>
-            <div class="pin pin-lisbon visited" title="Lisbon" tabindex="0" aria-label="Lisbon, visited">
-                <span class="pin-label" aria-hidden="false">Lisbon</span>
-            </div>
-            <div class="pin pin-faro visited" title="Faro" tabindex="0" aria-label="Faro, visited">
-                <span class="pin-label" aria-hidden="false">Faro</span>
-            </div>
-            <!-- Wish List Cities (blue pins) -->
-            <!-- <div class="pin pin-dublin wishlist" title="Dublin" tabindex="0" aria-label="Dublin, wish list">
-                <span class="pin-label" aria-hidden="false">Dublin</span>
-            </div> -->
-            <div class="pin pin-amsterdam wishlist" title="Amsterdam" tabindex="0" aria-label="Amsterdam, wish list">
-                <span class="pin-label" aria-hidden="false">Amsterdam</span>
+        <section aria-label="Travel List Table">
+            <div class="overflow-x-auto rounded-lg shadow-lg">
+                <table class="min-w-full bg-white bg-opacity-90 divide-y divide-gray-200">
+                    <thead>
+                        <tr>
+                            <th scope="col" class="px-4 py-3 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">Flag</th>
+                            <th scope="col" class="px-4 py-3 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">Country</th>
+                            <th scope="col" class="px-4 py-3 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">City/Town</th>
+                            <th scope="col" class="px-4 py-3 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">Year Visited</th>
+                            <th scope="col" class="px-4 py-3 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">Highlights/Notes</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-100">
+                        <!-- Ireland: green gradient -->
+                        <tr class="bg-gradient-to-r from-green-100 to-green-200 hover:from-green-200 hover:to-green-300 transition">
+                            <td class="px-4 py-2"><img src="https://cdn.jsdelivr.net/npm/svg-country-flags@1.2.10/svg/ie.svg" alt="Ireland flag" class="w-6 h-6 rounded shadow" /></td>
+                            <td class="px-4 py-2 font-semibold text-green-900">Ireland</td>
+                            <td class="px-4 py-2 text-gray-900">Dublin</td>
+                            <td class="px-4 py-2 text-gray-700">2024</td>
+                            <td class="px-4 py-2 text-gray-700">Guinness storehouse, St. Patrick's, Chester Beatty library, Zoo</td>
+                        </tr>
+                        <tr class="bg-gradient-to-r from-green-100 to-green-200 hover:from-green-200 hover:to-green-300 transition">
+                            <td class="px-4 py-2"><img src="https://cdn.jsdelivr.net/npm/svg-country-flags@1.2.10/svg/ie.svg" alt="Ireland flag" class="w-6 h-6 rounded shadow" /></td>
+                            <td class="px-4 py-2 font-semibold text-green-900">Ireland</td>
+                            <td class="px-4 py-2 text-gray-900">Athy</td>
+                            <td class="px-4 py-2 text-gray-700">2024</td>
+                            <td class="px-4 py-2 text-gray-700">River walk, local pub</td>
+                        </tr>
+                        <!-- Canada: blue gradient -->
+                        <tr class="bg-gradient-to-r from-blue-100 to-blue-200 hover:from-blue-200 hover:to-blue-300 transition">
+                            <td class="px-4 py-2"><img src="https://cdn.jsdelivr.net/npm/svg-country-flags@1.2.10/svg/ca.svg" alt="Canada flag" class="w-6 h-6 rounded shadow" /></td>
+                            <td class="px-4 py-2 font-semibold text-blue-900">Canada</td>
+                            <td class="px-4 py-2 text-gray-900">Toronto</td>
+                            <td class="px-4 py-2 text-gray-700">2023</td>
+                            <td class="px-4 py-2 text-gray-700">CN Tower, Riple</td>
+                        </tr>
+                        <!-- Portugal: red gradient -->
+                        <tr class="bg-gradient-to-r from-red-100 to-red-200 hover:from-red-200 hover:to-red-300 transition">
+                            <td class="px-4 py-2"><img src="https://cdn.jsdelivr.net/npm/svg-country-flags@1.2.10/svg/pt.svg" alt="Portugal flag" class="w-6 h-6 rounded shadow" /></td>
+                            <td class="px-4 py-2 font-semibold text-red-900">Portugal</td>
+                            <td class="px-4 py-2 text-gray-900">Lisbon</td>
+                            <td class="px-4 py-2 text-gray-700">2023</td>
+                            <td class="px-4 py-2 text-gray-700">City Explore</td>
+                        </tr>
+                        <tr class="bg-gradient-to-r from-red-100 to-red-200 hover:from-red-200 hover:to-red-300 transition">
+                            <td class="px-4 py-2"><img src="https://cdn.jsdelivr.net/npm/svg-country-flags@1.2.10/svg/pt.svg" alt="Portugal flag" class="w-6 h-6 rounded shadow" /></td>
+                            <td class="px-4 py-2 font-semibold text-red-900">Portugal</td>
+                            <td class="px-4 py-2 text-gray-900">Porto</td>
+                            <td class="px-4 py-2 text-gray-700">2023</td>
+                            <td class="px-4 py-2 text-gray-700">Sea food</td>
+                        </tr>
+                        <!-- Netherlands: yellow gradient -->
+                        <tr class="bg-gradient-to-r from-yellow-100 to-yellow-200 hover:from-yellow-200 hover:to-yellow-300 transition">
+                            <td class="px-4 py-2"><img src="https://cdn.jsdelivr.net/npm/svg-country-flags@1.2.10/svg/nl.svg" alt="Netherlands flag" class="w-6 h-6 rounded shadow" /></td>
+                            <td class="px-4 py-2 font-semibold text-yellow-900">Netherlands</td>
+                            <td class="px-4 py-2 text-gray-900">Amsterdam</td>
+                            <td class="px-4 py-2 text-gray-700">2025</td>
+                            <td class="px-4 py-2 text-gray-700">Cheese Museum, Canal boat ride</td>
+                        </tr>
+                        <!-- Northern Ireland: gray gradient -->
+                        <tr class="bg-gradient-to-r from-gray-100 to-gray-300 hover:from-gray-200 hover:to-gray-400 transition">
+                            <td class="px-4 py-2"><img src="https://cdn.jsdelivr.net/npm/svg-country-flags@1.2.10/svg/gb-nir.svg" alt="Northern Ireland flag" class="w-6 h-6 rounded shadow" /></td>
+                            <td class="px-4 py-2 font-semibold text-gray-900">Northern Ireland</td>
+                            <td class="px-4 py-2 text-gray-900">Belfast</td>
+                            <td class="px-4 py-2 text-gray-700">2025</td>
+                            <td class="px-4 py-2 text-gray-700">Titanic Museum</td>
+                        </tr>
+                        <tr class="bg-gradient-to-r from-gray-100 to-gray-300 hover:from-gray-200 hover:to-gray-400 transition">
+                            <td class="px-4 py-2"><img src="https://cdn.jsdelivr.net/npm/svg-country-flags@1.2.10/svg/gb-nir.svg" alt="Northern Ireland flag" class="w-6 h-6 rounded shadow" /></td>
+                            <td class="px-4 py-2 font-semibold text-gray-900">Northern Ireland</td>
+                            <td class="px-4 py-2 text-gray-900">Giants Causeway</td>
+                            <td class="px-4 py-2 text-gray-700">2025</td>
+                            <td class="px-4 py-2 text-gray-700">Basalt columns, solo</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </section>
     </main>
-    <footer class="footer" role="contentinfo">
-        <a class="contact" href="mailto:loboiderek@icloud.com" aria-label="Compose Email to Derek Lobo">contact</a>
+    <footer class="footer mt-8 text-center text-gray-500" role="contentinfo">
+        <a class="contact hover:underline" href="mailto:loboiderek@icloud.com" aria-label="Compose Email to Derek Lobo">contact</a>
     </footer>
 </body>
 </html>
