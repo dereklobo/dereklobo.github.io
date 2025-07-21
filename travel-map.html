@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Explore Derek Lobo's travel destinations, including cities visited and wish list locations, displayed on an interactive world map.">
+    <meta name="author" content="Derek Lobo">
+    <meta property="og:site_name" content="Derek Lobo's personal website">
+    <meta property="og:title" content="Travel Destinations - Derek Lobo" />
+    <meta property="og:description" content="Discover the cities Derek Lobo has visited and wishes to visit, shown as pins on a world map." />
+    <meta property="og:image" itemprop="image" content="https://www.gravatar.com/avatar/37f58fba42763a391a0eb1a2897e6712?s=400">
+    <meta property="og:image:alt" content="Derek Lobo's photo" />
+    <meta property="og:type" content="website" />
+    <title>Travel Destinations - Derek Lobo</title>
+    <!-- Favicon -->
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="favicon/apple-touch-icon-57x57.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="favicon/apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="favicon/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="favicon/apple-touch-icon-144x144.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="60x60" href="favicon/apple-touch-icon-60x60.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="favicon/apple-touch-icon-120x120.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="76x76" href="favicon/apple-touch-icon-76x76.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="favicon/apple-touch-icon-152x152.png" />
+    <link rel="icon" type="image/png" href="favicon/favicon-196x196.png" sizes="196x196" />
+    <link rel="icon" type="image/png" href="favicon/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/png" href="favicon/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="favicon/favicon-16x16.png" sizes="16x16" />
+    <link rel="icon" type="image/png" href="favicon/favicon-128.png" sizes="128x128" />
+    <link rel="icon" type="image/x-icon" href="favicon/favicon.ico?">
+    <meta name="application-name" content="Derek Lobo"/>
+    <meta name="msapplication-TileColor" content="#FFFFFF" />
+    <meta name="msapplication-TileImage" content="mstile-144x144.png" />
+    <meta name="msapplication-square70x70logo" content="mstile-70x70.png" />
+    <meta name="msapplication-square150x150logo" content="mstile-150x150.png" />
+    <meta name="msapplication-wide310x150logo" content="mstile-310x150.png" />
+    <meta name="msapplication-square310x310logo" content="mstile-310x310.png" />
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+    <link rel="stylesheet" href="css/main.css">
+    <style>
+        .map-container {
+            position: relative;
+            width: 800px;
+            max-width: 100%;
+            margin: 40px auto;
+        }
+        .world-map {
+            width: 100%;
+            display: block;
+            border-radius: 12px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+        }
+        .pin {
+            position: absolute;
+            width: 32px;
+            height: 32px;
+            cursor: pointer;
+            outline: none;
+        }
+        .pin:focus {
+            box-shadow: 0 0 0 3px #0980ce;
+        }
+        /* Visited: red pin, Wish list: blue pin */
+        .pin.visited {
+            background: url('https://cdn-icons-png.flaticon.com/512/684/684908.png') no-repeat center center;
+            background-size: contain;
+            filter: hue-rotate(-30deg) saturate(2); /* red */
+        }
+        .pin.wishlist {
+            background: url('https://cdn-icons-png.flaticon.com/512/684/684908.png') no-repeat center center;
+            background-size: contain;
+            filter: hue-rotate(180deg) saturate(2); /* blue */
+        }
+        .pin-label {
+            position: absolute;
+            left: 36px;
+            top: 0;
+            background: #222;
+            color: #fff;
+            padding: 2px 8px;
+            border-radius: 6px;
+            font-size: 0.95em;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+            white-space: nowrap;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+        .pin:hover .pin-label,
+        .pin:focus .pin-label {
+            opacity: 1;
+        }
+        /* Example: Toronto at 25% from left, 15% from top */
+        .pin-toronto   { left: 25.5%; top: 24.2%; }
+        .pin-dublin    { left: 44%; top: 14%; }
+        .pin-amsterdam { left: 46%; top: 16%; }
+        .pin-toulouse  { left: 46%; top: 22%; }
+        .pin-lourdes   { left: 45%; top: 25%; }
+        .pin-porto     { left: 42%; top: 23%; }
+        .pin-lisbon    { left: 41%; top: 26%; }
+        .pin-faro      { left: 41.5%; top: 28%; }
+    </style>
+</head>
+<body>
+    <nav class="top-right links" role="navigation" aria-label="Main navigation">
+        <a href="index.html" aria-label="Home page of Derek Lobo">Home</a>
+    </nav>
+    <main class="content" role="main">
+        <header>
+            <h1 class="title m-b-md" role="banner">Derek Lobo</h1>
+        </header>
+        <section class="about m-b-md">
+            <h2>Travel Destinations</h2>
+            <p>
+                Here are some cities I've visited (<span style="color:rgb(148, 14, 14);font-weight:bold;">red pins</span>) and wish to visit (<span style="color:#0980ce;font-weight:bold;">blue pins</span>). Hover over pins or use Tab to reveal city names!
+            </p>
+        </section>
+        <section class="map-container" aria-label="World map with travel destinations">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/World_map_-_low_resolution.svg/1200px-World_map_-_low_resolution.svg.png"
+                 alt="World map showing travel destinations as pins" class="world-map">
+            <!-- Visited Cities (red pins) -->
+            <div class="pin pin-toronto visited" title="Toronto" tabindex="0" aria-label="Toronto, visited">
+                <span class="pin-label" aria-hidden="false">Toronto</span>
+            </div>
+            <div class="pin pin-toulouse visited" title="Toulouse" tabindex="0" aria-label="Toulouse, visited">
+                <span class="pin-label" aria-hidden="false">Toulouse</span>
+            </div>
+            <div class="pin pin-lourdes visited" title="Lourdes" tabindex="0" aria-label="Lourdes, visited">
+                <span class="pin-label" aria-hidden="false">Lourdes</span>
+            </div>
+            <div class="pin pin-porto visited" title="Porto" tabindex="0" aria-label="Porto, visited">
+                <span class="pin-label" aria-hidden="false">Porto</span>
+            </div>
+            <div class="pin pin-lisbon visited" title="Lisbon" tabindex="0" aria-label="Lisbon, visited">
+                <span class="pin-label" aria-hidden="false">Lisbon</span>
+            </div>
+            <div class="pin pin-faro visited" title="Faro" tabindex="0" aria-label="Faro, visited">
+                <span class="pin-label" aria-hidden="false">Faro</span>
+            </div>
+            <!-- Wish List Cities (blue pins) -->
+            <div class="pin pin-dublin wishlist" title="Dublin" tabindex="0" aria-label="Dublin, wish list">
+                <span class="pin-label" aria-hidden="false">Dublin</span>
+            </div>
+            <div class="pin pin-amsterdam wishlist" title="Amsterdam" tabindex="0" aria-label="Amsterdam, wish list">
+                <span class="pin-label" aria-hidden="false">Amsterdam</span>
+            </div>
+        </section>
+    </main>
+    <footer class="footer" role="contentinfo">
+        <a class="contact" href="mailto:loboiderek@icloud.com" aria-label="Compose Email to Derek Lobo">contact</a>
+    </footer>
+</body>
+</html>
