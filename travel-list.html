@@ -37,19 +37,20 @@
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gradient-to-br from-gray-50 via-blue-50 to-green-100 min-h-screen">
+<body class="bg-gradient-to-br from-gray-50 via-blue-50 to-green-100 min-h-screen text-gray-900 antialiased">
     <nav class="flex justify-end p-4" role="navigation" aria-label="Main navigation">
-        <a href="index.html" class="text-blue-700 font-semibold hover:underline" aria-label="Home page of Derek Lobo">Home</a>
+        <a href="index.html" class="text-blue-700 font-semibold hover:underline focus:outline-none focus:ring-2 focus:ring-blue-500 rounded" aria-label="Home page of Derek Lobo">Home</a>
     </nav>
-    <main class="max-w-4xl mx-auto p-4" role="main">
+    <main class="max-w-4xl mx-auto p-4 sm:p-6" role="main">
         <header class="mb-8 flex items-center gap-3">
             <img src="images/svg/shamrock.svg"
                 alt="Shamrock clover leaf" class="w-10 h-10" />
             <h1 class="text-3xl font-extrabold text-gray-800 mb-2">Ireland Travel List</h1>
         </header>
         <section aria-label="Travel List Table">
-            <div class="overflow-x-auto rounded-lg shadow-lg">
-                <table class="min-w-full bg-white bg-opacity-90 divide-y divide-gray-200">
+            <div class="overflow-x-auto rounded-lg shadow-lg bg-white bg-opacity-90">
+                <table class="min-w-full divide-y divide-gray-200" role="table">
+                    <caption class="sr-only">List of towns and counties visited in Ireland</caption>
                     <thead class="bg-gradient-to-r from-blue-200 via-green-200 to-gray-100">
                         <tr>
                             <th scope="col" class="px-4 py-3 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">City/Town</th>
@@ -59,8 +60,8 @@
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-gray-100">
-                        <tr class="hover:bg-blue-50 transition">
-                            <td class="px-4 py-2 font-medium text-gray-900">Dublin</td>
+                        <tr class="hover:bg-blue-50 focus-within:bg-blue-100 transition">
+                            <td class="px-4 py-2 font-medium text-gray-900" tabindex="0">Dublin</td>
                             <td class="px-4 py-2 text-gray-700">Dublin</td>
                             <td class="px-4 py-2 text-gray-700">2024</td>
                             <td class="px-4 py-2 text-gray-700 whitespace-pre-line">
@@ -69,86 +70,86 @@
                                 Zoo
                             </td>
                         </tr>
-                        <tr class="hover:bg-blue-50 transition">
-                            <td class="px-4 py-2 font-medium text-gray-900">Athy</td>
+                        <tr class="hover:bg-blue-50 focus-within:bg-blue-100 transition">
+                            <td class="px-4 py-2 font-medium text-gray-900" tabindex="0">Athy</td>
                             <td class="px-4 py-2 text-gray-700">Kildare</td>
                             <td class="px-4 py-2 text-gray-700">2024</td>
                             <td class="px-4 py-2 text-gray-700">River walk, local pub</td>
                         </tr>
-                        <tr class="hover:bg-green-50 transition">
-                            <td class="px-4 py-2 font-medium text-gray-900">Cliffs of Moher</td>
+                        <tr class="hover:bg-green-50 focus-within:bg-green-100 transition">
+                            <td class="px-4 py-2 font-medium text-gray-900" tabindex="0">Cliffs of Moher</td>
                             <td class="px-4 py-2 text-gray-700">Clare</td>
                             <td class="px-4 py-2 text-gray-700">2024</td>
                             <td class="px-4 py-2 text-gray-700">Scenic views, hiking</td>
                         </tr>
-                        <tr class="hover:bg-blue-50 transition">
-                            <td class="px-4 py-2 font-medium text-gray-900">Limerick</td>
+                        <tr class="hover:bg-blue-50 focus-within:bg-blue-100 transition">
+                            <td class="px-4 py-2 font-medium text-gray-900" tabindex="0">Limerick</td>
                             <td class="px-4 py-2 text-gray-700">Limerick</td>
                             <td class="px-4 py-2 text-gray-700">2024</td>
                             <td class="px-4 py-2 text-gray-700">City Explore</td>
                         </tr>
-                        <tr class="hover:bg-green-50 transition">
-                            <td class="px-4 py-2 font-medium text-gray-900">Kilkenny</td>
+                        <tr class="hover:bg-green-50 focus-within:bg-green-100 transition">
+                            <td class="px-4 py-2 font-medium text-gray-900" tabindex="0">Kilkenny</td>
                             <td class="px-4 py-2 text-gray-700">Kilkenny</td>
                             <td class="px-4 py-2 text-gray-700">2025</td>
                             <td class="px-4 py-2 text-gray-700">Medieval Mile, castle</td>
                         </tr>
-                        <tr class="hover:bg-blue-50 transition">
-                            <td class="px-4 py-2 font-medium text-gray-900">Killarney</td>
+                        <tr class="hover:bg-blue-50 focus-within:bg-blue-100 transition">
+                            <td class="px-4 py-2 font-medium text-gray-900" tabindex="0">Killarney</td>
                             <td class="px-4 py-2 text-gray-700">Kerry</td>
                             <td class="px-4 py-2 text-gray-700">2025</td>
                             <td class="px-4 py-2 text-gray-700">WOW25, National Park</td>
                         </tr>
-                        <tr class="hover:bg-green-50 transition">
-                            <td class="px-4 py-2 font-medium text-gray-900">Howth</td>
+                        <tr class="hover:bg-green-50 focus-within:bg-green-100 transition">
+                            <td class="px-4 py-2 font-medium text-gray-900" tabindex="0">Howth</td>
                             <td class="px-4 py-2 text-gray-700">Dublin</td>
                             <td class="px-4 py-2 text-gray-700">2024</td>
                             <td class="px-4 py-2 text-gray-700">Seafood, cliff walk</td>
                         </tr>
-                        <tr class="hover:bg-blue-50 transition">
-                            <td class="px-4 py-2 font-medium text-gray-900">Belfast</td>
+                        <tr class="hover:bg-blue-50 focus-within:bg-blue-100 transition">
+                            <td class="px-4 py-2 font-medium text-gray-900" tabindex="0">Belfast</td>
                             <td class="px-4 py-2 text-gray-700">Antrim</td>
                             <td class="px-4 py-2 text-gray-700">2025</td>
                             <td class="px-4 py-2 text-gray-700">Titanic Museum</td>
                         </tr>
-                        <tr class="hover:bg-green-50 transition">
-                            <td class="px-4 py-2 font-medium text-gray-900">Waterford</td>
+                        <tr class="hover:bg-green-50 focus-within:bg-green-100 transition">
+                            <td class="px-4 py-2 font-medium text-gray-900" tabindex="0">Waterford</td>
                             <td class="px-4 py-2 text-gray-700">Waterford</td>
                             <td class="px-4 py-2 text-gray-700">2025</td>
                             <td class="px-4 py-2 text-gray-700">Greenway trail</td>
                         </tr>
-                        <tr class="hover:bg-blue-50 transition">
-                            <td class="px-4 py-2 font-medium text-gray-900">Blessington</td>
+                        <tr class="hover:bg-blue-50 focus-within:bg-blue-100 transition">
+                            <td class="px-4 py-2 font-medium text-gray-900" tabindex="0">Blessington</td>
                             <td class="px-4 py-2 text-gray-700">Wicklow</td>
                             <td class="px-4 py-2 text-gray-700">2025</td>
                             <td class="px-4 py-2 text-gray-700">Lake, walks</td>
                         </tr>
-                        <tr class="hover:bg-blue-50 transition">
-                            <td class="px-4 py-2 font-medium text-gray-900">Kildare</td>
+                        <tr class="hover:bg-blue-50 focus-within:bg-blue-100 transition">
+                            <td class="px-4 py-2 font-medium text-gray-900" tabindex="0">Kildare</td>
                             <td class="px-4 py-2 text-gray-700">Kildare</td>
                             <td class="px-4 py-2 text-gray-700">2025</td>
                             <td class="px-4 py-2 text-gray-700">Relic of St.Brigid, 5k run</td>
                         </tr>
-                        <tr class="hover:bg-green-50 transition">
-                            <td class="px-4 py-2 font-medium text-gray-900">Monasterevin</td>
+                        <tr class="hover:bg-green-50 focus-within:bg-green-100 transition">
+                            <td class="px-4 py-2 font-medium text-gray-900" tabindex="0">Monasterevin</td>
                             <td class="px-4 py-2 text-gray-700">Kildare</td>
                             <td class="px-4 py-2 text-gray-700">2025</td>
                             <td class="px-4 py-2 text-gray-700">Relic of St.Thérèse of Lisieux</td>
                         </tr>
-                        <tr class="hover:bg-green-50 transition">
-                            <td class="px-4 py-2 font-medium text-gray-900">Newbridge</td>
+                        <tr class="hover:bg-green-50 focus-within:bg-green-100 transition">
+                            <td class="px-4 py-2 font-medium text-gray-900" tabindex="0">Newbridge</td>
                             <td class="px-4 py-2 text-gray-700">Kildare</td>
                             <td class="px-4 py-2 text-gray-700">2025</td>
                             <td class="px-4 py-2 text-gray-700">Relic of St.Faustina Kowalska </td>
                         </tr>
-                        <tr class="hover:bg-blue-50 transition">
-                            <td class="px-4 py-2 font-medium text-gray-900">Giants Causeway</td>
+                        <tr class="hover:bg-blue-50 focus-within:bg-blue-100 transition">
+                            <td class="px-4 py-2 font-medium text-gray-900" tabindex="0">Giants Causeway</td>
                             <td class="px-4 py-2 text-gray-700">Antrim</td>
                             <td class="px-4 py-2 text-gray-700">2025</td>
                             <td class="px-4 py-2 text-gray-700">Basalt columns</td>
                         </tr>
-                        <tr class="hover:bg-green-50 transition">
-                            <td class="px-4 py-2 font-medium text-gray-900">Cork</td>
+                        <tr class="hover:bg-green-50 focus-within:bg-green-100 transition">
+                            <td class="px-4 py-2 font-medium text-gray-900" tabindex="0">Cork</td>
                             <td class="px-4 py-2 text-gray-700">Cork</td>
                             <td class="px-4 py-2 text-gray-700">2025</td>
                             <td class="px-4 py-2 text-gray-700">Office</td>
@@ -159,7 +160,7 @@
         </section>
     </main>
     <footer class="footer mt-8 text-center text-gray-500" role="contentinfo">
-        <a class="contact hover:underline" href="mailto:loboiderek@icloud.com" aria-label="Compose Email to Derek Lobo">contact</a>
+        <a class="contact hover:underline focus:outline-none focus:ring-2 focus:ring-blue-500 rounded" href="mailto:loboiderek@icloud.com" aria-label="Compose Email to Derek Lobo">contact</a>
     </footer>
 </body>
 </html>
