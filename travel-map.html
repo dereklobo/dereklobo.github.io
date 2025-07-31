@@ -34,17 +34,19 @@
     <meta name="msapplication-square150x150logo" content="mstile-150x150.png" />
     <meta name="msapplication-wide310x150logo" content="mstile-310x150.png" />
     <meta name="msapplication-square310x310logo" content="mstile-310x310.png" />
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-    <link rel="stylesheet" href="css/main.css">
+    <!-- Tailwind CSS CDN for responsiveness and accessibility utilities -->
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
         .map-container {
             position: relative;
-            width: 800px;
-            max-width: 100%;
-            margin: 40px auto;
+            width: 100%;
+            max-width: 900px;
+            margin: 2rem auto;
+            aspect-ratio: 2/1;
         }
         .world-map {
             width: 100%;
+            height: auto;
             display: block;
             border-radius: 12px;
             box-shadow: 0 2px 12px rgba(0,0,0,0.08);
@@ -55,21 +57,20 @@
             height: 32px;
             cursor: pointer;
             outline: none;
+            background: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
-        .pin:focus {
+        .pin:focus-visible {
             box-shadow: 0 0 0 3px #0980ce;
+            z-index: 10;
         }
         /* Visited: red pin, Wish list: blue pin */
-        .pin.visited {
-            background: url('https://cdn-icons-png.flaticon.com/512/684/684908.png') no-repeat center center;
-            background-size: contain;
-            filter: hue-rotate(-30deg) saturate(2); /* red */
-        }
-        .pin.wishlist {
-            background: url('https://cdn-icons-png.flaticon.com/512/684/684908.png') no-repeat center center;
-            background-size: contain;
-            filter: hue-rotate(180deg) saturate(2); /* blue */
-        }
+        .pin.visited svg .pin-head,
+        .pin.visited svg .pin-stem { fill: #b91c1c; }
+        .pin.wishlist svg .pin-head,
+        .pin.wishlist svg .pin-stem { fill: #2563eb; }
         .pin-label {
             position: absolute;
             left: 36px;
@@ -84,12 +85,14 @@
             pointer-events: none;
             opacity: 0;
             transition: opacity 0.2s;
+            z-index: 20;
         }
         .pin:hover .pin-label,
-        .pin:focus .pin-label {
+        .pin:focus .pin-label,
+        .pin:focus-visible .pin-label {
             opacity: 1;
         }
-        /* Example: Toronto at 25% from left, 15% from top */
+        /* Responsive pin positions (percentages for Mercator projection) */
         .pin-toronto   { left: 25.5%; top: 24.2%; }
         .pin-dublin    { left: 44%; top: 21%; }
         .pin-amsterdam { left: 46%; top: 16%; }
@@ -98,57 +101,113 @@
         .pin-porto     { left: 42%; top: 23%; }
         .pin-lisbon    { left: 41%; top: 26%; }
         .pin-faro      { left: 41.5%; top: 28%; }
+        @media (max-width: 640px) {
+            .map-container { margin: 1rem auto; }
+            .pin-label { font-size: 0.85em; left: 28px; }
+            .pin { width: 24px; height: 24px; }
+        }
     </style>
 </head>
-<body>
-    <nav class="top-right links" role="navigation" aria-label="Main navigation">
-        <a href="index.html" aria-label="Home page of Derek Lobo">Home</a>
+<body class="bg-gradient-to-br from-gray-50 via-blue-50 to-green-100 min-h-screen text-gray-900 antialiased">
+    <nav class="flex justify-end p-4" role="navigation" aria-label="Main navigation">
+        <a href="index.html" class="text-blue-700 font-semibold hover:underline focus:outline-none focus:ring-2 focus:ring-blue-500 rounded" aria-label="Home page of Derek Lobo">Home</a>
     </nav>
-    <main class="content" role="main">
-        <header>
-            <h1 class="title m-b-md" role="banner">Derek Lobo</h1>
+    <main class="max-w-5xl mx-auto p-4 sm:p-6" role="main">
+        <header class="mb-8">
+            <h1 class="text-3xl font-extrabold text-gray-800 mb-2">Derek Lobo</h1>
         </header>
-        <section class="about m-b-md">
-            <h2>Travel Destinations</h2>
-            <p>
-                Here are some cities I've visited (<span style="color:rgb(148, 14, 14);font-weight:bold;">red pins</span>) 
-                <!-- and wish to visit (<span style="color:#0980ce;font-weight:bold;">blue pins</span>).  -->
-                Hover over pins or use Tab to reveal city names!
+        <section class="about mb-6">
+            <h2 class="text-xl font-bold text-gray-700 mb-2">Travel Destinations</h2>
+            <p class="text-gray-700">
+                Here are some cities I've visited 
+                (<span class="font-bold text-red-700">red pins</span>)
+                and wish to visit 
+                (<span class="font-bold text-blue-700">blue pins</span>).
+                <span class="sr-only">Use Tab or hover to reveal city names on the map below.</span>
+                <span aria-hidden="true">Hover over pins or use Tab to reveal city names!</span>
             </p>
         </section>
         <section class="map-container" aria-label="World map with travel destinations">
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/World_map_-_low_resolution.svg/1200px-World_map_-_low_resolution.svg.png"
-                 alt="World map showing travel destinations as pins" class="world-map">
+                 alt="World map showing travel destinations as pins" class="world-map" />
             <!-- Visited Cities (red pins) -->
             <div class="pin pin-toronto visited" title="Toronto" tabindex="0" aria-label="Toronto, visited">
-                <span class="pin-label" aria-hidden="false">Toronto</span>
+                <span aria-hidden="true">
+                    <svg width="32" height="32" viewBox="0 0 32 32" focusable="false" aria-hidden="true">
+                        <rect class="pin-stem" x="14" y="16" width="4" height="12" rx="2"/>
+                        <ellipse class="pin-head" cx="16" cy="12" rx="7" ry="7"/>
+                    </svg>
+                </span>
+                <span class="pin-label">Toronto</span>
             </div>
             <div class="pin pin-toulouse visited" title="Toulouse" tabindex="0" aria-label="Toulouse, visited">
-                <span class="pin-label" aria-hidden="false">Toulouse</span>
+                <span aria-hidden="true">
+                    <svg width="32" height="32" viewBox="0 0 32 32" focusable="false" aria-hidden="true">
+                        <rect class="pin-stem" x="14" y="16" width="4" height="12" rx="2"/>
+                        <ellipse class="pin-head" cx="16" cy="12" rx="7" ry="7"/>
+                    </svg>
+                </span>
+                <span class="pin-label">Toulouse</span>
             </div>
             <div class="pin pin-lourdes visited" title="Lourdes" tabindex="0" aria-label="Lourdes, visited">
-                <span class="pin-label" aria-hidden="false">Lourdes</span>
+                <span aria-hidden="true">
+                    <svg width="32" height="32" viewBox="0 0 32 32" focusable="false" aria-hidden="true">
+                        <rect class="pin-stem" x="14" y="16" width="4" height="12" rx="2"/>
+                        <ellipse class="pin-head" cx="16" cy="12" rx="7" ry="7"/>
+                    </svg>
+                </span>
+                <span class="pin-label">Lourdes</span>
             </div>
             <div class="pin pin-porto visited" title="Porto" tabindex="0" aria-label="Porto, visited">
-                <span class="pin-label" aria-hidden="false">Porto</span>
+                <span aria-hidden="true">
+                    <svg width="32" height="32" viewBox="0 0 32 32" focusable="false" aria-hidden="true">
+                        <rect class="pin-stem" x="14" y="16" width="4" height="12" rx="2"/>
+                        <ellipse class="pin-head" cx="16" cy="12" rx="7" ry="7"/>
+                    </svg>
+                </span>
+                <span class="pin-label">Porto</span>
             </div>
             <div class="pin pin-lisbon visited" title="Lisbon" tabindex="0" aria-label="Lisbon, visited">
-                <span class="pin-label" aria-hidden="false">Lisbon</span>
+                <span aria-hidden="true">
+                    <svg width="32" height="32" viewBox="0 0 32 32" focusable="false" aria-hidden="true">
+                        <rect class="pin-stem" x="14" y="16" width="4" height="12" rx="2"/>
+                        <ellipse class="pin-head" cx="16" cy="12" rx="7" ry="7"/>
+                    </svg>
+                </span>
+                <span class="pin-label">Lisbon</span>
             </div>
             <div class="pin pin-faro visited" title="Faro" tabindex="0" aria-label="Faro, visited">
-                <span class="pin-label" aria-hidden="false">Faro</span>
+                <span aria-hidden="true">
+                    <svg width="32" height="32" viewBox="0 0 32 32" focusable="false" aria-hidden="true">
+                        <rect class="pin-stem" x="14" y="16" width="4" height="12" rx="2"/>
+                        <ellipse class="pin-head" cx="16" cy="12" rx="7" ry="7"/>
+                    </svg>
+                </span>
+                <span class="pin-label">Faro</span>
             </div>
             <!-- Wish List Cities (blue pins) -->
-            <div class="pin pin-dublin visited" title="Dublin" tabindex="0" aria-label="Dublin, wish list">
-                <span class="pin-label" aria-hidden="false">Dublin</span>
+            <div class="pin pin-dublin wishlist" title="Dublin" tabindex="0" aria-label="Dublin, wish list">
+                <span aria-hidden="true">
+                    <svg width="32" height="32" viewBox="0 0 32 32" focusable="false" aria-hidden="true">
+                        <rect class="pin-stem" x="14" y="16" width="4" height="12" rx="2"/>
+                        <ellipse class="pin-head" cx="16" cy="12" rx="7" ry="7"/>
+                    </svg>
+                </span>
+                <span class="pin-label">Dublin</span>
             </div>
             <div class="pin pin-amsterdam wishlist" title="Amsterdam" tabindex="0" aria-label="Amsterdam, wish list">
-                <span class="pin-label" aria-hidden="false">Amsterdam</span>
+                <span aria-hidden="true">
+                    <svg width="32" height="32" viewBox="0 0 32 32" focusable="false" aria-hidden="true">
+                        <rect class="pin-stem" x="14" y="16" width="4" height="12" rx="2"/>
+                        <ellipse class="pin-head" cx="16" cy="12" rx="7" ry="7"/>
+                    </svg>
+                </span>
+                <span class="pin-label">Amsterdam</span>
             </div>
         </section>
     </main>
-    <footer class="footer" role="contentinfo">
-        <a class="contact" href="mailto:loboiderek@icloud.com" aria-label="Compose Email to Derek Lobo">contact</a>
+    <footer class="footer mt-8 text-center text-gray-500" role="contentinfo">
+        <a class="contact hover:underline focus:outline-none focus:ring-2 focus:ring-blue-500 rounded" href="mailto:loboiderek@icloud.com" aria-label="Compose Email to Derek Lobo">contact</a>
     </footer>
 </body>
 </html>
