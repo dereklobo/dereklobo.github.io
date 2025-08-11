@@ -125,7 +125,6 @@
             </h2>
             <p class="text-gray-700">
                 Here are some cities I've visited 
-                (<span class="font-bold text-red-700">red pins</span>)
                 <span class="sr-only">Use Tab or hover to reveal city names on the map below.</span>
                 <span aria-hidden="true">Hover over pins or use Tab to reveal city names!</span>
             </p>
@@ -133,39 +132,22 @@
         <section class="map-container" aria-label="World map with travel destinations">
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/World_map_-_low_resolution.svg/1200px-World_map_-_low_resolution.svg.png"
                  alt="World map showing travel destinations as pins" class="world-map" />
-            <!-- Visited Cities (red pins) -->
+            
+
             <div class="pin pin-toronto visited" title="Toronto" tabindex="0" aria-label="Toronto, visited">
                 <span aria-hidden="true">
-                    <svg width="32" height="32" viewBox="0 0 32 32" focusable="false" aria-hidden="true">
-                        <rect class="pin-stem" x="14" y="16" width="4" height="12" rx="2"/>
+                    <svg width="32" height="48" viewBox="0 0 32 48" focusable="false" aria-hidden="true">
+                        <rect class="pin-stem" x="15" y="16" width="2" height="28" rx="1"/>
                         <ellipse class="pin-head" cx="16" cy="12" rx="7" ry="7"/>
                     </svg>
                 </span>
                 <span class="pin-label">Toronto</span>
             </div>
-        
-            <div class="pin pin-lourdes visited" title="Lourdes" tabindex="0" aria-label="Lourdes, visited">
-                <span aria-hidden="true">
-                    <svg width="32" height="32" viewBox="0 0 32 32" focusable="false" aria-hidden="true">
-                        <rect class="pin-stem" x="14" y="16" width="4" height="12" rx="2"/>
-                        <ellipse class="pin-head" cx="16" cy="12" rx="7" ry="7"/>
-                    </svg>
-                </span>
-                <span class="pin-label">Lourdes</span>
-            </div>
-            <div class="pin pin-porto visited" title="Porto" tabindex="0" aria-label="Porto, visited">
-                <span aria-hidden="true">
-                    <svg width="32" height="32" viewBox="0 0 32 32" focusable="false" aria-hidden="true">
-                        <rect class="pin-stem" x="14" y="16" width="4" height="12" rx="2"/>
-                        <ellipse class="pin-head" cx="16" cy="12" rx="7" ry="7"/>
-                    </svg>
-                </span>
-                <span class="pin-label">Porto</span>
-            </div>
+            <!-- Repeat for all pins, updating only the class and label as needed: -->
             <div class="pin pin-toronto visited" title="Canada" tabindex="0" aria-label="Canada, visited">
                 <span aria-hidden="true">
-                    <svg width="32" height="32" viewBox="0 0 32 32" focusable="false" aria-hidden="true">
-                        <rect class="pin-stem" x="14" y="16" width="4" height="12" rx="2"/>
+                    <svg width="32" height="48" viewBox="0 0 32 48" focusable="false" aria-hidden="true">
+                        <rect class="pin-stem" x="15" y="16" width="2" height="28" rx="1"/>
                         <ellipse class="pin-head" cx="16" cy="12" rx="7" ry="7"/>
                     </svg>
                 </span>
@@ -173,8 +155,8 @@
             </div>
             <div class="pin pin-switzerland visited" title="Switzerland" tabindex="0" aria-label="Switzerland, visited">
                 <span aria-hidden="true">
-                    <svg width="32" height="32" viewBox="0 0 32 32" focusable="false" aria-hidden="true">
-                        <rect class="pin-stem" x="14" y="16" width="4" height="12" rx="2"/>
+                    <svg width="32" height="48" viewBox="0 0 32 48" focusable="false" aria-hidden="true">
+                        <rect class="pin-stem" x="15" y="16" width="2" height="28" rx="1"/>
                         <ellipse class="pin-head" cx="16" cy="12" rx="7" ry="7"/>
                     </svg>
                 </span>
@@ -182,8 +164,8 @@
             </div>
             <div class="pin pin-france visited" title="France" tabindex="0" aria-label="France, visited">
                 <span aria-hidden="true">
-                    <svg width="32" height="32" viewBox="0 0 32 32" focusable="false" aria-hidden="true">
-                        <rect class="pin-stem" x="14" y="16" width="4" height="12" rx="2"/>
+                    <svg width="32" height="48" viewBox="0 0 32 48" focusable="false" aria-hidden="true">
+                        <rect class="pin-stem" x="15" y="16" width="2" height="28" rx="1"/>
                         <ellipse class="pin-head" cx="16" cy="12" rx="7" ry="7"/>
                     </svg>
                 </span>
@@ -191,27 +173,27 @@
             </div>
             <div class="pin pin-portugal visited" title="Portugal" tabindex="0" aria-label="Portugal, visited">
                 <span aria-hidden="true">
-                    <svg width="32" height="32" viewBox="0 0 32 32" focusable="false" aria-hidden="true">
-                        <rect class="pin-stem" x="14" y="16" width="4" height="12" rx="2"/>
+                    <svg width="32" height="48" viewBox="0 0 32 48" focusable="false" aria-hidden="true">
+                        <rect class="pin-stem" x="15" y="16" width="2" height="28" rx="1"/>
                         <ellipse class="pin-head" cx="16" cy="12" rx="7" ry="7"/>
                     </svg>
                 </span>
                 <span class="pin-label">Portugal</span>
             </div>
             <!-- Wish List Cities (blue pins) -->
-            <div class="pin pin-dublin wishlist" title="Dublin" tabindex="0" aria-label="Dublin, wish list">
+            <div class="pin pin-dublin visited" title="Dublin" tabindex="0" aria-label="Dublin, wish list">
                 <span aria-hidden="true">
-                    <svg width="32" height="32" viewBox="0 0 32 32" focusable="false" aria-hidden="true">
-                        <rect class="pin-stem" x="14" y="16" width="4" height="12" rx="2"/>
+                    <svg width="32" height="48" viewBox="0 0 32 48" focusable="false" aria-hidden="true">
+                        <rect class="pin-stem" x="15" y="16" width="2" height="28" rx="1"/>
                         <ellipse class="pin-head" cx="16" cy="12" rx="7" ry="7"/>
                     </svg>
                 </span>
                 <span class="pin-label">Dublin</span>
             </div>
-            <div class="pin pin-amsterdam wishlist" title="Amsterdam" tabindex="0" aria-label="Amsterdam, wish list">
+            <div class="pin pin-amsterdam visited" title="Amsterdam" tabindex="0" aria-label="Amsterdam, wish list">
                 <span aria-hidden="true">
-                    <svg width="32" height="32" viewBox="0 0 32 32" focusable="false" aria-hidden="true">
-                        <rect class="pin-stem" x="14" y="16" width="4" height="12" rx="2"/>
+                    <svg width="32" height="48" viewBox="0 0 32 48" focusable="false" aria-hidden="true">
+                        <rect class="pin-stem" x="15" y="16" width="2" height="28" rx="1"/>
                         <ellipse class="pin-head" cx="16" cy="12" rx="7" ry="7"/>
                     </svg>
                 </span>
