@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="bg-gradient-to-br from-gray-50 via-blue-50 to-green-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-700 text-gray-900 dark:text-gray-100 antialiased">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -37,8 +37,13 @@
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gradient-to-br from-gray-50 via-blue-50 to-green-100 min-h-screen">
+<body class="bg-gradient-to-br from-gray-50 via-blue-50 to-green-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-700 min-h-screen text-gray-900 dark:text-gray-100 antialiased">
     <nav class="flex justify-end p-4" role="navigation" aria-label="Main navigation">
+        <!-- Dark/Light mode toggle button -->
+        <button id="theme-toggle" aria-label="Toggle dark mode" class="text-md mr-3 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded" type="button">
+            <!-- Sun for light, moon for dark (swap with JS) -->
+            <span id="theme-icon">🌙</span>
+        </button>
         <a href="index.html" class="text-blue-700 font-semibold hover:underline" aria-label="Home page of Derek Lobo">Home</a>
     </nav>
     <main class="max-w-5xl mx-auto p-4" role="main">
@@ -182,5 +187,34 @@
     <footer class="footer mt-8 text-center text-gray-500" role="contentinfo">
         <a class="contact hover:underline" href="mailto:loboiderek@icloud.com" aria-label="Compose Email to Derek Lobo">contact</a>
     </footer>
+
+    <script>
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeIcon = document.getElementById('theme-icon');
+    const html = document.documentElement;
+
+    function setTheme(dark) {
+        if (dark) {
+            html.classList.add('dark');
+            themeIcon.textContent = '☀️';
+            themeToggle.setAttribute('aria-label', 'Switch to light mode');
+        } else {
+            html.classList.remove('dark');
+            themeIcon.textContent = '🌙';
+            themeToggle.setAttribute('aria-label', 'Switch to dark mode');
+        }
+        localStorage.setItem('theme', dark ? 'dark' : 'light');
+    }
+
+    // Initial theme
+    const userPref = localStorage.getItem('theme');
+    const systemPref = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    setTheme(userPref === 'dark' || (!userPref && systemPref));
+
+    // Toggle on click
+    themeToggle.addEventListener('click', () => {
+        setTheme(!html.classList.contains('dark'));
+    });
+    </script>
 </body>
 </html>
