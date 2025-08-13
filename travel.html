@@ -36,7 +36,8 @@
     <meta name="msapplication-square310x310logo" content="mstile-310x310.png" />
     <!-- Tailwind CSS CDN -->
     <script>
-        tailwind = { config: { darkMode: 'class' } }
+        window.tailwind = window.tailwind || {};
+        window.tailwind.config = { darkMode: 'class' }
     </script>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
@@ -51,7 +52,7 @@
     </nav>
     <main class="max-w-5xl mx-auto p-4" role="main">
         <header class="mb-8">
-            <h1 class="text-3xl font-extrabold text-gray-800 mb-2 flex items-center gap-3">
+            <h1 class="text-3xl font-extrabold text-gray-800 dark:text-gray-100 mb-2 flex items-center gap-3">
                 <svg class="w-10 h-10" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                     <g>
                         <ellipse cx="20" cy="20" rx="12" ry="14" fill="#34d399"/>
@@ -62,10 +63,10 @@
                 </svg>
                 Travel List
             </h1>
-            <p class="text-lg text-gray-600">Countries and cities visited, with highlights and flags.</p>
+            <p class="text-lg text-gray-600 dark:text-gray-300">Countries and cities visited, with highlights and flags.</p>
         </header>
         <section class="mb-8">
-            <h2 class="text-xl font-bold text-gray-700 mb-3">Countries Visited</h2>
+            <h2 class="text-xl font-bold text-gray-700 dark:text-gray-200 mb-3">Countries Visited</h2>
             <ul class="flex flex-wrap gap-4">
                 <li>
                     <a href="travel-Ireland.html" class="flex items-center gap-2 px-4 py-2 rounded-lg bg-gradient-to-r from-green-300 to-green-500 text-green-900 font-semibold shadow hover:scale-105 transition" aria-label="Ireland travel details">
@@ -112,18 +113,18 @@
             </ul>
         </section>
         <section aria-label="Travel List Table">
-            <div class="overflow-x-auto rounded-lg shadow-lg">
-                <table class="min-w-full bg-white bg-opacity-90 divide-y divide-gray-200">
-                    <thead>
-                        <tr>
-                            <th scope="col" class="px-4 py-3 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">Flag</th>
-                            <th scope="col" class="px-4 py-3 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">Country</th>
-                            <th scope="col" class="px-4 py-3 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">City/Town</th>
-                            <th scope="col" class="px-4 py-3 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">Year Visited</th>
-                            <th scope="col" class="px-4 py-3 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">Highlights/Notes</th>
-                        </tr>
-                    </thead>
-                    <tbody class="divide-y divide-gray-100">
+            <div class="overflow-x-auto rounded-lg shadow-lg bg-white bg-opacity-90 dark:bg-gray-900 dark:bg-opacity-90">
+            <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+                <thead class="bg-gradient-to-r from-blue-200 via-green-200 to-gray-100 dark:from-gray-800 dark:via-gray-700 dark:to-gray-900">
+                    <tr>
+                        <th scope="col" class="px-4 py-3 text-left text-xs font-bold text-gray-700 uppercase tracking-wider dark:text-gray-200">Flag</th>
+                        <th scope="col" class="px-4 py-3 text-left text-xs font-bold text-gray-700 uppercase tracking-wider dark:text-gray-200">Country</th>
+                        <th scope="col" class="px-4 py-3 text-left text-xs font-bold text-gray-700 uppercase tracking-wider dark:text-gray-200">City/Town</th>
+                        <th scope="col" class="px-4 py-3 text-left text-xs font-bold text-gray-700 uppercase tracking-wider dark:text-gray-200">Year Visited</th>
+                        <th scope="col" class="px-4 py-3 text-left text-xs font-bold text-gray-700 uppercase tracking-wider dark:text-gray-200">Highlights/Notes</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-100 dark:divide-gray-800">
                          <!-- Canada: blue gradient -->
                         <tr class="bg-gradient-to-r from-blue-100 to-blue-200 hover:from-blue-200 hover:to-blue-300 transition">
                             <td class="px-4 py-2"><img src="https://cdn.jsdelivr.net/npm/svg-country-flags@1.2.10/svg/ca.svg" alt="Canada flag" class="w-6 h-6 rounded " /></td>
