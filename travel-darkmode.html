@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="bg-gradient-to-br from-gray-50 via-blue-50 to-green-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-700 text-gray-900 dark:text-gray-100 antialiased">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -42,13 +42,13 @@
         <!-- Dark/Light mode toggle button -->
         <button id="theme-toggle" aria-label="Toggle dark mode" class="text-md mr-3 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded" type="button">
             <!-- Sun for light, moon for dark (swap with JS) -->
-            <span id="theme-icon">🌙</span>
+            <span id="theme-icon"> 🌙 </span>
         </button>
         <a href="index.html" class="text-blue-700 font-semibold hover:underline" aria-label="Home page of Derek Lobo">Home</a>
     </nav>
     <main class="max-w-5xl mx-auto p-4" role="main">
         <header class="mb-8">
-            <h1 class="text-3xl font-extrabold text-gray-800 mb-2 flex items-center gap-3">
+            <h1 class="text-3xl font-extrabold text-gray-800 dark:text-gray-100 mb-2 flex items-center gap-3">
                 <svg class="w-10 h-10" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                     <g>
                         <ellipse cx="20" cy="20" rx="12" ry="14" fill="#34d399"/>
@@ -59,10 +59,10 @@
                 </svg>
                 Travel List
             </h1>
-            <p class="text-lg text-gray-600 ">Countries and cities visited, with highlights and flags.</p>
+            <p class="text-lg text-gray-600 dark:text-gray-300">Countries and cities visited, with highlights and flags.</p>
         </header>
         <section class="mb-8">
-            <h2 class="text-xl font-bold text-gray-700 mb-3">Countries Visited</h2>
+            <h2 class="text-xl font-bold text-gray-700 dark:text-gray-200 mb-3">Countries Visited</h2>
             <ul class="flex flex-wrap gap-4">
                 <li>
                     <a href="travel-Ireland.html" class="flex items-center gap-2 px-4 py-2 rounded-lg bg-gradient-to-r from-green-300 to-green-500 text-green-900 font-semibold shadow hover:scale-105 transition" aria-label="Ireland travel details">
@@ -109,18 +109,18 @@
             </ul>
         </section>
         <section aria-label="Travel List Table">
-            <div class="overflow-x-auto rounded-lg shadow-lg bg-white bg-opacity-90">
-            <table class="min-w-full divide-y divide-gray-200 ">
-                <thead class="bg-gradient-to-r from-blue-200 via-green-200 to-gray-100">
+            <div class="overflow-x-auto rounded-lg shadow-lg bg-white bg-opacity-90 dark:bg-gray-900 dark:bg-opacity-90">
+            <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+                <thead class="bg-gradient-to-r from-blue-200 via-green-200 to-gray-100 dark:from-gray-800 dark:via-gray-700 dark:to-gray-900">
                     <tr>
-                        <th scope="col" class="px-4 py-3 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">Flag</th>
-                        <th scope="col" class="px-4 py-3 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">Country</th>
-                        <th scope="col" class="px-4 py-3 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">City/Town</th>
-                        <th scope="col" class="px-4 py-3 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">Year Visited</th>
-                        <th scope="col" class="px-4 py-3 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">Highlights/Notes</th>
+                        <th scope="col" class="px-4 py-3 text-left text-xs font-bold text-gray-700 uppercase tracking-wider dark:text-gray-200">Flag</th>
+                        <th scope="col" class="px-4 py-3 text-left text-xs font-bold text-gray-700 uppercase tracking-wider dark:text-gray-200">Country</th>
+                        <th scope="col" class="px-4 py-3 text-left text-xs font-bold text-gray-700 uppercase tracking-wider dark:text-gray-200">City/Town</th>
+                        <th scope="col" class="px-4 py-3 text-left text-xs font-bold text-gray-700 uppercase tracking-wider dark:text-gray-200">Year Visited</th>
+                        <th scope="col" class="px-4 py-3 text-left text-xs font-bold text-gray-700 uppercase tracking-wider dark:text-gray-200">Highlights/Notes</th>
                     </tr>
                 </thead>
-                <tbody class="divide-y divide-gray-100">
+                <tbody class="divide-y divide-gray-100 dark:divide-gray-800">
                          <!-- Canada: blue gradient -->
                         <tr class="bg-gradient-to-r from-blue-100 to-blue-200 hover:from-blue-200 hover:to-blue-300 transition">
                             <td class="px-4 py-2"><img src="https://cdn.jsdelivr.net/npm/svg-country-flags@1.2.10/svg/ca.svg" alt="Canada flag" class="w-6 h-6 rounded " /></td>
@@ -187,7 +187,6 @@
     <footer class="footer mt-8 text-center text-gray-500" role="contentinfo">
         <a class="contact hover:underline" href="mailto:loboiderek@icloud.com" aria-label="Compose Email to Derek Lobo">contact</a>
     </footer>
-
     <script>
     const themeToggle = document.getElementById('theme-toggle');
     const themeIcon = document.getElementById('theme-icon');
@@ -198,8 +197,12 @@
             html.classList.add('dark');
             themeIcon.textContent = '☀️';
             themeToggle.setAttribute('aria-label', 'Switch to light mode');
-            window.location.replace("travel-darkmode.html");
-        } 
+        } else {
+            html.classList.remove('dark');
+            themeIcon.textContent = '🌙';
+            themeToggle.setAttribute('aria-label', 'Switch to dark mode');
+            window.location.replace("travel.html");
+        }
         localStorage.setItem('theme', dark ? 'dark' : 'light');
     }
 
