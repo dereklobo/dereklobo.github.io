@@ -60,10 +60,19 @@
 
                 gtag('config', 'UA-168463636-1');
             }
-         </script>
+        </script>
+         <!-- Tailwind CSS CDN -->
+        <script src="https://cdn.tailwindcss.com"></script>
     </head>
     <body>
         <div class="full-height">
+            <nav class="flex justify-end p-4" role="navigation" aria-label="Main navigation">
+        <!-- Dark/Light mode toggle button -->
+        <button id="theme-toggle" aria-label="Toggle dark mode" class="text-md mr-3 rounded" type="button">
+            <!-- Sun for light, moon for dark (swap with JS) -->
+            <span id="theme-icon">🌙</span>
+        </button>
+    </nav>
             <div class="content">
                 <div class="title m-b-md" role="banner">
                     Derek Lobo
@@ -78,6 +87,34 @@
         <footer class="footer" role="contentinfo">
             <a class="contact" href="mailto:loboiderek@gmail.com" aria-label="Compose Email to Derek Lobo">contact</a>
         </footer>
+         <script>
+            const themeToggle = document.getElementById('theme-toggle');
+            const themeIcon = document.getElementById('theme-icon');
+            const html = document.documentElement;
+
+            function setTheme(dark) {
+                if (dark) {
+                    html.classList.add('dark');
+                    themeIcon.textContent = '☀️';
+                    themeToggle.setAttribute('aria-label', 'Switch to light mode');
+                } else {
+                    html.classList.remove('dark');
+                    themeIcon.textContent = '🌙';
+                    themeToggle.setAttribute('aria-label', 'Switch to dark mode');
+                }
+                localStorage.setItem('theme', dark ? 'dark' : 'light');
+            }
+
+            // Initial theme
+            const userPref = localStorage.getItem('theme');
+            const systemPref = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            setTheme(userPref === 'dark' || (!userPref && systemPref));
+
+            // Toggle on click
+            themeToggle.addEventListener('click', () => {
+                setTheme(!html.classList.contains('dark'));
+            });
+        </script>
     </body>
 </html>
 
