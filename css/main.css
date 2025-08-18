@@ -12,6 +12,31 @@ html, body {
     }
 }
 
+button {
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    color: inherit;
+    font: inherit;
+    padding: 0;
+}
+
+a {
+    color: #636b6f;
+    transition: color 0.3s ease;
+
+    &:hover {
+        color: #1a202c; /* Dark mode link hover */
+    }
+
+    .dark & {
+        color: #38bdf8; /* Lighter text on hover in dark mode */
+        &:hover {
+            color: #6366f1; /* Light text for dark mode */
+        }
+    }
+}
+
 .full-height {
     height: 100vh;
 }
@@ -59,11 +84,21 @@ html, body {
     letter-spacing: .1rem;
     text-decoration: none;
     text-transform: uppercase;
+
+    .dark & {
+        background-color: #1a202c; /* Dark mode background */
+        color: #cbd5e0; /* Light text for dark mode */
+    }
 }
 
 .m-b-md {
     margin-bottom: 30px;
     font-weight: 200;
+
+    .dark & {
+        background-color: #1a202c; /* Dark mode background */
+        color: #cbd5e0; /* Light text for dark mode */
+    }
 }
 
 .footer {

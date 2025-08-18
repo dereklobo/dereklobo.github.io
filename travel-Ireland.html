@@ -36,6 +36,22 @@
     <meta name="msapplication-square310x310logo" content="mstile-310x310.png" />
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Spam Referal blocker -->
+        <script src="https://github.com/MohamedBassem/spam-referrals-blocker/releases/download/v0.2/spam-referrals-blocker.min.js"></script>
+
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-168463636-1"></script>
+
+        <script type="text/javascript">
+            if( !isSpamReferral() ){
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+
+                gtag('config', 'UA-168463636-1');
+            }
+        </script>
 </head>
 <body class="bg-gradient-to-br from-gray-50 via-blue-50 to-green-100 min-h-screen text-gray-900 antialiased">
     <nav class="flex justify-end p-4" role="navigation" aria-label="Main navigation">
