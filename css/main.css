@@ -5,6 +5,11 @@ html, body {
     font-weight: 200;
     height: 100vh;
     margin: 0;
+
+    .dark & {
+        background-color: #1a202c; /* Dark mode background */
+        color: #cbd5e0; /* Light text for dark mode */
+    }
 }
 
 .full-height {
@@ -82,6 +87,11 @@ html, body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+
+    .dark & {
+        background-color: #1a202c; /* Dark mode background */
+        color: #cbd5e0; /* Light text for dark mode */
+    }
 }
 
     .image{
