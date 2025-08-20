@@ -125,16 +125,14 @@
 
             function setTheme(dark) {
                 if (dark) {
-                    console.log("Setting dark mode");
-                    console.log(dark);
                     html.classList.add('dark');
                     themeIcon.textContent = '☀️';
                     themeToggle.setAttribute('aria-label', 'Switch to light mode');
-                    window.location.replace("about-darkmode.html");
                 }
                 else {
                     html.classList.remove('dark');
                     themeIcon.textContent = '🌙';
+                    themeToggle.setAttribute('aria-label', 'Switch to dark mode');
                 }
                 localStorage.setItem('theme', dark ? 'dark' : 'light');
             }
