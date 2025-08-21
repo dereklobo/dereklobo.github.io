@@ -214,8 +214,12 @@
                 html.classList.add('dark');
                 themeIcon.textContent = '☀️';
                 themeToggle.setAttribute('aria-label', 'Switch to light mode');
-                window.location.replace("travel-Ireland-darkmode.html");
-            } 
+                // window.location.replace("travel-Ireland-darkmode.html");
+            } else {
+                    html.classList.remove('dark');
+                    themeIcon.textContent = '🌙';
+                    themeToggle.setAttribute('aria-label', 'Switch to dark mode');
+                }
             localStorage.setItem('theme', dark ? 'dark' : 'light');
         }
 
