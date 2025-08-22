@@ -64,6 +64,11 @@ a {
 
 .content {
     text-align: center;
+
+    .dark & {
+        background-color: #1a202c; /* Dark mode background */
+        color: #cbd5e0; /* Light text for dark mode */
+    }
 }
 
 .title {
