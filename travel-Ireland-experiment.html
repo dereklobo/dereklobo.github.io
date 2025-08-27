@@ -13,32 +13,69 @@
     <meta property="og:type" content="website" />
     <title>Ireland Travel List - Derek Lobo</title>
     <!-- Tailwind CSS CDN with dark mode enabled -->
-    <script>
-      tailwind = tailwind || {};
-      tailwind.config = { darkMode: 'class' }
-    </script>
+   
+    <!-- <link rel="stylesheet" href="css/main.css"> -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Spam Referal blocker -->
-    <script src="https://github.com/MohamedBassem/spam-referrals-blocker/releases/download/v0.2/spam-referrals-blocker.min.js"></script>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-168463636-1"></script>
-    <script type="text/javascript">
-        if( !isSpamReferral() ){
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'UA-168463636-1');
-        }
-    </script>
+    
+    <style>
+      body {
+        background: #f8fafc;
+        color: #222;
+        transition: background 0.3s, color 0.3s;
+      }
+      .dark body {
+        background: #18181b;
+        color: #f3f4f6;
+      }
+      table {
+        background: #fff;
+        color: #222;
+        border-radius: 8px;
+        width: 100%;
+        margin: 0 auto;
+        border-collapse: collapse;
+        transition: background 0.3s, color 0.3s;
+      }
+      .dark table {
+        background: #23272f;
+        color: #f3f4f6;
+      }
+      th, td {
+        padding: 0.75em 1em;
+        border-bottom: 1px solid #e5e7eb;
+      }
+      .dark th, .dark td {
+        border-bottom: 1px solid #374151;
+      }
+      th {
+        background: #e0f2fe;
+      }
+      .dark th {
+        background: #334155;
+      }
+      tr:hover {
+        background: #f1f5f9;
+      }
+      .dark tr:hover {
+        background: #1e293b;
+      }
+      .toggle-btn {
+        font-size: 1.5em;
+        background: none;
+        border: none;
+        cursor: pointer;
+        margin-right: 1em;
+      }
+    </style>
 </head>
 <body class="min-h-screen">
     <nav class="flex justify-end p-4" role="navigation" aria-label="Main navigation">
-         <!-- Dark/Light mode toggle button -->
+        <!-- Dark/Light mode toggle button -->
         <button id="theme-toggle" aria-label="Toggle dark mode" class="text-md mr-3 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded" type="button">
             <span id="theme-icon">🌙</span>
         </button>
-         <span class="sr-only">Home</span>
-         <span class="text-gray-500 mr-2">|</span>
+        <span class="sr-only">Home</span>
+        <span class="text-gray-500 mr-2">|</span>
         <a href="index.html" class="text-blue-700 font-semibold hover:underline focus:outline-none focus:ring-2 focus:ring-blue-500 rounded" aria-label="Home page of Derek Lobo">Home</a>
     </nav>
     <main class="max-w-4xl mx-auto p-4 sm:p-6" role="main">
@@ -53,7 +90,7 @@
             <div class="overflow-x-auto rounded-lg shadow-lg bg-white bg-opacity-90 dark:bg-gray-900 dark:bg-opacity-90">
                 <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700" role="table">
                     <caption class="sr-only">List of towns and counties visited in Ireland</caption>
-                    <thead class="bg-gradient-to-r from-blue-200 via-green-200 to-gray-100 dark:from-blue-800 dark:via-green-700 dark:to-gray-900">
+                    <thead class="bg-gradient-to-r from-blue-200 via-green-200 to-gray-100 dark:from-blue-900 dark:via-green-900 dark:to-gray-800">
                         <tr>
                             <th scope="col" class="px-4 py-3 text-left text-xs font-bold text-gray-700 dark:text-gray-200 uppercase tracking-wider">City/Town</th>
                             <th scope="col" class="px-4 py-3 text-left text-xs font-bold text-gray-700 dark:text-gray-200 uppercase tracking-wider">County</th>
@@ -199,7 +236,6 @@
                 html.classList.remove('dark');
                 themeIcon.textContent = '🌙';
                 themeToggle.setAttribute('aria-label', 'Switch to dark mode');
-                window.location.replace("travel-Ireland.html");
             }
             localStorage.setItem('theme', dark ? 'dark' : 'light');
         }
