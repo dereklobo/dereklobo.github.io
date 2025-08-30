@@ -12,6 +12,11 @@ html, body {
     }
 }
 
+html.dark, body.dark {
+    background-color: #1a202c;
+    color: #cbd5e0;
+}
+
 button {
     cursor: pointer;
     background-color: transparent;
