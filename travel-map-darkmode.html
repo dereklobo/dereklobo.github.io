@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en" class="bg-gradient-to-br from-gray-50 via-blue-50 to-green-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-700 text-gray-900 dark:text-gray-100 antialiased">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Explore Derek Lobo's travel destinations, including cities visited and wish list locations, displayed on an interactive world map.">
+    <meta name="author" content="Derek Lobo">
+    <meta property="og:site_name" content="Derek Lobo's personal website">
+    <meta property="og:title" content="Travel Destinations - Derek Lobo" />
+    <meta property="og:description" content="Discover the cities Derek Lobo has visited and wishes to visit, shown as pins on a world map." />
+    <meta property="og:image" itemprop="image" content="https://www.gravatar.com/avatar/37f58fba42763a391a0eb1a2897e6712?s=400">
+    <meta property="og:image:alt" content="Derek Lobo's photo" />
+    <meta property="og:type" content="website" />
+    <title>Travel Destinations - Derek Lobo</title>
+    <!-- Tailwind CSS CDN with dark mode enabled -->
+    <script>
+      tailwind = tailwind || {};
+      tailwind.config = { darkMode: 'class' }
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .map-container {
+            position: relative;
+            width: 100%;
+            max-width: 900px;
+            margin: 2rem auto;
+            aspect-ratio: 2/1;
+        }
+        .world-map {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 12px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+        }
+        .pin {
+            position: absolute;
+            width: 32px;
+            height: 32px;
+            cursor: pointer;
+            outline: none;
+            background: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .pin:focus-visible {
+            box-shadow: 0 0 0 3px #0980ce;
+            z-index: 10;
+        }
+        /* Visited: red pin, Wish list: blue pin */
+        .pin.visited svg .pin-head,
+        .pin.visited svg .pin-stem { fill: #b91c1c; }
+        .pin.wishlist svg .pin-head,
+        .pin.wishlist svg .pin-stem { fill: #2563eb; }
+        .pin-label {
+            position: absolute;
+            left: 36px;
+            top: 0;
+            background: #222;
+            color: #fff;
+            padding: 2px 8px;
+            border-radius: 6px;
+            font-size: 0.95em;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+            white-space: nowrap;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.2s;
+            z-index: 20;
+        }
+        .pin:hover .pin-label,
+        .pin:focus .pin-label,
+        .pin:focus-visible .pin-label {
+            opacity: 1;
+        }
+        /* Responsive pin positions (percentages for Mercator projection) */
+        .pin-toronto   { left: 25.5%; top: 24.2%; }
+        .pin-dublin    { left: 44%; top: 21%; }
+        .pin-amsterdam { left: 46%; top: 16%; }
+        .pin-switzerland { left: 48.5%; top: 22.5%; }
+        .pin-france { left: 46.5%; top: 25%; }
+        .pin-portugal { left: 41.5%; top: 28%; }
+        @media (max-width: 640px) {
+            .map-container { margin: 1rem auto; }
+            .pin-label { font-size: 0.85em; left: 28px; }
+            .pin { width: 24px; height: 24px; }
+        }
+        /* Dark mode overrides */
+        html.dark body {
+            background: linear-gradient(to bottom right, #111827, #1e293b 60%, #334155);
+            color: #f3f4f6;
+        }
+        html.dark .world-map {
+            filter: brightness(0.8) contrast(1.1);
+            box-shadow: 0 2px 12px rgba(0,0,0,0.25);
+        }
+        html.dark .pin-label {
+            background: #f3f4f6;
+            color: #222;
+        }
+        html.dark .about,
+        html.dark .text-gray-700 {
+            color: #d1d5db !important;
+        }
+        html.dark .text-gray-800 {
+            color: #f3f4f6 !important;
+        }
+        html.dark .text-blue-700 {
+            color: #60a5fa !important;
+        }
+        html.dark .text-gray-500 {
+            color: #9ca3af !important;
+        }
+        html.dark .footer {
+            color: #9ca3af !important;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-gray-50 via-blue-50 to-green-100 min-h-screen text-gray-900 antialiased dark:bg-gradient-to-br dark:from-gray-900 dark:via-gray-800 dark:to-gray-700 dark:text-gray-100">
+    <nav class="flex justify-end p-4" role="navigation" aria-label="Main navigation">
+        <button id="theme-toggle" aria-label="Toggle dark mode" class="text-md mr-3 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded" type="button">
+            <span id="theme-icon">🌙</span>
+        </button>
+        <a href="index.html" class="text-[#636b6f] px-6 text-[13px] font-semibold tracking-wider no-underline uppercase focus:outline-none focus:ring-2 focus:ring-blue-500 rounded hover:underline transition dark:text-gray-300" aria-label="Home page of Derek Lobo">Home</a>
+    </nav>
+    <main class="max-w-5xl mx-auto p-4 sm:p-6" role="main">
+        <header class="mb-8">
+            <h1 class="text-3xl font-extrabold text-gray-800 dark:text-gray-100 mb-2">Derek Lobo</h1>
+        </header>
+        <section class="about mb-6">
+            <h2 class="text-xl font-bold text-gray-700 dark:text-gray-200 mb-2">
+                <a href="travel.html" class="text-blue-700 hover:underline focus:outline-none focus:ring-2 focus:ring-blue-500 rounded dark:text-blue-400">
+                    Travel Destinations
+                </a>
+            </h2>
+            <p class="text-gray-700 dark:text-gray-300">
+                Here are some cities I've visited. 
+                <span class="sr-only">Use Tab or hover to reveal city names on the map below.</span>
+                <span aria-hidden="true">Hover over pins or use Tab to reveal city names!</span>
+            </p>
+        </section>
+        <section class="map-container" aria-label="World map with travel destinations">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/World_map_-_low_resolution.svg/1200px-World_map_-_low_resolution.svg.png"
+                 alt="World map showing travel destinations as pins" class="world-map" />
+            <div class="pin pin-toronto visited" title="Toronto" tabindex="0" aria-label="Toronto, visited">
+                <span aria-hidden="true">
+                    <svg width="32" height="48" viewBox="0 0 32 48" focusable="false" aria-hidden="true">
+                        <rect class="pin-stem" x="15" y="16" width="2" height="28" rx="1"/>
+                        <ellipse class="pin-head" cx="16" cy="12" rx="7" ry="7"/>
+                    </svg>
+                </span>
+                <span class="pin-label">Toronto</span>
+            </div>
+            <div class="pin pin-toronto visited" title="Canada" tabindex="0" aria-label="Canada, visited">
+                <span aria-hidden="true">
+                    <svg width="32" height="48" viewBox="0 0 32 48" focusable="false" aria-hidden="true">
+                        <rect class="pin-stem" x="15" y="16" width="2" height="28" rx="1"/>
+                        <ellipse class="pin-head" cx="16" cy="12" rx="7" ry="7"/>
+                    </svg>
+                </span>
+                <span class="pin-label">Canada</span>
+            </div>
+            <div class="pin pin-switzerland visited" title="Switzerland" tabindex="0" aria-label="Switzerland, visited">
+                <span aria-hidden="true">
+                    <svg width="32" height="48" viewBox="0 0 32 48" focusable="false" aria-hidden="true">
+                        <rect class="pin-stem" x="15" y="16" width="2" height="28" rx="1"/>
+                        <ellipse class="pin-head" cx="16" cy="12" rx="7" ry="7"/>
+                    </svg>
+                </span>
+                <span class="pin-label">Switzerland</span>
+            </div>
+            <div class="pin pin-france visited" title="France" tabindex="0" aria-label="France, visited">
+                <span aria-hidden="true">
+                    <svg width="32" height="48" viewBox="0 0 32 48" focusable="false" aria-hidden="true">
+                        <rect class="pin-stem" x="15" y="16" width="2" height="28" rx="1"/>
+                        <ellipse class="pin-head" cx="16" cy="12" rx="7" ry="7"/>
+                    </svg>
+                </span>
+                <span class="pin-label">France</span>
+            </div>
+            <div class="pin pin-portugal visited" title="Portugal" tabindex="0" aria-label="Portugal, visited">
+                <span aria-hidden="true">
+                    <svg width="32" height="48" viewBox="0 0 32 48" focusable="false" aria-hidden="true">
+                        <rect class="pin-stem" x="15" y="16" width="2" height="28" rx="1"/>
+                        <ellipse class="pin-head" cx="16" cy="12" rx="7" ry="7"/>
+                    </svg>
+                </span>
+                <span class="pin-label">Portugal</span>
+            </div>
+            <!-- Wish List Cities (blue pins) -->
+            <div class="pin pin-dublin visited" title="Dublin" tabindex="0" aria-label="Dublin, wish list">
+                <span aria-hidden="true">
+                    <svg width="32" height="48" viewBox="0 0 32 48" focusable="false" aria-hidden="true">
+                        <rect class="pin-stem" x="15" y="16" width="2" height="28" rx="1"/>
+                        <ellipse class="pin-head" cx="16" cy="12" rx="7" ry="7"/>
+                    </svg>
+                </span>
+                <span class="pin-label">Dublin</span>
+            </div>
+            <div class="pin pin-amsterdam visited" title="Amsterdam" tabindex="0" aria-label="Amsterdam, wish list">
+                <span aria-hidden="true">
+                    <svg width="32" height="48" viewBox="0 0 32 48" focusable="false" aria-hidden="true">
+                        <rect class="pin-stem" x="15" y="16" width="2" height="28" rx="1"/>
+                        <ellipse class="pin-head" cx="16" cy="12" rx="7" ry="7"/>
+                    </svg>
+                </span>
+                <span class="pin-label">Amsterdam</span>
+            </div>
+        </section>
+    </main>
+    <footer class="footer mt-8 text-center text-gray-500 dark:text-gray-400" role="contentinfo">
+        <a class="contact hover:underline focus:outline-none focus:ring-2 focus:ring-blue-500 rounded" href="mailto:loboiderek@icloud.com" aria-label="Compose Email to Derek Lobo">contact</a>
+    </footer>
+    <script>
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeIcon = document.getElementById('theme-icon');
+        const html = document.documentElement;
+
+        function setTheme(dark) {
+            if (dark) {
+                html.classList.add('dark');
+                themeIcon.textContent = '☀️';
+                themeToggle.setAttribute('aria-label', 'Switch to light mode');
+            } else {
+                html.classList.remove('dark');
+                themeIcon.textContent = '🌙';
+                themeToggle.setAttribute('aria-label', 'Switch to dark mode');
+            }
+            localStorage.setItem('theme', dark ? 'dark' : 'light');
+        }
+
+        // Initial theme
+        const userPref = localStorage.getItem('theme');
+        const systemPref = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        setTheme(userPref === 'dark' || (!userPref && systemPref));
+
+        // Toggle on click
+        themeToggle.addEventListener('click', () => {
+            setTheme(!html.classList.contains('dark'));
+        });
+    </script>
+</body>
+</html>
