@@ -40,6 +40,11 @@ a {
             color: #6366f1; /* Light text for dark mode */
         }
     }
+
+    &:focus {
+        outline: 2px solid #3182ce; /* Focus outline for accessibility */
+        outline-offset: 2px;
+    }
 }
 
 .full-height {
@@ -195,5 +200,34 @@ a {
     body {
         color: #636b6f !important;
     }
+
+    .sr-only {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.sr-only:focus,
+.sr-only:active {
+  position: static;
+  left: auto;
+  width: auto;
+  height: auto;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+  background: #f3f4f6;
+  color: #222;
+  padding: 0.5em 1em;
+  z-index: 1000;
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+  border-radius: 6px;
+}
 
 
