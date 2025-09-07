@@ -63,8 +63,12 @@
         </script>
          <!-- Tailwind CSS CDN -->
         <script src="https://cdn.tailwindcss.com"></script>
+        <!-- Add focus styles for better keyboard navigation -->
+        
     </head>
     <body>
+        <!-- Add skip to main content link -->
+        <a href="#main" class="sr-only focus:not-sr-only">Skip to main content</a>
         <div class="full-height">
             <nav class="flex justify-end p-4" role="navigation" aria-label="Main navigation">
                 <!-- Dark/Light mode toggle button -->
@@ -73,12 +77,12 @@
                     <span id="theme-icon">🌙</span>
                 </button>
             </nav>
-            <div class="content">
+            <div id="main" class="content">
                 <div class="title m-b-md" role="banner">
                     Derek Lobo
                 </div>
                 <div class="links" role="main">
-                    <a href="https://www.linkedin.com/in/idereklobo//" aria-label="Lobo Derek's LinkedIn profile" >LindkedIn</a>
+                    <a href="https://www.linkedin.com/in/idereklobo/" aria-label="Lobo Derek's LinkedIn profile" >LindkedIn</a>
                     <a href="https://github.com/dereklobo" aria-label="Lobo Derek's github repository">GitHub</a>
                     <a href="about.html" aria-label="read more about Derek Lobo">About</a>
                 </div>
