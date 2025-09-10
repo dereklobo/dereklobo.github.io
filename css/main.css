@@ -230,4 +230,12 @@ a {
   border-radius: 6px;
 }
 
+.external-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25em;
+}
 
+.external-link:hover {
+    text-decoration: underline;
+}
