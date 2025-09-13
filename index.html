@@ -84,6 +84,14 @@
                     <!-- Sun for light, moon for dark (swap with JS) -->
                     <span id="theme-icon">🌙</span>
                 </button>
+                <!-- Add this to your <nav> after the dark mode toggle button -->
+                <button id="font-decrease" aria-label="Decrease font size" class="text-md mr-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" type="button">
+                    <span aria-hidden="true" style="font-size:1.2em;">A-</span>
+                </button>
+                <button id="font-increase" aria-label="Increase font size" class="text-md mr-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" type="button">
+                    <span aria-hidden="true" style="font-size:1.2em;">A+</span>
+                </button>
+
             </nav>
             <div id="main" class="content">
                 <div class="title m-b-md" role="banner">
@@ -126,6 +134,28 @@
             themeToggle.addEventListener('click', () => {
                 setTheme(!html.classList.contains('dark'));
             });
+
+            // Font size adjustment
+            const mainContent = document.getElementById('main');
+            const fontIncrease = document.getElementById('font-increase');
+            const fontDecrease = document.getElementById('font-decrease');
+            let fontSize = 16; // default font size in px
+
+            function setFontSize(size) {
+                fontSize = Math.max(12, Math.min(size, 24)); // limit between 12px and 24px
+                mainContent.style.fontSize = fontSize + 'px';
+                localStorage.setItem('fontSize', fontSize);
+            }
+
+            // Load saved font size
+            const savedFontSize = localStorage.getItem('fontSize');
+            if (savedFontSize) setFontSize(Number(savedFontSize));
+
+            // Increase font size
+            fontIncrease.addEventListener('click', () => setFontSize(fontSize + 2));
+
+            // Decrease font size
+            fontDecrease.addEventListener('click', () => setFontSize(fontSize - 2));
         </script>
     </body>
 </html>
