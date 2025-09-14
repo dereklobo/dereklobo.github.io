@@ -84,13 +84,23 @@
                     <!-- Sun for light, moon for dark (swap with JS) -->
                     <span id="theme-icon">🌙</span>
                 </button>
-                <!-- Add this to your <nav> after the dark mode toggle button -->
-                <button id="font-decrease" aria-label="Decrease font size" class="text-md mr-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" type="button">
-                    <span aria-hidden="true" style="font-size:1.2em;">A-</span>
-                </button>
-                <button id="font-increase" aria-label="Increase font size" class="text-md mr-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" type="button">
-                    <span aria-hidden="true" style="font-size:1.2em;">A+</span>
-                </button>
+                <div class="relative inline-block">
+                    <button id="font-size-toggle" aria-haspopup="true" aria-expanded="false"
+                        class="text-md mr-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 px-2 py-1 bg-gray-100 dark:bg-gray-800"
+                        type="button">
+                        <span aria-hidden="true" style="font-size:1.2em;">A</span>
+                        <span class="ml-1">Font Size</span>
+                        <svg class="inline w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </button>
+                    <div id="font-size-dropdown" class="hidden absolute right-0 mt-2 w-32 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded shadow-lg z-50">
+                        <button class="block w-full text-left px-4 py-2 text-sm hover:bg-blue-100 dark:hover:bg-blue-900" data-size="14">Small</button>
+                        <button class="block w-full text-left px-4 py-2 text-sm hover:bg-blue-100 dark:hover:bg-blue-900" data-size="16">Default</button>
+                        <button class="block w-full text-left px-4 py-2 text-sm hover:bg-blue-100 dark:hover:bg-blue-900" data-size="18">Large</button>
+                        <button class="block w-full text-left px-4 py-2 text-sm hover:bg-blue-100 dark:hover:bg-blue-900" data-size="20">Extra Large</button>
+                    </div>
+                </div>
 
             </nav>
             <div id="main" class="content">
@@ -136,26 +146,39 @@
             });
 
             // Font size adjustment
+            const fontSizeToggle = document.getElementById('font-size-toggle');
+            const fontSizeDropdown = document.getElementById('font-size-dropdown');
             const mainContent = document.getElementById('main');
-            const fontIncrease = document.getElementById('font-increase');
-            const fontDecrease = document.getElementById('font-decrease');
-            let fontSize = 16; // default font size in px
 
-            function setFontSize(size) {
-                fontSize = Math.max(12, Math.min(size, 24)); // limit between 12px and 24px
-                mainContent.style.fontSize = fontSize + 'px';
-                localStorage.setItem('fontSize', fontSize);
-            }
+            // Toggle dropdown
+            fontSizeToggle.addEventListener('click', () => {
+            const expanded = fontSizeToggle.getAttribute('aria-expanded') === 'true';
+            fontSizeToggle.setAttribute('aria-expanded', !expanded);
+            fontSizeDropdown.classList.toggle('hidden');
+            });
+
+            // Set font size
+            fontSizeDropdown.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const size = btn.getAttribute('data-size');
+                mainContent.style.fontSize = size + 'px';
+                localStorage.setItem('fontSize', size);
+                fontSizeDropdown.classList.add('hidden');
+                fontSizeToggle.setAttribute('aria-expanded', 'false');
+            });
+            });
 
             // Load saved font size
             const savedFontSize = localStorage.getItem('fontSize');
-            if (savedFontSize) setFontSize(Number(savedFontSize));
+            if (savedFontSize) mainContent.style.fontSize = savedFontSize + 'px';
 
-            // Increase font size
-            fontIncrease.addEventListener('click', () => setFontSize(fontSize + 2));
-
-            // Decrease font size
-            fontDecrease.addEventListener('click', () => setFontSize(fontSize - 2));
+            // Close dropdown on outside click
+            document.addEventListener('click', (e) => {
+            if (!fontSizeToggle.contains(e.target) && !fontSizeDropdown.contains(e.target)) {
+                fontSizeDropdown.classList.add('hidden');
+                fontSizeToggle.setAttribute('aria-expanded', 'false');
+            }
+            });
         </script>
     </body>
 </html>
