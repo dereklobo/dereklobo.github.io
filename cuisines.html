@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title></title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="South Indian and other cuisines">
         <meta name="author" content="Derek Lobo">
@@ -15,7 +14,7 @@
         <meta property="og:image:alt" content="South Indian and other cuisines" />
         <meta property="og:type" content="website" />
 
-        <title>Cuisines</title>
+        <title>Cuisines - Derek Lobo</title>
 
         <!-- Favicon -->
         <link rel="apple-touch-icon-precomposed" sizes="57x57" href="favicon/apple-touch-icon-57x57.png" />
@@ -68,8 +67,16 @@
                 gtag('config', 'UA-168463636-1');
             }
         </script>
-    </head>
+        <link rel="stylesheet" href="css/theme.css">
+        <style>
+  h1 {
+    font-size: 84px;
+    font-weight: 200;
+  }
+</style>
+</head>
     <body>
+        <a href="#main" class="sr-only">Skip to main content</a>
         <div class="full-height">
             <div class="top-right links" role="navigation">
               <!-- Dark/Light mode toggle button -->
@@ -79,8 +86,8 @@
                 </button>
                 <a href="index.html" aria-label="Home page of Derek Lobo">Home</a>
             </div>
-            <div class="content">
-                <div class="title m-b-md" role="banner">
+            <main id="main" class="content">
+                <div class="title m-b-md">
                     <h1>My Favorite Foods</h1>
                 </div>
                 
@@ -266,6 +273,7 @@
                 </div>
             </div>
 
+        </main>
         </div>
       <script>
             const themeToggle = document.getElementById('theme-toggle');
@@ -295,12 +303,6 @@
                 setTheme(!html.classList.contains('dark'));
             });
         </script>
-    </body>
+        <script src="bg-particles.js" defer></script>
+</body>
 </html>
-
-<style>
-  h1 {
-    font-size: 84px;
-    font-weight: 200;
-  }
-</style>

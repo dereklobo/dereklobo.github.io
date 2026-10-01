@@ -1,0 +1,50 @@
+/* Shared page background: parchment gradient (light) / slate-navy gradient (dark) with drifting gold hexagons. */
+html {
+    background: linear-gradient(to bottom right, #f7efdb, #f1e4c4) fixed !important;
+}
+html.dark {
+    background: linear-gradient(to bottom right, #263043, #3a4760) fixed !important;
+}
+body {
+    background: transparent !important;
+}
+
+/* Particle layer sits behind page content and never takes clicks. */
+#particles-js {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0.6;
+}
+
+/* Index title picks up the ink colours of the About page. */
+.title { color: #2a2f45; }
+html.dark .title { color: #ece4d0; }
+
+/* main.css paints solid backgrounds on these wrappers; let the gradient show through. */
+.content, .m-b-md, .links > a, .main,
+html.dark .content, html.dark .m-b-md, html.dark .links > a, html.dark .main {
+    background: transparent !important;
+}
+
+
+/* Theme toggle: the yellow moon vanishes on cream, so sit it on a navy chip; the sun gets a soft gold ring on dark. */
+#theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
+    min-height: 36px;
+    border-radius: 50%;
+    background: #2a2f45;
+    border: 2px solid #7a5f25;
+    line-height: 1;
+    transition: transform .2s ease, background .2s ease;
+}
+#theme-toggle:hover { transform: scale(1.08); }
+#theme-toggle:focus-visible { outline: 2px solid #1e3a8a; outline-offset: 3px; }
+html.dark #theme-toggle { background: rgba(255, 255, 255, 0.1); border-color: #d9c48c; }
+html.dark #theme-toggle:focus-visible { outline-color: #d9c48c; }

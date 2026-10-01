@@ -1,20 +1,20 @@
 let particlesJSON = {
     particles: {
       number: {
-        value: 40,
+        value: 18,
         density: {
           enable: true,
           value_area: 500
         }
       },
       color: {
-        value: "#ff9800"
+        value: "#c9a96c"
       },
       shape: {
         type: "polygon",
         stroke: {
           width: 2,
-          color: "#ff9800"
+          color: "#c9a96c"
         },
         polygon: {
           nb_sides: 6
@@ -26,7 +26,7 @@ let particlesJSON = {
         }
       },
       opacity: {
-        value: 0.5,
+        value: 0.3,
         random: true
       },
       size: {
@@ -42,7 +42,7 @@ let particlesJSON = {
       },
       move: {
         enable: true,
-        speed: 5,
+        speed: 1.5,
         direction: "bottom",
         random: true,
         straight: true,
@@ -59,11 +59,11 @@ let particlesJSON = {
       detect_on: "canvas",
       events: {
         onhover: {
-          enable: true,
+          enable: false,
           mode: ["grab", "bubble"]
         },
         onclick: {
-          enable: true,
+          enable: false,
           mode: "push"
         },
         resize: true
@@ -98,3 +98,10 @@ let particlesJSON = {
   };
   
   particlesJS("particles-js", particlesJSON);
+
+  // WCAG 2.2.2: decorative motion must not run for more than 5 seconds. Freeze the hexagons after 5s.
+  setTimeout(function () {
+    if (window.pJSDom && window.pJSDom[0]) {
+      window.pJSDom[0].pJS.particles.move.enable = false;
+    }
+  }, 5000);

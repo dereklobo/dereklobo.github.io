@@ -3,22 +3,27 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="On a journey to help those who come my way. 
-            I also happen to be a curious software engineer, an outdoor enthusiast and a foodie. - Derek Lobo"
-        >
-        <meta name="author" content="Derek Lobo">
-        
-        <!-- Add permissions policy -->
         <meta http-equiv="Permissions-Policy" content="geolocation=(), camera=(), microphone=()">
-        <!-- Add referrer policy -->
         <meta name="referrer" content="strict-origin-when-cross-origin">
-        <meta property="og:site_name" content="Derek Lobo's personal website">
-        <meta property="og:title" content="Derek Lobo" />
-        <meta property="og:description" content="On a journey to help those who come my way. 
-            I also happen to be a curious software engineer, an outdoor enthusiast and a foodie." />
-        <meta property="og:image" itemprop="image" content="https://www.gravatar.com/avatar/37f58fba42763a391a0eb1a2897e6712?s=400">
-        <meta property="og:image:alt" content="Derek Lobo's photo" />
+        <meta name="description" content="Derek Lobo - full-stack software developer, curious about technology and nature. Projects, links and ways to get in touch.">
+        <meta name="author" content="Derek Lobo">
+        <link rel="canonical" href="https://dereklobo.github.io/">
+
+        <meta property="og:site_name" content="Derek Lobo's Developer, personal website">
+        <meta property="og:title" content="Derek Lobo - Developer" />
+        <meta property="og:description" content="Full-stack software developer, curious about technology and nature." />
+        <meta property="og:url" content="https://dereklobo.github.io/" />
+        <meta property="og:image" itemprop="image" content="https://dereklobo.github.io/images/og-about.png">
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:alt" content="Derek Lobo - full-stack software developer" />
         <meta property="og:type" content="website" />
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:title" content="Derek Lobo - Developer">
+        <meta name="twitter:description" content="Full-stack software developer, curious about technology and nature.">
+        <meta name="twitter:image" content="https://dereklobo.github.io/images/og-about.png">
+        <meta name="theme-color" content="#f7efdb" media="(prefers-color-scheme: light)">
+        <meta name="theme-color" content="#263043" media="(prefers-color-scheme: dark)">
 
         <title>Derek Lobo - Developer</title>
 
@@ -46,140 +51,110 @@
         <meta name="msapplication-square310x310logo" content="mstile-310x310.png" />
 
         <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css?family=Nunito:200,400,600&display=swap" rel="stylesheet">
 
         <!-- Styles -->
         <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/about.css">
 
-        <!-- Spam Referal blocker -->
-        <script src="https://github.com/MohamedBassem/spam-referrals-blocker/releases/download/v0.2/spam-referrals-blocker.min.js"></script>
-
-        <!-- Global site tag (gtag.js) - Google Analytics -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-168463636-1"></script>
-
-        <script type="text/javascript">
-            if( !isSpamReferral() ){
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                gtag('js', new Date());
-
-                gtag('config', 'UA-168463636-1');
-            }
+        <!-- Apply the saved theme before first paint to avoid a flash -->
+        <script>
+            (function () {
+                try {
+                    var pref = localStorage.getItem('theme');
+                    var dark = pref ? pref === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+                    if (dark) document.documentElement.classList.add('dark');
+                } catch (e) {}
+            })();
         </script>
-         <!-- Tailwind CSS CDN -->
-        <script src="https://cdn.tailwindcss.com"></script>
-        <!-- Add focus styles for better keyboard navigation -->
-
-        <!-- Add CSP header -->
-        <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.tailwindcss.com https://www.googletagmanager.com; style-src 'self' https://fonts.googleapis.com;"> -->
-        
     </head>
-    <body>
-        <!-- Add skip to main content link -->
-        <a href="#main" class="sr-only focus:not-sr-only">Skip to main content</a>
-        <div class="full-height">
-            <nav class="flex justify-end p-4" role="navigation" aria-label="Main navigation">
-                <!-- Dark/Light mode toggle button -->
-                <button id="theme-toggle" aria-label="Toggle dark mode" class="text-md mr-3 rounded" type="button">
-                    <!-- Sun for light, moon for dark (swap with JS) -->
-                    <span id="theme-icon">🌙</span>
-                </button>
-                <!-- <div class="relative inline-block">
-                    <button id="font-size-toggle" aria-haspopup="true" aria-expanded="false"
-                        class="text-md mr-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 px-2 py-1 bg-gray-100 dark:bg-gray-800"
-                        type="button">
-                        <span aria-hidden="true" style="font-size:1.2em;">A</span>
-                        <span class="ml-1">Font Size</span>
-                        <svg class="inline w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-                        </svg>
-                    </button>
-                    <div id="font-size-dropdown" class="hidden absolute right-0 mt-2 w-32 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded shadow-lg z-50">
-                        <button class="block w-full text-left px-4 py-2 text-sm hover:bg-blue-100 dark:hover:bg-blue-900" data-size="14">Small</button>
-                        <button class="block w-full text-left px-4 py-2 text-sm hover:bg-blue-100 dark:hover:bg-blue-900" data-size="16">Default</button>
-                        <button class="block w-full text-left px-4 py-2 text-sm hover:bg-blue-100 dark:hover:bg-blue-900" data-size="18">Large</button>
-                        <button class="block w-full text-left px-4 py-2 text-sm hover:bg-blue-100 dark:hover:bg-blue-900" data-size="20">Extra Large</button>
-                    </div>
-                </div> -->
+    <body class="about-page">
+        <a href="#main" class="sr-only">Skip to main content</a>
 
-            </nav>
-            <div id="main" class="content">
-                <div class="title m-b-md" role="banner">
-                    Derek Lobo
+        <div id="particles-js" aria-hidden="true"></div>
+
+        <nav class="top-nav" aria-label="Main navigation">
+            <button id="theme-toggle" aria-label="Toggle dark mode" type="button">
+                <span id="theme-icon" aria-hidden="true">🌙</span>
+            </button>
+            <a href="about.html" aria-label="About Derek Lobo">About</a>
+        </nav>
+
+        <main id="main" class="page home">
+            <header class="hero">
+                <h1 class="name">Derek Lobo</h1>
+                <p class="tagline">Full-stack software developer</p>
+                <p class="intro">I build web applications end to end, and I'm curious about technology and nature.</p>
+                <div class="cta">
+                    <a class="btn btn-primary" href="mailto:loboiderek@gmail.com" aria-label="Email Derek Lobo">Get in touch</a>
+                    <a class="btn" href="https://github.com/dereklobo" target="_blank" rel="noopener noreferrer" aria-label="Derek Lobo's GitHub profile (opens in new tab)">GitHub</a>
+                    <a class="btn" href="https://www.linkedin.com/in/idereklobo/" target="_blank" rel="noopener noreferrer" aria-label="Derek Lobo's LinkedIn profile (opens in new tab)">LinkedIn</a>
                 </div>
-                <div class="links" role="main">
-                    <a href="https://www.linkedin.com/in/idereklobo/" class="external-link" target="_blank" rel="noopener noreferrer external" aria-label="Visit Derek Lobo's LinkedIn profile (opens in new tab)">LinkedIn</a>
-                    <a href="https://github.com/dereklobo" target="_blank" rel="noopener noreferrer external" aria-label="Lobo Derek's github repository">GitHub</a>
-                    <a href="about.html" aria-label="read more about Derek Lobo">About</a>
-                </div>
-            </div>
-        </div>
-        <footer class="footer" role="contentinfo">
-            <a class="contact" href="mailto:loboiderek@gmail.com" aria-label="Compose Email to Derek Lobo">contact</a>
-        </footer>
+            </header>
+
+            <section class="block" aria-labelledby="featured">
+                <h2 id="featured">Featured</h2>
+                <ul class="cards">
+                    <li>
+                        <a class="card" href="https://github.com/dereklobo/dereklobo.github.io" target="_blank" rel="noopener noreferrer" aria-label="This website's source code on GitHub (opens in new tab)">
+                            <strong>This website</strong>
+                            <span>Hand-built personal site with light and dark themes, hosted on GitHub Pages.</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="card" href="travel-map.html">
+                            <strong>Travel map</strong>
+                            <span>An interactive vintage-style world map of the places I've been.</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="card" href="idf.html">
+                            <strong>Interaction design</strong>
+                            <span>Certification from the Interaction Design Foundation.</span>
+                        </a>
+                    </li>
+                </ul>
+            </section>
+
+            <section class="block" aria-labelledby="explore">
+                <h2 id="explore">Explore</h2>
+                <ul class="explore">
+                    <li><a href="about.html">About me</a></li>
+                    <li><a href="travel-map.html">Travel map</a></li>
+                    <li><a href="travel.html">Travel list</a></li>
+                    <li><a href="cuisines.html">Cuisines</a></li>
+                </ul>
+            </section>
+        </main>
+
         <script>
             const themeToggle = document.getElementById('theme-toggle');
             const themeIcon = document.getElementById('theme-icon');
             const html = document.documentElement;
 
             function setTheme(dark) {
-                if (dark) {
-                    html.classList.add('dark');
-                    themeIcon.textContent = '☀️';
-                    themeToggle.setAttribute('aria-label', 'Switch to light mode');
-                } else {
-                    html.classList.remove('dark');
-                    themeIcon.textContent = '🌙';
-                    themeToggle.setAttribute('aria-label', 'Switch to dark mode');
-                }
-                localStorage.setItem('theme', dark ? 'dark' : 'light');
+                html.classList.toggle('dark', dark);
+                themeIcon.textContent = dark ? '☀️' : '🌙';
+                themeToggle.setAttribute('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode');
+                try { localStorage.setItem('theme', dark ? 'dark' : 'light'); } catch (e) {}
             }
 
-            // Initial theme
-            const userPref = localStorage.getItem('theme');
-            const systemPref = window.matchMedia('(prefers-color-scheme: dark)').matches;
-            setTheme(userPref === 'dark' || (!userPref && systemPref));
+            setTheme(html.classList.contains('dark'));
+            themeToggle.addEventListener('click', () => setTheme(!html.classList.contains('dark')));
 
-            // Toggle on click
-            themeToggle.addEventListener('click', () => {
-                setTheme(!html.classList.contains('dark'));
-            });
-
-            // Font size adjustment
-            const fontSizeToggle = document.getElementById('font-size-toggle');
-            const fontSizeDropdown = document.getElementById('font-size-dropdown');
-            const mainContent = document.getElementById('main');
-
-            // Toggle dropdown
-            fontSizeToggle.addEventListener('click', () => {
-            const expanded = fontSizeToggle.getAttribute('aria-expanded') === 'true';
-            fontSizeToggle.setAttribute('aria-expanded', !expanded);
-            fontSizeDropdown.classList.toggle('hidden');
-            });
-
-            // Set font size
-            fontSizeDropdown.querySelectorAll('button').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const size = btn.getAttribute('data-size');
-                mainContent.style.fontSize = size + 'px';
-                localStorage.setItem('fontSize', size);
-                fontSizeDropdown.classList.add('hidden');
-                fontSizeToggle.setAttribute('aria-expanded', 'false');
-            });
-            });
-
-            // Load saved font size
-            const savedFontSize = localStorage.getItem('fontSize');
-            if (savedFontSize) mainContent.style.fontSize = savedFontSize + 'px';
-
-            // Close dropdown on outside click
-            document.addEventListener('click', (e) => {
-            if (!fontSizeToggle.contains(e.target) && !fontSizeDropdown.contains(e.target)) {
-                fontSizeDropdown.classList.add('hidden');
-                fontSizeToggle.setAttribute('aria-expanded', 'false');
+            // Particles are decorative: skip them for visitors who prefer reduced motion.
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                const lib = document.createElement('script');
+                lib.src = 'https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js';
+                lib.onload = () => {
+                    const app = document.createElement('script');
+                    app.src = 'particles.js';
+                    document.body.appendChild(app);
+                };
+                document.body.appendChild(lib);
             }
-            });
         </script>
     </body>
 </html>
-

@@ -30,22 +30,47 @@
             gtag('config', 'UA-168463636-1');
         }
     </script>
+    <link rel="stylesheet" href="css/theme.css">
+    <style>
+        /* Table styled like the travel map cards: translucent parchment on the page gradient. */
+        .overflow-x-auto.rounded-lg {
+            background: rgba(255, 252, 244, 0.75) !important;
+            border: 1px solid rgba(138, 106, 59, 0.35);
+            box-shadow: 0 4px 14px rgba(60, 40, 15, 0.12);
+        }
+        .overflow-x-auto thead { background: rgba(201, 169, 108, 0.3) !important; }
+        .overflow-x-auto th { color: #6b5426 !important; }
+        .overflow-x-auto tbody, .overflow-x-auto table { --tw-divide-opacity: 1; }
+        .overflow-x-auto tbody > tr + tr, .overflow-x-auto table > * + * { border-color: rgba(138, 106, 59, 0.2) !important; }
+        .overflow-x-auto tbody tr:hover, .overflow-x-auto tbody tr:focus-within { background: rgba(201, 169, 108, 0.18) !important; }
+        html.dark .overflow-x-auto.rounded-lg {
+            background: rgba(20, 27, 40, 0.55) !important;
+            border-color: rgba(217, 196, 140, 0.3);
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+        }
+        html.dark .overflow-x-auto thead { background: rgba(217, 196, 140, 0.14) !important; }
+        html.dark .overflow-x-auto th { color: #d9c48c !important; }
+        html.dark .overflow-x-auto td, html.dark .overflow-x-auto td * { color: #ece4d0 !important; }
+        html.dark .overflow-x-auto tbody > tr + tr, html.dark .overflow-x-auto table > * + * { border-color: rgba(217, 196, 140, 0.2) !important; }
+        html.dark .overflow-x-auto tbody tr:hover, html.dark .overflow-x-auto tbody tr:focus-within { background: rgba(217, 196, 140, 0.12) !important; }
+    </style>
 </head>
 <body class="min-h-screen">
+    <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:left-2 focus:top-2 focus:z-50 focus:bg-white focus:text-gray-900 focus:px-3 focus:py-2 focus:rounded">Skip to main content</a>
     <nav class="flex justify-end p-4" role="navigation" aria-label="Main navigation">
          <!-- Dark/Light mode toggle button -->
         <button id="theme-toggle" aria-label="Toggle dark mode" class="text-md mr-3 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded" type="button">
             <span id="theme-icon">🌙</span>
         </button>
          <span class="sr-only">Home</span>
-        <a href="index.html" class="text-[#636b6f] p-3 text-[13px] font-semibold tracking-wider no-underline uppercase focus:outline-none focus:ring-2 focus:ring-blue-500 rounded hover:underline transition dark:text-gray-300" aria-label="Home page of Derek Lobo">Home</a>
+        <a href="index.html" class="text-gray-600 p-3 text-[13px] font-semibold tracking-wider no-underline uppercase focus:outline-none focus:ring-2 focus:ring-blue-500 rounded hover:underline transition dark:text-gray-300" aria-label="Home page of Derek Lobo">Home</a>
     </nav>
-    <main class="max-w-4xl mx-auto p-4 sm:p-6" role="main">
+    <main id="main" class="max-w-4xl mx-auto p-4 sm:p-6" role="main">
         <header class="mb-8 flex items-center gap-3">
             <img src="images/svg/shamrock.svg"
                 alt="Shamrock clover leaf" class="w-10 h-10" />
             <h1 class="text-3xl font-extrabold text-gray-800 dark:text-gray-100 mb-2">
-                Ireland <a href="travel.html" class="text-green-700 underline hover:text-green-900 focus:outline-none focus:ring-2 focus:ring-green-500 rounded" aria-label="Travel main page">Travel</a> List
+                Ireland <a href="travel.html" class="text-green-400 underline hover:text-green-900 focus:outline-none focus:ring-2 focus:ring-green-500 rounded" aria-label="Travel main page">Travel</a> List
             </h1>
         </header>
         <section aria-label="Travel List Table">
@@ -149,16 +174,16 @@
                             <td class="px-4 py-2 font-medium text-gray-900 dark:text-gray-100" tabindex="0">Kildare</td>
                             <td class="px-4 py-2 text-gray-700 dark:text-gray-300">Kildare</td>
                             <td class="px-4 py-2 text-gray-700 dark:text-gray-300">2025</td>
-                            <td class="px-4 py-2 text-gray-700 dark:text-gray-300 whitespace-pre-line">St.Brigid's well and Cathedral, 
-                                St.Brigid's Busking Fest,
-                                Relic of St.Brigid, 
+                            <td class="px-4 py-2 text-gray-700 dark:text-gray-300 whitespace-pre-line">St. Brigid's well and Cathedral, 
+                                St. Brigid's Busking Fest,
+                                Relic of St. Brigid, 
                             </td>
                         </tr>
                         <tr class="hover:bg-green-50 focus-within:bg-green-100 dark:hover:bg-green-900 dark:focus-within:bg-green-800 transition">
                             <td class="px-4 py-2 font-medium text-gray-900 dark:text-gray-100" tabindex="0">Monasterevin</td>
                             <td class="px-4 py-2 text-gray-700 dark:text-gray-300">Kildare</td>
                             <td class="px-4 py-2 text-gray-700 dark:text-gray-300">2025</td>
-                            <td class="px-4 py-2 text-gray-700 dark:text-gray-300 whitespace-pre-line">Relic of St.Thérèse of Lisieux, 
+                            <td class="px-4 py-2 text-gray-700 dark:text-gray-300 whitespace-pre-line">Relic of St. Thérèse of Lisieux, 
                                 Moore Abbey Woods
                             </td>
                         </tr>
@@ -166,7 +191,7 @@
                             <td class="px-4 py-2 font-medium text-gray-900 dark:text-gray-100" tabindex="0">Newbridge</td>
                             <td class="px-4 py-2 text-gray-700 dark:text-gray-300">Kildare</td>
                             <td class="px-4 py-2 text-gray-700 dark:text-gray-300">2025</td>
-                            <td class="px-4 py-2 text-gray-700 dark:text-gray-300">Relic of St.Faustina Kowalska </td>
+                            <td class="px-4 py-2 text-gray-700 dark:text-gray-300">Relic of St. Faustina Kowalska </td>
                         </tr>
                         <tr class="hover:bg-green-50 focus-within:bg-green-100 dark:hover:bg-green-900 dark:focus-within:bg-green-800 transition">
                             <td class="px-4 py-2 font-medium text-gray-900 dark:text-gray-300" tabindex="0">Galway</td>
@@ -180,7 +205,7 @@
                         </tr>
                         
                         <tr class="hover:bg-blue-50 focus-within:bg-blue-100 dark:hover:bg-blue-900 dark:focus-within:bg-blue-800 transition">
-                            <td class="px-4 py-2 font-medium text-gray-900 dark:text-gray-100" tabindex="0">Giants Causeway</td>
+                            <td class="px-4 py-2 font-medium text-gray-900 dark:text-gray-100" tabindex="0">Giant's Causeway</td>
                             <td class="px-4 py-2 text-gray-700 dark:text-gray-300">Antrim</td>
                             <td class="px-4 py-2 text-gray-700 dark:text-gray-300">2025</td>
                             <td class="px-4 py-2 text-gray-700 dark:text-gray-300">Basalt columns</td>
@@ -210,9 +235,6 @@
             </div>
         </section>
     </main>
-    <footer class="footer mt-8 text-center text-gray-500 dark:text-gray-400" role="contentinfo">
-        <a class="contact hover:underline focus:outline-none focus:ring-2 focus:ring-blue-500 rounded" href="mailto:loboiderek@icloud.com" aria-label="Compose Email to Derek Lobo">contact</a>
-    </footer>
     <script>
         const themeToggle = document.getElementById('theme-toggle');
         const themeIcon = document.getElementById('theme-icon');
@@ -242,5 +264,6 @@
             setTheme(!html.classList.contains('dark'));
         });
     </script>
+    <script src="bg-particles.js" defer></script>
 </body>
 </html>

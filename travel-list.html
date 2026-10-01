@@ -36,8 +36,10 @@
     <meta name="msapplication-square310x310logo" content="mstile-310x310.png" />
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/theme.css">
 </head>
 <body class="bg-gradient-to-br from-gray-50 via-blue-50 to-green-100 min-h-screen text-gray-900 antialiased">
+    <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:left-2 focus:top-2 focus:z-50 focus:bg-white focus:text-gray-900 focus:px-3 focus:py-2 focus:rounded">Skip to main content</a>
     <nav class="flex justify-end p-4" role="navigation" aria-label="Main navigation">
         <!-- Dark/Light mode toggle button -->
         <button id="theme-toggle" aria-label="Toggle dark mode" class="text-2xl focus:outline-none focus:ring-2 focus:ring-blue-500 rounded" type="button">
@@ -46,7 +48,7 @@
         </button>
         <a href="index.html" class="text-blue-700 font-semibold hover:underline focus:outline-none focus:ring-2 focus:ring-blue-500 rounded" aria-label="Home page of Derek Lobo">Home</a>
     </nav>
-    <main class="max-w-4xl mx-auto p-4 sm:p-6" role="main">
+    <main id="main" class="max-w-4xl mx-auto p-4 sm:p-6" role="main">
         <header class="mb-8 flex items-center gap-3">
             <img src="images/svg/shamrock.svg"
                 alt="Shamrock clover leaf" class="w-10 h-10" />
@@ -133,22 +135,22 @@
                             <td class="px-4 py-2 font-medium text-gray-900" tabindex="0">Kildare</td>
                             <td class="px-4 py-2 text-gray-700">Kildare</td>
                             <td class="px-4 py-2 text-gray-700">2025</td>
-                            <td class="px-4 py-2 text-gray-700">Relic of St.Brigid, 5k run</td>
+                            <td class="px-4 py-2 text-gray-700">Relic of St. Brigid, 5k run</td>
                         </tr>
                         <tr class="hover:bg-green-50 focus-within:bg-green-100 transition">
                             <td class="px-4 py-2 font-medium text-gray-900" tabindex="0">Monasterevin</td>
                             <td class="px-4 py-2 text-gray-700">Kildare</td>
                             <td class="px-4 py-2 text-gray-700">2025</td>
-                            <td class="px-4 py-2 text-gray-700">Relic of St.Thérèse of Lisieux</td>
+                            <td class="px-4 py-2 text-gray-700">Relic of St. Thérèse of Lisieux</td>
                         </tr>
                         <tr class="hover:bg-green-50 focus-within:bg-green-100 transition">
                             <td class="px-4 py-2 font-medium text-gray-900" tabindex="0">Newbridge</td>
                             <td class="px-4 py-2 text-gray-700">Kildare</td>
                             <td class="px-4 py-2 text-gray-700">2025</td>
-                            <td class="px-4 py-2 text-gray-700">Relic of St.Faustina Kowalska </td>
+                            <td class="px-4 py-2 text-gray-700">Relic of St. Faustina Kowalska </td>
                         </tr>
                         <tr class="hover:bg-blue-50 focus-within:bg-blue-100 transition">
-                            <td class="px-4 py-2 font-medium text-gray-900" tabindex="0">Giants Causeway</td>
+                            <td class="px-4 py-2 font-medium text-gray-900" tabindex="0">Giant's Causeway</td>
                             <td class="px-4 py-2 text-gray-700">Antrim</td>
                             <td class="px-4 py-2 text-gray-700">2025</td>
                             <td class="px-4 py-2 text-gray-700">Basalt columns</td>
@@ -164,8 +166,6 @@
             </div>
         </section>
     </main>
-    <footer class="footer mt-8 text-center text-gray-500" role="contentinfo">
-        <a class="contact hover:underline focus:outline-none focus:ring-2 focus:ring-blue-500 rounded" href="mailto:loboiderek@icloud.com" aria-label="Compose Email to Derek Lobo">contact</a>
-    </footer>
+    <script src="bg-particles.js" defer></script>
 </body>
 </html>

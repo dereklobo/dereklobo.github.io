@@ -1,22 +1,52 @@
-# Derek Lobo
+# dereklobo.github.io
 
-![Derek Lobo](https://www.gravatar.com/avatar/37f58fba42763a391a0eb1a2897e6712?s=150)
+Source for my personal website: **https://dereklobo.github.io**
 
-I'm Derek, a full-stack PHP web developer, curious about technology and nature.
+I'm Derek, a full-stack software developer, curious about technology and nature.
+This site is hand-built static HTML and CSS, hosted on GitHub Pages.
 
-<!-- ## GitHub stats
-[![Derek's GitHub stats](https://streak-stats.demolab.com?user=dereklobo)](https://git.io/streak-stats) -->
+## Pages
 
-## Skills
-Laravel, React, Vue JS, HTML, CSS
+| Page | What it is |
+|---|---|
+| [Home](https://dereklobo.github.io/) | Intro, featured work and links |
+| [About](https://dereklobo.github.io/about.html) | Who I am, what I do, where to find me |
+| [Travel map](https://dereklobo.github.io/travel-map.html) | Vintage-style world map with pins for places I've visited |
+| [Travel list](https://dereklobo.github.io/travel.html) | Countries and cities with highlights, plus an [Ireland list](https://dereklobo.github.io/travel-Ireland.html) |
+| [Cuisines](https://dereklobo.github.io/cuisines.html) | Foods I like |
+| [IDF](https://dereklobo.github.io/idf.html) | Interaction Design Foundation accessibility certificate |
 
-### Likes
-* Biking
-* Swimming
-* Hiking
-* Trying new cuisines
+## Features
 
-## Contact me
-Find me over on the [LinkedIn](https://www.linkedin.com/in/idereklobo/) network
+- Light and dark themes (follows the system setting; the choice is remembered)
+- Interactive travel map with keyboard-accessible pins
+- Accessibility work: skip links, landmarks, WCAG AA contrast, reduced-motion support
+- No build step, no framework
 
-Personal website using [Github Pages](https://dereklobo.github.io/about.html)
+## Running locally
+
+Serve the folder with any static server. The map's land layer needs `http://`, not `file://`:
+
+```sh
+python3 -m http.server 8000
+# open http://localhost:8000
+```
+
+## Structure
+
+```
+css/        shared styles (main, about, theme)
+images/     photos, certificate, travel map SVG, share image
+*.html      one file per page; each *-darkmode.html mirrors its light page
+particles.js, bg-particles.js   decorative background
+```
+
+## Credits
+
+- World map artwork by [Al MacDonald](https://commons.wikimedia.org/wiki/File:World_map_-_low_resolution.svg), licensed [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/)
+- Background hexagons: [particles.js](https://github.com/VincentGarreau/particles.js)
+- Flags: [svg-country-flags](https://github.com/hjnilsson/country-flags)
+
+## License
+
+Code is [MIT](LICENSE). Map artwork keeps its CC BY-SA 3.0 licence; photos, text and the IDF certificate are © Derek Lobo, all rights reserved.

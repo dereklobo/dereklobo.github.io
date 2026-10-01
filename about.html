@@ -3,22 +3,27 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <!-- Add permissions policy -->
         <meta http-equiv="Permissions-Policy" content="geolocation=(), camera=(), microphone=()">
-        <!-- Add referrer policy -->
         <meta name="referrer" content="strict-origin-when-cross-origin">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-        <meta name="description" content="On a journey to help those who come my way. 
-            I also happen to be a curious software engineer, an outdoor enthusiast and a foodie. - Derek Lobo"
-        >
+        <meta name="description" content="Derek Lobo is a full-stack software developer, curious about technology and nature. Projects, links and ways to get in touch.">
         <meta name="author" content="Derek Lobo">
+        <link rel="canonical" href="https://dereklobo.github.io/about.html">
+
         <meta property="og:site_name" content="Derek Lobo's Developer, personal website">
-        <meta property="og:title" content="Derek Lobo" />
-        <meta property="og:description" content="On a journey to help those who come my way. 
-            I also happen to be a curious software engineer, an outdoor enthusiast and a foodie." />
-        <meta property="og:image" itemprop="image" content="https://www.gravatar.com/avatar/37f58fba42763a391a0eb1a2897e6712?s=400">
-        <meta property="og:image:alt" content="Derek Lobo's photo" />
-        <meta property="og:type" content="website" />
+        <meta property="og:title" content="About - Derek Lobo" />
+        <meta property="og:description" content="Full-stack software developer, curious about technology and nature. Also a traveler, hiker, cyclist and foodie." />
+        <meta property="og:url" content="https://dereklobo.github.io/about.html" />
+        <meta property="og:image" itemprop="image" content="https://dereklobo.github.io/images/og-about.png">
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:alt" content="Derek Lobo - full-stack software developer" />
+        <meta property="og:type" content="profile" />
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:title" content="About - Derek Lobo">
+        <meta name="twitter:description" content="Full-stack software developer, curious about technology and nature.">
+        <meta name="twitter:image" content="https://dereklobo.github.io/images/og-about.png">
+        <meta name="theme-color" content="#f7efdb" media="(prefers-color-scheme: light)">
+        <meta name="theme-color" content="#263043" media="(prefers-color-scheme: dark)">
 
         <title>About - Derek Lobo - Developer</title>
 
@@ -46,111 +51,139 @@
         <meta name="msapplication-square310x310logo" content="mstile-310x310.png" />
 
         <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css?family=Nunito:200,400,600&display=swap" rel="stylesheet">
 
         <!-- Styles -->
         <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/about.css">
 
-        <!-- Script -->
-        <script type="text/javascript">
-            function changeTitle( profile ) {
-                document.title = profile.entry[0].displayName;
-            }
+        <!-- Apply the saved theme before first paint to avoid a flash -->
+        <script>
+            (function () {
+                try {
+                    var pref = localStorage.getItem('theme');
+                    var dark = pref ? pref === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+                    if (dark) document.documentElement.classList.add('dark');
+                } catch (e) {}
+            })();
         </script>
-        <script src="https://s.gravatar.com/avatar/37f58fba42763a391a0eb1a2897e6712?s=80.json?callback=changeTitle" type="text/javascript"></script>
-
-        <!-- particles -->
-        <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-
-        <!-- Spam Referal blocker -->
-        <script src="https://github.com/MohamedBassem/spam-referrals-blocker/releases/download/v0.2/spam-referrals-blocker.min.js"></script>
-
-         <!-- Global site tag (gtag.js) - Google Analytics -->
-         <script async src="https://www.googletagmanager.com/gtag/js?id=UA-168463636-1"></script>
-         <script type="text/javascript">
-            if( !isSpamReferral() ){
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                gtag('js', new Date());
-
-                gtag('config', 'UA-168463636-1');
-            }
-         </script>
     </head>
-    <body>
-        <a href="#main" class="sr-only focus:not-sr-only">Skip to main content</a>
-        <div class="position-ref full-height">
-            <div class="top-right links" role="navigation">
-                <!-- Dark/Light mode toggle button -->
-                <button id="theme-toggle" aria-label="Toggle dark mode" class="!outline-none" type="button">
-                    <!-- Sun for light, moon for dark (swap with JS) -->
-                    <span id="theme-icon"> 🌙 </span>
-                </button>
-                <!-- Home link -->
-                <a href="index.html" aria-label="Home page of Derek Lobo">Home</a>
-            </div>
-            <div id="main" class="content">
-                <div class="title m-b-md" role="banner">
-                    Derek Lobo
-                </div>
-                
-                <div class="m-b-md main">
-                    <div class="image">
-                        <div class="circle1"></div>
-                        <div class="circle2"></div>
-                        <img class="profile-photo"  src="https://www.gravatar.com/avatar/37f58fba42763a391a0eb1a2897e6712?s=100" style="filter: grayscale(100%);" alt="Derek Lobo's photo">
-                    </div>
-                </div>
+    <body class="about-page">
+        <a href="#main" class="sr-only">Skip to main content</a>
 
-                <div class="about m-b-md" role="main">
-                    Greetings! I'm a full-stack software developer,
-                    <br/>
-                    curious about technology and nature.
-                    <br/> 
-                    I enjoy <a href="travel.html" aria-label="View Derek Lobo's visited countries" target="_blank" rel="noopener">traveling</a>, biking, hiking<sub><a href="https://www.strava.com/athletes/7263236" target="_blank" rel="noopener noreferrer external" aria-label="View Derek Lobo's Strava hiking activities" target="_blank" rel="noopener">strava</a></sub> and trying new <a href="cuisines.html" aria-label="new cuisines">cuisines</a>.
+        <!-- Decorative background; only loaded when motion is allowed (see bottom of page) -->
+        <div id="particles-js" aria-hidden="true"></div>
+
+        <nav class="top-nav" aria-label="Main navigation">
+            <button id="theme-toggle" aria-label="Toggle dark mode" type="button">
+                <span id="theme-icon" aria-hidden="true">🌙</span>
+            </button>
+            <a href="index.html" aria-label="Home page of Derek Lobo">Home</a>
+        </nav>
+
+        <main id="main" class="page">
+            <header class="hero">
+                <h1 class="name">Derek Lobo</h1>
+                <img class="photo" src="https://www.gravatar.com/avatar/37f58fba42763a391a0eb1a2897e6712?s=320" width="120" height="120" alt="Portrait of Derek Lobo">
+                <p class="tagline">Full-stack software developer, curious about technology and nature.</p>
+                <p class="intro">
+                    I build web applications end to end, from interface to database, and I like
+                    learning by making things. Away from the keyboard you'll find me
+                    <a href="travel-map.html">traveling</a>, biking, hiking<a class="chip-link" href="https://www.strava.com/athletes/7263236" target="_blank" rel="noopener noreferrer" aria-label="Derek Lobo's Strava activities (opens in new tab)">Strava</a>
+                    and trying new <a href="cuisines.html">cuisines</a>.
+                </p>
+                <div class="cta">
+                    <a class="btn btn-primary" href="mailto:loboiderek@gmail.com" aria-label="Email Derek Lobo">Get in touch</a>
+                    <a class="btn" href="https://github.com/dereklobo" target="_blank" rel="noopener noreferrer" aria-label="Derek Lobo's GitHub profile (opens in new tab)">View GitHub</a>
                 </div>
-                <div class="links">
-                    <a href="https://www.linkedin.com/in/idereklobo/" class="external-link" target="_blank" rel="noopener noreferrer external" aria-label="Visit Derek Lobo's LinkedIn profile (opens in new tab)">LinkedIn</a> 
-                    <a href="https://github.com/dereklobo" target="_blank" rel="noopener noreferrer external" aria-label="View Derek Lobo's github profile"><span class="icon  icon--github"></span> GitHub</a>
-                    <a href="https://laracasts.com/@Derek-Lobo" target="_blank" rel="noopener noreferrer external" aria-label="View Derek Lobo's laracast's personal profile">Laracasts<sub>Personal</sub></a>
-                    <a href="https://laracasts.com/@DerekLobo" target="_blank" rel="noopener noreferrer external" aria-label="View Derek Lobo's laracast's WPY team profile">Laracasts<sub>Team</sub></a>
-                    <a href="idf.html" aria-label="View Derek Lobo's interaction design foundation certificate">IDF</a>
-                </div>
-            </div>
-            <div class="m-b-md" id="particles-js"></div>
-            <script src="particles.js"></script>
-            <footer class="footer" role="contentinfo">
-                <a class="contact" href="mailto:loboiderek@icloud.com" aria-label="Compose Email to Derek Lobo">contact</a>
-            </footer>
-        </div>
-         <script>
+            </header>
+
+            <section class="block" aria-labelledby="what-i-do">
+                <h2 id="what-i-do">What I do</h2>
+                <ul class="tags">
+                    <li>Full-stack web development</li>
+                    <li>Laravel &amp; PHP</li>
+                    <li>JavaScript</li>
+                    <li>Interaction design</li>
+                    <li>Team collaboration</li>
+                </ul>
+            </section>
+
+            <section class="block" aria-labelledby="featured">
+                <h2 id="featured">Featured</h2>
+                <ul class="cards">
+                    <li>
+                        <a class="card" href="https://github.com/dereklobo/dereklobo.github.io" target="_blank" rel="noopener noreferrer" aria-label="This website's source code on GitHub (opens in new tab)">
+                            <strong>This website</strong>
+                            <span>Hand-built personal site with light and dark themes, hosted on GitHub Pages.</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="card" href="travel-map.html">
+                            <strong>Travel map</strong>
+                            <span>An interactive vintage-style world map of the places I've been.</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="card" href="idf.html">
+                            <strong>Interaction design</strong>
+                            <span>Certification from the Interaction Design Foundation.</span>
+                        </a>
+                    </li>
+                </ul>
+            </section>
+
+            <section class="block" aria-labelledby="explore">
+                <h2 id="explore">Explore</h2>
+                <ul class="explore">
+                    <li><a href="travel-map.html">Travel map</a></li>
+                    <li><a href="travel.html">Travel list</a></li>
+                    <li><a href="cuisines.html">Cuisines</a></li>
+                    <li><a href="https://www.strava.com/athletes/7263236" target="_blank" rel="noopener noreferrer" aria-label="Strava activities (opens in new tab)">Strava</a></li>
+                </ul>
+            </section>
+
+            <nav class="block elsewhere" aria-labelledby="elsewhere">
+                <h2 id="elsewhere">Elsewhere</h2>
+                <ul class="links-row">
+                    <li><a href="https://www.linkedin.com/in/idereklobo/" target="_blank" rel="noopener noreferrer" aria-label="Derek Lobo's LinkedIn profile (opens in new tab)">LinkedIn</a></li>
+                    <li><a href="https://github.com/dereklobo" target="_blank" rel="noopener noreferrer" aria-label="Derek Lobo's GitHub profile (opens in new tab)">GitHub</a></li>
+                    <li><a href="https://laracasts.com/@Derek-Lobo" target="_blank" rel="noopener noreferrer" aria-label="Derek Lobo's personal Laracasts profile (opens in new tab)">Laracasts <span class="pill">Personal</span></a></li>
+                    <li><a href="https://laracasts.com/@DerekLobo" target="_blank" rel="noopener noreferrer" aria-label="Derek Lobo's team Laracasts profile (opens in new tab)">Laracasts <span class="pill">Team</span></a></li>
+                    <li><a href="idf.html">IDF</a></li>
+                </ul>
+            </nav>
+        </main>
+
+
+        <script>
             const themeToggle = document.getElementById('theme-toggle');
             const themeIcon = document.getElementById('theme-icon');
             const html = document.documentElement;
 
             function setTheme(dark) {
-                if (dark) {
-                    html.classList.add('dark');
-                    themeIcon.textContent = '☀️';
-                    themeToggle.setAttribute('aria-label', 'Switch to light mode');
-                }
-                else {
-                    html.classList.remove('dark');
-                    themeIcon.textContent = '🌙';
-                    themeToggle.setAttribute('aria-label', 'Switch to dark mode');
-                }
-                localStorage.setItem('theme', dark ? 'dark' : 'light');
+                html.classList.toggle('dark', dark);
+                themeIcon.textContent = dark ? '☀️' : '🌙';
+                themeToggle.setAttribute('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode');
+                try { localStorage.setItem('theme', dark ? 'dark' : 'light'); } catch (e) {}
             }
 
-            // Initial theme
-            const userPref = localStorage.getItem('theme');
-            const systemPref = window.matchMedia('(prefers-color-scheme: dark)').matches;
-            setTheme(userPref === 'dark' || (!userPref && systemPref));
+            setTheme(html.classList.contains('dark'));
+            themeToggle.addEventListener('click', () => setTheme(!html.classList.contains('dark')));
 
-            // Toggle on click
-            themeToggle.addEventListener('click', () => {
-                setTheme(!html.classList.contains('dark'));
-            });
+            // Particles are decorative: skip them for visitors who prefer reduced motion.
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                const lib = document.createElement('script');
+                lib.src = 'https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js';
+                lib.onload = () => {
+                    const app = document.createElement('script');
+                    app.src = 'particles.js';
+                    document.body.appendChild(app);
+                };
+                document.body.appendChild(lib);
+            }
         </script>
     </body>
 </html>

@@ -40,86 +40,199 @@
         .map-container {
             position: relative;
             width: 100%;
-            max-width: 900px;
+            max-width: none;
             margin: 2rem auto;
-            aspect-ratio: 2/1;
+        }
+        /* Vintage framed map: aged parchment, ink-blue land, inner vignette. */
+        .map-container {
+            border: 6px solid #8a6a3b;
+            border-radius: 6px;
+            outline: 1px solid #8a6a3b;
+            outline-offset: 4px;
+            background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .35  0 0 0 0 .22  0 0 0 0 .1  0 0 0 .22 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>"), url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='600' height='400'><filter id='b'><feTurbulence type='fractalNoise' baseFrequency='.012' numOctaves='4' seed='7' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .55  0 0 0 0 .35  0 0 0 0 .15  0 0 0 .9 -.45'/></filter><rect width='100%' height='100%' filter='url(%23b)'/></svg>") center / 100% 100% no-repeat, radial-gradient(ellipse at center, #f3e6c4 0%, #e9d8b0 65%, #c9a96c 100%);
+            box-shadow: 0 6px 24px rgba(60,40,15,.3), inset 0 0 90px rgba(90,55,20,.45);
+            overflow: visible;
         }
         .world-map {
-            width: 100%;
-            height: auto;
-            display: block;
-            border-radius: 12px;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            position: relative;
+            z-index: 1;
+            background: transparent;
+            border-radius: 0;
+            box-shadow: none;
+            filter: invert(1) brightness(.5) sepia(1) hue-rotate(185deg) saturate(3.5) brightness(.4);
+            opacity: 1;
         }
         .pin {
             position: absolute;
-            width: 32px;
-            height: 32px;
+            width: 22px;
+            height: 28px;
             cursor: pointer;
             outline: none;
             background: none;
             display: flex;
-            align-items: center;
+            align-items: flex-end;
             justify-content: center;
+            transform: translate(-50%, -100%);
+            transform-origin: 50% 100%;
+            transition: transform 0.18s ease, filter 0.18s ease;
+            filter: drop-shadow(0 2px 2px rgba(0,0,0,0.45));
+            z-index: 2;
         }
-        .pin:focus-visible {
-            box-shadow: 0 0 0 3px #0980ce;
-            z-index: 10;
+        .pin svg { display: block; overflow: visible; }
+        .pin-body { fill: #9b1c1c; stroke: #f5e6c0; stroke-width: 1.5; }
+        .pin-dot { fill: #f5e6c0; }
+        .pin:hover, .pin:focus-visible {
+            transform: translate(-50%, -100%) scale(1.45);
+            filter: drop-shadow(0 4px 5px rgba(0,0,0,0.55));
+            z-index: 30;
         }
-        /* Visited: red pin, Wish list: blue pin */
-        .pin.visited svg .pin-head,
-        .pin.visited svg .pin-stem { fill: #b91c1c; }
-        .pin.wishlist svg .pin-head,
-        .pin.wishlist svg .pin-stem { fill: #2563eb; }
+        .pin:hover .pin-body, .pin:focus-visible .pin-body { fill: #c0392b; }
+        .pin:focus-visible .pin-body { stroke: #fff; stroke-width: 2.5; }
         .pin-label {
             position: absolute;
-            left: 36px;
-            top: 0;
-            background: #222;
-            color: #fff;
-            padding: 2px 8px;
-            border-radius: 6px;
+            left: 50%;
+            bottom: calc(100% + 8px);
+            transform: translate(-50%, 4px) scale(0.69);
+            transform-origin: 50% 100%;
+            background: #2a1f14;
+            color: #f5e6c0;
+            border: 1px solid #c9a96c;
+            padding: 3px 10px;
+            border-radius: 4px;
+            font-family: Georgia, "Times New Roman", serif;
+            font-style: italic;
             font-size: 0.95em;
-            box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+            letter-spacing: 0.02em;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.35);
             white-space: nowrap;
             pointer-events: none;
             opacity: 0;
-            transition: opacity 0.2s;
+            transition: opacity 0.18s ease, transform 0.18s ease;
             z-index: 20;
+        }
+        .pin-label::after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            top: 100%;
+            margin-left: -5px;
+            border: 5px solid transparent;
+            border-top-color: #c9a96c;
         }
         .pin:hover .pin-label,
         .pin:focus .pin-label,
         .pin:focus-visible .pin-label {
             opacity: 1;
+            transform: translate(-50%, 0) scale(0.69);
         }
-        /* Responsive pin positions (percentages for Mercator projection) */
-
-        .pin-toronto   { left: 25.5%; top: 24.2%; }
-        .pin-dublin    { left: 44%; top: 21%; }
-        .pin-amsterdam { left: 46%; top: 16%; }
-        .pin-switzerland { left: 48.5%; top: 22.5%; }
-        .pin-france { left: 46.5%; top: 25%; }
-        .pin-portugal { left: 41.5%; top: 28%; }
-        .pin-belgium { left: 46.5%; top: 19.5%; }
-        .pin-italy { left: 50.5%; top: 27%; }
-        .pin-spain { left: 40%; top: 30%; } /* Spain pin position */
-        .pin-northernireland { left: 30%; top: 35%; } /* Northern Ireland pin position */
-        .pin-edinburgh { left: 47%; top: 15%; } /* Edinburgh pin position */
+        /* Positions from the map's Miller projection (950x620 canvas); pin tip = city. */
+        .pin-toronto { left: 25.58%; top: 31.29%; }
+        .pin-switzerland { left: 50.07%; top: 30.59%; }
+        .pin-france { left: 47.67%; top: 32.94%; }
+        .pin-portugal { left: 45.13%; top: 35.26%; }
+        .pin-dublin { left: 45.94%; top: 27.10%; }
+        .pin-amsterdam { left: 49.05%; top: 27.69%; }
+        .pin-belgium { left: 48.90%; top: 28.59%; }
+        .pin-italy { left: 51.17%; top: 33.59%; }
+        .pin-spain { left: 45.30%; top: 33.06%; }
+        .pin-northernireland { left: 46.03%; top: 26.34%; }
+        .pin-edinburgh { left: 46.79%; top: 25.50%; }
+        .pin-chisasibi { left: 27.58%; top: 24.19%; }
+        .pin-montreal { left: 27.26%; top: 30.16%; }
+        .pin-calgary { left: 18.32%; top: 24.19%; }
+        .pin-banff { left: 17.79%; top: 23.87%; }
+        .pin-porto { left: 45.28%; top: 33.99%; }
+        .pin-faro { left: 45.47%; top: 36.14%; }
+        .pin-fatima { left: 45.27%; top: 34.79%; }
+        .pin-toulouse { left: 48.09%; top: 32.67%; }
+        .pin-luzern { left: 50.00%; top: 30.77%; }
+        .pin-interlaken { left: 49.88%; top: 30.97%; }
+        .pin-gent { left: 48.72%; top: 28.47%; }
+        .pin-bruges { left: 48.58%; top: 28.38%; }
+        .pin-barcelona { left: 48.29%; top: 33.86%; }
+        .pin-acoruna { left: 45.34%; top: 32.80%; }
+        .pin-monforte { left: 45.59%; top: 33.25%; }
+        .pin-bray { left: 45.98%; top: 27.19%; }
+        .pin-highlands { left: 46.44%; top: 24.65%; }
         @media (max-width: 640px) {
             .map-container { margin: 1rem auto; }
-            .pin-label { font-size: 0.85em; left: 28px; }
-            .pin { width: 24px; height: 24px; }
+            .pin-label { font-size: 0.85em; }
         }
+        /* Page background: the map's parchment ocean, lightened. */
+        html, body { background: #f7efdb !important; }
+        body { background-image: linear-gradient(to bottom right, #fbf6e8, #f4e9cd) !important; }
+        /* Country cards: translucent parchment tiles that match the page and map. */
+        section[aria-label="Visited Cities by Country"] > div {
+            background: rgba(255, 252, 244, 0.75) !important;
+            border: 1px solid rgba(138, 106, 59, 0.35);
+            box-shadow: 0 4px 14px rgba(60, 40, 15, 0.12);
+        }
+        /* Ocean names and compass, printed on the map like an old chart. */
+        .map-label {
+            position: absolute;
+            transform: translate(-50%, -50%);
+            z-index: 1;
+            pointer-events: none;
+            font-family: Georgia, "Times New Roman", serif;
+            font-style: italic;
+            font-size: clamp(7px, 1.35vw, 13px);
+            letter-spacing: 0.35em;
+            text-transform: uppercase;
+            white-space: nowrap;
+            color: #3b4a6b;
+            opacity: 0.95;
+            text-shadow: 0 0 4px rgba(247, 239, 219, 0.9);
+        }
+        html.dark .map-label { color: #d9c48c; opacity: 0.75; text-shadow: 0 0 4px rgba(16, 21, 29, 0.9); }
+        .label-pacific  { left: 12%;  top: 67%; }
+        .label-atlantic { left: 45%;   top: 78%; }
+        .label-indian   { left: 70%; top: 71%; }
+        .label-arctic   { left: 51%;   top: 3.2%; }
+        .label-southern { left: 73%;   top: 88%; }
+        .map-compass {
+            position: absolute;
+            left: 3.5%;
+            bottom: 7%;
+            width: clamp(44px, 9%, 84px);
+            z-index: 1;
+            pointer-events: none;
+            color: #3b4a6b;
+            opacity: 0.85;
+        }
+        html.dark .map-compass { color: #d9c48c; opacity: 0.8; }
+        .map-compass .rose-north { fill: #9b1c1c; }
+        html.dark .map-compass .rose-north { fill: #e0a458; }
+        @media (prefers-reduced-motion: reduce) { .animate-spin-slow { animation: none !important; } }
+        /* Theme toggle: the yellow moon vanishes on cream, so sit it on a navy chip; the sun gets a soft gold ring on dark. */
+        #theme-toggle {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            min-width: 36px;
+            min-height: 36px;
+            border-radius: 50%;
+            background: #2a2f45;
+            border: 2px solid #7a5f25;
+            line-height: 1;
+            transition: transform .2s ease, background .2s ease;
+        }
+        #theme-toggle:hover { transform: scale(1.08); }
+        #theme-toggle:focus-visible { outline: 2px solid #1e3a8a; outline-offset: 3px; }
+        html.dark #theme-toggle { background: rgba(255, 255, 255, 0.1); border-color: #d9c48c; }
+        html.dark #theme-toggle:focus-visible { outline-color: #d9c48c; }
     </style>
 </head>
 <body class="bg-gradient-to-br from-gray-50 via-blue-50 to-green-100 min-h-screen text-gray-900 antialiased">
+    <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:left-2 focus:top-2 focus:z-50 focus:bg-white focus:text-gray-900 focus:px-3 focus:py-2 focus:rounded">Skip to main content</a>
     <nav class="flex justify-end p-4" role="navigation" aria-label="Main navigation">
         <button id="theme-toggle" aria-label="Toggle dark mode" class="text-md mr-3 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded" type="button">
             <span id="theme-icon">🌙</span>
         </button>
-        <a href="index.html" class="text-[#636b6f] px-6 text-[13px] font-semibold tracking-wider no-underline uppercase focus:outline-none focus:ring-2 focus:ring-blue-500 rounded hover:underline transition" aria-label="Home page of Derek Lobo">Home</a>
+        <a href="index.html" class="text-gray-600 px-6 text-[13px] font-semibold tracking-wider no-underline uppercase focus:outline-none focus:ring-2 focus:ring-blue-500 rounded hover:underline transition" aria-label="Home page of Derek Lobo">Home</a>
     </nav>
-    <main class="max-w-5xl mx-auto p-4 sm:p-6" role="main">
+    <main id="main" class="max-w-5xl mx-auto p-4 sm:p-6" role="main">
         <header class="mb-8">
             <h1 class="text-xl font-bold text-gray-700 mb-2 flex items-center gap-3">
                 <span class="inline-block w-10 h-10 relative">
@@ -132,7 +245,7 @@
                     </svg>
                     <style>
                         .animate-spin-slow {
-                            animation: spin 3s linear infinite;
+                            animation: spin 2.5s linear 2;
                         }
                         @keyframes spin {
                             100% { transform: rotate(360deg); }
@@ -147,139 +260,291 @@
         <section class="about mb-6">
             
             <p class="text-gray-700">
-                Here are some cities I've visited. 
-                <span class="sr-only">Use Tab or hover to reveal city names on the map below.</span>
-                <span aria-hidden="true">Hover over pins or use Tab to reveal city names!</span>
+                Here are some cities I've visited.
+                <span class="sr-only">Focus or hover on a map marker to reveal its destination. The full destination list follows.</span>
+                <span aria-hidden="true">Focus or hover on a pin to reveal its destination.</span>
             </p>
         </section>
         <section class="map-container" aria-label="World map with travel destinations">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/World_map_-_low_resolution.svg/1200px-World_map_-_low_resolution.svg.png"
-                 alt="World map showing travel destinations as pins" class="world-map" />
-
-        
+              <img src="images/svg/world-map.svg"
+                  alt="World map showing the approximate locations of visited destinations. Destination details follow." class="world-map" />
             
 
-            <div class="pin pin-toronto visited" title="Toronto" tabindex="0" aria-label="Toronto, visited">
+            <!-- Decorative map furniture -->
+            <span class="map-label label-arctic" aria-hidden="true">Arctic Ocean</span>
+            <span class="map-label label-pacific" aria-hidden="true">Pacific Ocean</span>
+            <span class="map-label label-atlantic" aria-hidden="true">Atlantic Ocean</span>
+            <span class="map-label label-indian" aria-hidden="true">Indian Ocean</span>
+            <span class="map-label label-southern" aria-hidden="true">Southern Ocean</span>
+            <svg class="map-compass" viewBox="0 0 100 100" aria-hidden="true" focusable="false">
+                <circle cx="50" cy="50" r="30" fill="none" stroke="currentColor" stroke-width="1.2"/>
+                <circle cx="50" cy="50" r="24" fill="none" stroke="currentColor" stroke-width="0.6"/>
+                <path d="M50 18 L56 50 L50 82 L44 50 Z" fill="currentColor"/>
+                <path d="M18 50 L50 44 L82 50 L50 56 Z" fill="currentColor" opacity="0.7"/>
+                <path class="rose-north" d="M50 18 L56 50 L44 50 Z"/>
+                <g font-family="Georgia, serif" font-size="11" font-weight="bold" fill="currentColor" text-anchor="middle">
+                    <text x="50" y="12">N</text>
+                    <text x="92" y="54">E</text>
+                    <text x="50" y="98">S</text>
+                    <text x="8" y="54">W</text>
+                </g>
+            </svg>
+
+            <div class="pin pin-toronto visited" role="img" tabindex="0" aria-label="Toronto, Canada, visited">
                 <span aria-hidden="true">
-                    <svg width="32" height="48" viewBox="0 0 32 48" focusable="false" aria-hidden="true">
-                        <rect class="pin-stem" x="15" y="16" width="2" height="28" rx="1"/>
-                        <ellipse class="pin-head" cx="16" cy="12" rx="7" ry="7"/>
+                    <svg width="22" height="28" viewBox="0 0 28 36" focusable="false" aria-hidden="true">
+                        <path class="pin-body" d="M14 35C14 35 3 21.5 3 13.5a11 11 0 0 1 22 0C25 21.5 14 35 14 35z"/>
+                        <circle class="pin-dot" cx="14" cy="13.5" r="4.2"/>
                     </svg>
                 </span>
                 <span class="pin-label">Toronto</span>
             </div>
             <!-- Repeat for all pins, updating only the class and label as needed: -->
-            <div class="pin pin-toronto visited" title="Canada" tabindex="0" aria-label="Canada, visited">
+            <div class="pin pin-switzerland visited" role="img" tabindex="0" aria-label="Zurich, Switzerland, visited">
                 <span aria-hidden="true">
-                    <svg width="32" height="48" viewBox="0 0 32 48" focusable="false" aria-hidden="true">
-                        <rect class="pin-stem" x="15" y="16" width="2" height="28" rx="1"/>
-                        <ellipse class="pin-head" cx="16" cy="12" rx="7" ry="7"/>
+                    <svg width="22" height="28" viewBox="0 0 28 36" focusable="false" aria-hidden="true">
+                        <path class="pin-body" d="M14 35C14 35 3 21.5 3 13.5a11 11 0 0 1 22 0C25 21.5 14 35 14 35z"/>
+                        <circle class="pin-dot" cx="14" cy="13.5" r="4.2"/>
                     </svg>
                 </span>
-                <span class="pin-label">Canada</span>
+                <span class="pin-label">Zurich</span>
             </div>
-            <div class="pin pin-switzerland visited" title="Switzerland" tabindex="0" aria-label="Switzerland, visited">
+            <div class="pin pin-france visited" role="img" tabindex="0" aria-label="Lourdes, France, visited">
                 <span aria-hidden="true">
-                    <svg width="32" height="48" viewBox="0 0 32 48" focusable="false" aria-hidden="true">
-                        <rect class="pin-stem" x="15" y="16" width="2" height="28" rx="1"/>
-                        <ellipse class="pin-head" cx="16" cy="12" rx="7" ry="7"/>
+                    <svg width="22" height="28" viewBox="0 0 28 36" focusable="false" aria-hidden="true">
+                        <path class="pin-body" d="M14 35C14 35 3 21.5 3 13.5a11 11 0 0 1 22 0C25 21.5 14 35 14 35z"/>
+                        <circle class="pin-dot" cx="14" cy="13.5" r="4.2"/>
                     </svg>
                 </span>
-                <span class="pin-label">Switzerland</span>
+                <span class="pin-label">Lourdes</span>
             </div>
-            <div class="pin pin-france visited" title="France" tabindex="0" aria-label="France, visited">
+            <div class="pin pin-portugal visited" role="img" tabindex="0" aria-label="Lisbon, Portugal, visited">
                 <span aria-hidden="true">
-                    <svg width="32" height="48" viewBox="0 0 32 48" focusable="false" aria-hidden="true">
-                        <rect class="pin-stem" x="15" y="16" width="2" height="28" rx="1"/>
-                        <ellipse class="pin-head" cx="16" cy="12" rx="7" ry="7"/>
+                    <svg width="22" height="28" viewBox="0 0 28 36" focusable="false" aria-hidden="true">
+                        <path class="pin-body" d="M14 35C14 35 3 21.5 3 13.5a11 11 0 0 1 22 0C25 21.5 14 35 14 35z"/>
+                        <circle class="pin-dot" cx="14" cy="13.5" r="4.2"/>
                     </svg>
                 </span>
-                <span class="pin-label">France</span>
+                <span class="pin-label">Lisbon</span>
             </div>
-            <div class="pin pin-portugal visited" title="Portugal" tabindex="0" aria-label="Portugal, visited">
+            <!-- Visited destinations -->
+            <div class="pin pin-dublin visited" role="img" tabindex="0" aria-label="Dublin, Ireland, visited">
                 <span aria-hidden="true">
-                    <svg width="32" height="48" viewBox="0 0 32 48" focusable="false" aria-hidden="true">
-                        <rect class="pin-stem" x="15" y="16" width="2" height="28" rx="1"/>
-                        <ellipse class="pin-head" cx="16" cy="12" rx="7" ry="7"/>
-                    </svg>
-                </span>
-                <span class="pin-label">Portugal</span>
-            </div>
-            <!-- Wish List Cities (blue pins) -->
-            <div class="pin pin-dublin visited" title="Dublin" tabindex="0" aria-label="Dublin, wish list">
-                <span aria-hidden="true">
-                    <svg width="32" height="48" viewBox="0 0 32 48" focusable="false" aria-hidden="true">
-                        <rect class="pin-stem" x="15" y="16" width="2" height="28" rx="1"/>
-                        <ellipse class="pin-head" cx="16" cy="12" rx="7" ry="7"/>
+                    <svg width="22" height="28" viewBox="0 0 28 36" focusable="false" aria-hidden="true">
+                        <path class="pin-body" d="M14 35C14 35 3 21.5 3 13.5a11 11 0 0 1 22 0C25 21.5 14 35 14 35z"/>
+                        <circle class="pin-dot" cx="14" cy="13.5" r="4.2"/>
                     </svg>
                 </span>
                 <span class="pin-label">Dublin</span>
             </div>
-            <div class="pin pin-amsterdam visited" title="Amsterdam" tabindex="0" aria-label="Amsterdam, wish list">
+            <div class="pin pin-amsterdam visited" role="img" tabindex="0" aria-label="Amsterdam, Netherlands, visited">
                 <span aria-hidden="true">
-                    <svg width="32" height="48" viewBox="0 0 32 48" focusable="false" aria-hidden="true">
-                        <rect class="pin-stem" x="15" y="16" width="2" height="28" rx="1"/>
-                        <ellipse class="pin-head" cx="16" cy="12" rx="7" ry="7"/>
+                    <svg width="22" height="28" viewBox="0 0 28 36" focusable="false" aria-hidden="true">
+                        <path class="pin-body" d="M14 35C14 35 3 21.5 3 13.5a11 11 0 0 1 22 0C25 21.5 14 35 14 35z"/>
+                        <circle class="pin-dot" cx="14" cy="13.5" r="4.2"/>
                     </svg>
                 </span>
                 <span class="pin-label">Amsterdam</span>
             </div>
-            <!-- Add this pin for Switzerland inside the .map-container section, with the other pins -->
-            <div class="pin pin-switzerland visited" title="Switzerland" tabindex="0" aria-label="Switzerland, visited">
-                <span aria-hidden="true">
-                    <svg width="32" height="48" viewBox="0 0 32 48" focusable="false" aria-hidden="true">
-                        <rect class="pin-stem" x="15" y="16" width="2" height="28" rx="1"/>
-                        <ellipse class="pin-head" cx="16" cy="12" rx="7" ry="7"/>
-                    </svg>
-                </span>
-                <span class="pin-label">Switzerland</span>
-            </div>
             <!-- Add this pin for Belgium inside the .map-container section, with the other pins -->
-            <div class="pin pin-belgium visited" title="Belgium" tabindex="0" aria-label="Belgium, visited">
+            <div class="pin pin-belgium visited" role="img" tabindex="0" aria-label="Brussels, Belgium, visited">
                 <span aria-hidden="true">
-                    <svg width="32" height="48" viewBox="0 0 32 48" focusable="false" aria-hidden="true">
-                        <rect class="pin-stem" x="15" y="16" width="2" height="28" rx="1"/>
-                        <ellipse class="pin-head" cx="16" cy="12" rx="7" ry="7"/>
+                    <svg width="22" height="28" viewBox="0 0 28 36" focusable="false" aria-hidden="true">
+                        <path class="pin-body" d="M14 35C14 35 3 21.5 3 13.5a11 11 0 0 1 22 0C25 21.5 14 35 14 35z"/>
+                        <circle class="pin-dot" cx="14" cy="13.5" r="4.2"/>
                     </svg>
                 </span>
-                <span class="pin-label">Belgium</span>
+                <span class="pin-label">Brussels</span>
             </div>
             <!-- Add this pin for Italy inside the .map-container section, with the other pins -->
-            <div class="pin pin-italy visited" title="Italy" tabindex="0" aria-label="Italy, visited">
+            <div class="pin pin-italy visited" role="img" tabindex="0" aria-label="Rome, Italy, visited">
                 <span aria-hidden="true">
-                    <svg width="32" height="48" viewBox="0 0 32 48" focusable="false" aria-hidden="true">
-                        <rect class="pin-stem" x="15" y="16" width="2" height="28" rx="1"/>
-                        <ellipse class="pin-head" cx="16" cy="12" rx="7" ry="7"/>
+                    <svg width="22" height="28" viewBox="0 0 28 36" focusable="false" aria-hidden="true">
+                        <path class="pin-body" d="M14 35C14 35 3 21.5 3 13.5a11 11 0 0 1 22 0C25 21.5 14 35 14 35z"/>
+                        <circle class="pin-dot" cx="14" cy="13.5" r="4.2"/>
                     </svg>
                 </span>
-                <span class="pin-label">Italy</span>
+                <span class="pin-label">Rome</span>
             </div>
-            <div class="pin pin-spain visited" title="Spain" tabindex="0" aria-label="Spain, visited">
+            <div class="pin pin-spain visited" role="img" tabindex="0" aria-label="Santiago de Compostela, Spain, visited">
                 <span aria-hidden="true">
-                    <svg width="32" height="48" viewBox="0 0 32 48" focusable="false" aria-hidden="true">
-                        <rect class="pin-stem" x="15" y="16" width="2" height="28" rx="1"/>
-                        <ellipse class="pin-head" cx="16" cy="12" rx="7" ry="7"/>
+                    <svg width="22" height="28" viewBox="0 0 28 36" focusable="false" aria-hidden="true">
+                        <path class="pin-body" d="M14 35C14 35 3 21.5 3 13.5a11 11 0 0 1 22 0C25 21.5 14 35 14 35z"/>
+                        <circle class="pin-dot" cx="14" cy="13.5" r="4.2"/>
                     </svg>
                 </span>
-                <span class="pin-label">Spain</span>
+                <span class="pin-label">Santiago de Compostela</span>
             </div>
-            <div class="pin pin-northernireland visited" title="Belfast" tabindex="0" aria-label="Belfast, visited">
+            <div class="pin pin-northernireland visited" role="img" tabindex="0" aria-label="Belfast, Northern Ireland, visited">
                 <span aria-hidden="true">
-                    <svg width="32" height="48" viewBox="0 0 32 48" focusable="false" aria-hidden="true">
-                        <rect class="pin-stem" x="15" y="16" width="2" height="28" rx="1"/>
-                        <ellipse class="pin-head" cx="16" cy="12" rx="7" ry="7"/>
+                    <svg width="22" height="28" viewBox="0 0 28 36" focusable="false" aria-hidden="true">
+                        <path class="pin-body" d="M14 35C14 35 3 21.5 3 13.5a11 11 0 0 1 22 0C25 21.5 14 35 14 35z"/>
+                        <circle class="pin-dot" cx="14" cy="13.5" r="4.2"/>
                     </svg>
                 </span>
                 <span class="pin-label">Belfast</span>
             </div>
-            <div class="pin pin-edinburgh visited" title="Edinburgh" tabindex="0" aria-label="Edinburgh, visited" style="left: 47%; top: 15%;">
+            <div class="pin pin-edinburgh visited" role="img" tabindex="0" aria-label="Edinburgh, Scotland, visited">
                 <span aria-hidden="true">
-                    <svg width="32" height="48" viewBox="0 0 32 48" focusable="false" aria-hidden="true">
-                        <rect class="pin-stem" x="15" y="16" width="2" height="28" rx="1"/>
-                        <ellipse class="pin-head" cx="16" cy="12" rx="7" ry="7"/>
+                    <svg width="22" height="28" viewBox="0 0 28 36" focusable="false" aria-hidden="true">
+                        <path class="pin-body" d="M14 35C14 35 3 21.5 3 13.5a11 11 0 0 1 22 0C25 21.5 14 35 14 35z"/>
+                        <circle class="pin-dot" cx="14" cy="13.5" r="4.2"/>
                     </svg>
                 </span>
                 <span class="pin-label">Edinburgh</span>
+            </div>
+            <div class="pin pin-chisasibi visited" role="img" tabindex="0" aria-label="Chisasibi, Canada, visited">
+                <span aria-hidden="true">
+                    <svg width="22" height="28" viewBox="0 0 28 36" focusable="false" aria-hidden="true">
+                        <path class="pin-body" d="M14 35C14 35 3 21.5 3 13.5a11 11 0 0 1 22 0C25 21.5 14 35 14 35z"/>
+                        <circle class="pin-dot" cx="14" cy="13.5" r="4.2"/>
+                    </svg>
+                </span>
+                <span class="pin-label">Chisasibi</span>
+            </div>
+            <div class="pin pin-montreal visited" role="img" tabindex="0" aria-label="Montreal, Canada, visited">
+                <span aria-hidden="true">
+                    <svg width="22" height="28" viewBox="0 0 28 36" focusable="false" aria-hidden="true">
+                        <path class="pin-body" d="M14 35C14 35 3 21.5 3 13.5a11 11 0 0 1 22 0C25 21.5 14 35 14 35z"/>
+                        <circle class="pin-dot" cx="14" cy="13.5" r="4.2"/>
+                    </svg>
+                </span>
+                <span class="pin-label">Montreal</span>
+            </div>
+            <div class="pin pin-calgary visited" role="img" tabindex="0" aria-label="Calgary, Canada, visited">
+                <span aria-hidden="true">
+                    <svg width="22" height="28" viewBox="0 0 28 36" focusable="false" aria-hidden="true">
+                        <path class="pin-body" d="M14 35C14 35 3 21.5 3 13.5a11 11 0 0 1 22 0C25 21.5 14 35 14 35z"/>
+                        <circle class="pin-dot" cx="14" cy="13.5" r="4.2"/>
+                    </svg>
+                </span>
+                <span class="pin-label">Calgary</span>
+            </div>
+            <div class="pin pin-banff visited" role="img" tabindex="0" aria-label="Banff, Canada, visited">
+                <span aria-hidden="true">
+                    <svg width="22" height="28" viewBox="0 0 28 36" focusable="false" aria-hidden="true">
+                        <path class="pin-body" d="M14 35C14 35 3 21.5 3 13.5a11 11 0 0 1 22 0C25 21.5 14 35 14 35z"/>
+                        <circle class="pin-dot" cx="14" cy="13.5" r="4.2"/>
+                    </svg>
+                </span>
+                <span class="pin-label">Banff</span>
+            </div>
+            <div class="pin pin-porto visited" role="img" tabindex="0" aria-label="Porto, Portugal, visited">
+                <span aria-hidden="true">
+                    <svg width="22" height="28" viewBox="0 0 28 36" focusable="false" aria-hidden="true">
+                        <path class="pin-body" d="M14 35C14 35 3 21.5 3 13.5a11 11 0 0 1 22 0C25 21.5 14 35 14 35z"/>
+                        <circle class="pin-dot" cx="14" cy="13.5" r="4.2"/>
+                    </svg>
+                </span>
+                <span class="pin-label">Porto</span>
+            </div>
+            <div class="pin pin-faro visited" role="img" tabindex="0" aria-label="Faro, Portugal, visited">
+                <span aria-hidden="true">
+                    <svg width="22" height="28" viewBox="0 0 28 36" focusable="false" aria-hidden="true">
+                        <path class="pin-body" d="M14 35C14 35 3 21.5 3 13.5a11 11 0 0 1 22 0C25 21.5 14 35 14 35z"/>
+                        <circle class="pin-dot" cx="14" cy="13.5" r="4.2"/>
+                    </svg>
+                </span>
+                <span class="pin-label">Faro</span>
+            </div>
+            <div class="pin pin-fatima visited" role="img" tabindex="0" aria-label="Fátima, Portugal, visited">
+                <span aria-hidden="true">
+                    <svg width="22" height="28" viewBox="0 0 28 36" focusable="false" aria-hidden="true">
+                        <path class="pin-body" d="M14 35C14 35 3 21.5 3 13.5a11 11 0 0 1 22 0C25 21.5 14 35 14 35z"/>
+                        <circle class="pin-dot" cx="14" cy="13.5" r="4.2"/>
+                    </svg>
+                </span>
+                <span class="pin-label">Fátima</span>
+            </div>
+            <div class="pin pin-toulouse visited" role="img" tabindex="0" aria-label="Toulouse, France, visited">
+                <span aria-hidden="true">
+                    <svg width="22" height="28" viewBox="0 0 28 36" focusable="false" aria-hidden="true">
+                        <path class="pin-body" d="M14 35C14 35 3 21.5 3 13.5a11 11 0 0 1 22 0C25 21.5 14 35 14 35z"/>
+                        <circle class="pin-dot" cx="14" cy="13.5" r="4.2"/>
+                    </svg>
+                </span>
+                <span class="pin-label">Toulouse</span>
+            </div>
+            <div class="pin pin-luzern visited" role="img" tabindex="0" aria-label="Luzern, Switzerland, visited">
+                <span aria-hidden="true">
+                    <svg width="22" height="28" viewBox="0 0 28 36" focusable="false" aria-hidden="true">
+                        <path class="pin-body" d="M14 35C14 35 3 21.5 3 13.5a11 11 0 0 1 22 0C25 21.5 14 35 14 35z"/>
+                        <circle class="pin-dot" cx="14" cy="13.5" r="4.2"/>
+                    </svg>
+                </span>
+                <span class="pin-label">Luzern</span>
+            </div>
+            <div class="pin pin-interlaken visited" role="img" tabindex="0" aria-label="Interlaken, Switzerland, visited">
+                <span aria-hidden="true">
+                    <svg width="22" height="28" viewBox="0 0 28 36" focusable="false" aria-hidden="true">
+                        <path class="pin-body" d="M14 35C14 35 3 21.5 3 13.5a11 11 0 0 1 22 0C25 21.5 14 35 14 35z"/>
+                        <circle class="pin-dot" cx="14" cy="13.5" r="4.2"/>
+                    </svg>
+                </span>
+                <span class="pin-label">Interlaken</span>
+            </div>
+            <div class="pin pin-gent visited" role="img" tabindex="0" aria-label="Gent, Belgium, visited">
+                <span aria-hidden="true">
+                    <svg width="22" height="28" viewBox="0 0 28 36" focusable="false" aria-hidden="true">
+                        <path class="pin-body" d="M14 35C14 35 3 21.5 3 13.5a11 11 0 0 1 22 0C25 21.5 14 35 14 35z"/>
+                        <circle class="pin-dot" cx="14" cy="13.5" r="4.2"/>
+                    </svg>
+                </span>
+                <span class="pin-label">Gent</span>
+            </div>
+            <div class="pin pin-bruges visited" role="img" tabindex="0" aria-label="Bruges, Belgium, visited">
+                <span aria-hidden="true">
+                    <svg width="22" height="28" viewBox="0 0 28 36" focusable="false" aria-hidden="true">
+                        <path class="pin-body" d="M14 35C14 35 3 21.5 3 13.5a11 11 0 0 1 22 0C25 21.5 14 35 14 35z"/>
+                        <circle class="pin-dot" cx="14" cy="13.5" r="4.2"/>
+                    </svg>
+                </span>
+                <span class="pin-label">Bruges</span>
+            </div>
+            <div class="pin pin-barcelona visited" role="img" tabindex="0" aria-label="Barcelona, Spain, visited">
+                <span aria-hidden="true">
+                    <svg width="22" height="28" viewBox="0 0 28 36" focusable="false" aria-hidden="true">
+                        <path class="pin-body" d="M14 35C14 35 3 21.5 3 13.5a11 11 0 0 1 22 0C25 21.5 14 35 14 35z"/>
+                        <circle class="pin-dot" cx="14" cy="13.5" r="4.2"/>
+                    </svg>
+                </span>
+                <span class="pin-label">Barcelona</span>
+            </div>
+            <div class="pin pin-acoruna visited" role="img" tabindex="0" aria-label="A Coruña, Spain, visited">
+                <span aria-hidden="true">
+                    <svg width="22" height="28" viewBox="0 0 28 36" focusable="false" aria-hidden="true">
+                        <path class="pin-body" d="M14 35C14 35 3 21.5 3 13.5a11 11 0 0 1 22 0C25 21.5 14 35 14 35z"/>
+                        <circle class="pin-dot" cx="14" cy="13.5" r="4.2"/>
+                    </svg>
+                </span>
+                <span class="pin-label">A Coruña</span>
+            </div>
+            <div class="pin pin-monforte visited" role="img" tabindex="0" aria-label="Monforte de Lemos, Spain, visited">
+                <span aria-hidden="true">
+                    <svg width="22" height="28" viewBox="0 0 28 36" focusable="false" aria-hidden="true">
+                        <path class="pin-body" d="M14 35C14 35 3 21.5 3 13.5a11 11 0 0 1 22 0C25 21.5 14 35 14 35z"/>
+                        <circle class="pin-dot" cx="14" cy="13.5" r="4.2"/>
+                    </svg>
+                </span>
+                <span class="pin-label">Monforte de Lemos</span>
+            </div>
+            <div class="pin pin-bray visited" role="img" tabindex="0" aria-label="Bray, Ireland, visited">
+                <span aria-hidden="true">
+                    <svg width="22" height="28" viewBox="0 0 28 36" focusable="false" aria-hidden="true">
+                        <path class="pin-body" d="M14 35C14 35 3 21.5 3 13.5a11 11 0 0 1 22 0C25 21.5 14 35 14 35z"/>
+                        <circle class="pin-dot" cx="14" cy="13.5" r="4.2"/>
+                    </svg>
+                </span>
+                <span class="pin-label">Bray</span>
+            </div>
+            <div class="pin pin-highlands visited" role="img" tabindex="0" aria-label="Scottish Highlands (Loch Ness), Scotland, visited">
+                <span aria-hidden="true">
+                    <svg width="22" height="28" viewBox="0 0 28 36" focusable="false" aria-hidden="true">
+                        <path class="pin-body" d="M14 35C14 35 3 21.5 3 13.5a11 11 0 0 1 22 0C25 21.5 14 35 14 35z"/>
+                        <circle class="pin-dot" cx="14" cy="13.5" r="4.2"/>
+                    </svg>
+                </span>
+                <span class="pin-label">Scottish Highlands (Loch Ness)</span>
             </div>
         </section>
         <section class="mt-12 grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4" aria-label="Visited Cities by Country">
@@ -287,17 +552,18 @@
     <div class="rounded-xl shadow-lg bg-white bg-opacity-90 p-5 flex flex-col">
         <div class="flex items-center gap-2 mb-2">
             <img src="https://cdn.jsdelivr.net/npm/svg-country-flags@1.2.10/svg/ie.svg" alt="Ireland flag" class="w-6 h-6 rounded" />
-            <span class="font-bold text-green-900 text-lg">Ireland</span>
+            <h2 class="font-bold text-green-900 text-lg">Ireland</h2>
         </div>
         <ul class="list-disc ml-6 text-gray-800">
             <li>Dublin</li>
+            <li>Bray <span class="text-xs text-gray-600">Camino Inglés (Celtic) start, walk to Dublin</span></li>
         </ul>
     </div>
     <!-- Canada Card -->
     <div class="rounded-xl shadow-lg bg-white bg-opacity-90 p-5 flex flex-col">
         <div class="flex items-center gap-2 mb-2">
             <img src="https://cdn.jsdelivr.net/npm/svg-country-flags@1.2.10/svg/ca.svg" alt="Canada flag" class="w-6 h-6 rounded" />
-            <span class="font-bold text-blue-900 text-lg">Canada</span>
+            <h2 class="font-bold text-blue-900 text-lg">Canada</h2>
         </div>
         <ul class="list-disc ml-6 text-gray-800">
             <li>Toronto</li>
@@ -311,19 +577,20 @@
     <div class="rounded-xl shadow-lg bg-white bg-opacity-90 p-5 flex flex-col">
         <div class="flex items-center gap-2 mb-2">
             <img src="https://cdn.jsdelivr.net/npm/svg-country-flags@1.2.10/svg/pt.svg" alt="Portugal flag" class="w-6 h-6 rounded" />
-            <span class="font-bold text-red-900 text-lg">Portugal</span>
+            <h2 class="font-bold text-red-900 text-lg">Portugal</h2>
         </div>
         <ul class="list-disc ml-6 text-gray-800">
             <li>Lisbon</li>
             <li>Porto</li>
             <li>Faro</li>
+            <li>Fátima</li>
         </ul>
     </div>
     <!-- France Card -->
     <div class="rounded-xl shadow-lg bg-white bg-opacity-90 p-5 flex flex-col">
         <div class="flex items-center gap-2 mb-2">
             <img src="https://cdn.jsdelivr.net/npm/svg-country-flags@1.2.10/svg/fr.svg" alt="France flag" class="w-6 h-6 rounded" />
-            <span class="font-bold text-pink-900 text-lg">France</span>
+            <h2 class="font-bold text-pink-900 text-lg">France</h2>
         </div>
         <ul class="list-disc ml-6 text-gray-800">
             <li>Lourdes</li>
@@ -334,7 +601,7 @@
     <div class="rounded-xl shadow-lg bg-white bg-opacity-90 p-5 flex flex-col">
         <div class="flex items-center gap-2 mb-2">
             <img src="https://cdn.jsdelivr.net/npm/svg-country-flags@1.2.10/svg/gb-nir.svg" alt="Northern Ireland flag" class="w-6 h-6 rounded" />
-            <span class="font-bold text-gray-900 text-lg">Northern Ireland</span>
+            <h2 class="font-bold text-gray-900 text-lg">Northern Ireland</h2>
         </div>
         <ul class="list-disc ml-6 text-gray-800">
             <li>Belfast</li>
@@ -344,7 +611,7 @@
     <div class="rounded-xl shadow-lg bg-white bg-opacity-90 p-5 flex flex-col">
         <div class="flex items-center gap-2 mb-2">
             <img src="https://cdn.jsdelivr.net/npm/svg-country-flags@1.2.10/svg/nl.svg" alt="Netherlands flag" class="w-6 h-6 rounded" />
-            <span class="font-bold text-yellow-900 text-lg">Netherlands</span>
+            <h2 class="font-bold text-yellow-900 text-lg">Netherlands</h2>
         </div>
         <ul class="list-disc ml-6 text-gray-800">
             <li>Amsterdam</li>
@@ -354,7 +621,7 @@
     <div class="rounded-xl shadow-lg bg-white bg-opacity-90 p-5 flex flex-col">
         <div class="flex items-center gap-2 mb-2">
             <img src="https://cdn.jsdelivr.net/npm/svg-country-flags@1.2.10/svg/ch.svg" alt="Switzerland flag" class="w-6 h-6 rounded" />
-            <span class="font-bold text-gray-900 text-lg">Switzerland</span>
+            <h2 class="font-bold text-gray-900 text-lg">Switzerland</h2>
         </div>
         <ul class="list-disc ml-6 text-gray-800">
             <li>Zurich</li>
@@ -368,29 +635,31 @@
     <div class="rounded-xl shadow-lg bg-white bg-opacity-90 p-5 flex flex-col">
         <div class="flex items-center gap-2 mb-2">
             <img src="https://cdn.jsdelivr.net/npm/svg-country-flags@1.2.10/svg/be.svg" alt="Belgium flag" class="w-6 h-6 rounded" />
-            <span class="font-bold text-yellow-900 text-lg">Belgium</span>
+            <h2 class="font-bold text-yellow-900 text-lg">Belgium</h2>
         </div>
         <ul class="list-disc ml-6 text-gray-800">
             <li>Gent</li>
             <li>Brussels</li>
-            <li>Bruge</li>
+            <li>Bruges</li>
         </ul>
     </div>
     <!-- Spain Card -->
     <div class="rounded-xl shadow-lg bg-white bg-opacity-90 p-5 flex flex-col">
         <div class="flex items-center gap-2 mb-2">
             <img src="https://cdn.jsdelivr.net/npm/svg-country-flags@1.2.10/svg/es.svg" alt="Spain flag" class="w-6 h-6 rounded" />
-            <span class="font-bold text-orange-900 text-lg">Spain</span>
+            <h2 class="font-bold text-orange-900 text-lg">Spain</h2>
         </div>
         <ul class="list-disc ml-6 text-gray-800">
-            <li>Santiago De Compostella</li>
+            <li>Barcelona <span class="text-xs text-gray-600">Montserrat</span></li>
+            <li>Santiago de Compostela <span class="text-xs text-gray-600">Camino Invierno: Monforte de Lemos, Chantada, Rodeiro, Lalín, Silleda, Vedra</span></li>
+            <li>A Coruña <span class="text-xs text-gray-600">Camino Inglés: Ordes, Sigüeiro</span></li>
         </ul>
     </div>
     <!-- Italy Card -->
     <div class="rounded-xl shadow-lg bg-white bg-opacity-90 p-5 flex flex-col">
         <div class="flex items-center gap-2 mb-2">
             <img src="https://cdn.jsdelivr.net/npm/svg-country-flags@1.2.10/svg/it.svg" alt="Italy flag" class="w-6 h-6 rounded" />
-            <span class="font-bold text-green-900 text-lg">Italy</span>
+            <h2 class="font-bold text-green-900 text-lg">Italy</h2>
         </div>
         <ul class="list-disc ml-6 text-gray-800">
             <li>Rome</li>
@@ -401,16 +670,19 @@
     <div class="rounded-xl shadow-lg bg-white bg-opacity-90 p-5 flex flex-col">
         <div class="flex items-center gap-2 mb-2">
             <img src="https://cdn.jsdelivr.net/npm/svg-country-flags@1.2.10/svg/gb-sct.svg" alt="Scotland flag" class="w-6 h-6 rounded" />
-            <span class="font-bold text-blue-900 text-lg">Scotland</span>
+            <h2 class="font-bold text-blue-900 text-lg">Scotland</h2>
         </div>
         <ul class="list-disc ml-6 text-gray-900">
-            <li>Edinburgh <span class="text-xs text-gray-600">Highlands tour, Hike to Arthurs seat</span></li>
+            <li>Edinburgh <span class="text-xs text-gray-600">Hike to Arthur's Seat</span></li>
+            <li>Scottish Highlands <span class="text-xs text-gray-600">Loch Ness, Glencoe</span></li>
         </ul>
     </div>
 </section>
     </main>
     <footer class="footer mt-8 text-center text-gray-500" role="contentinfo">
-        <a class="contact hover:underline focus:outline-none focus:ring-2 focus:ring-blue-500 rounded" href="mailto:loboiderek@icloud.com" aria-label="Compose Email to Derek Lobo">contact</a>
+        <p class="text-sm text-gray-600">
+            Map artwork by <a href="https://commons.wikimedia.org/wiki/File:World_map_-_low_resolution.svg" class="underline">Al MacDonald</a>, licensed under <a href="https://creativecommons.org/licenses/by-sa/3.0/" class="underline">CC BY-SA 3.0</a>.
+        </p>
     </footer>
     <script>
         const themeToggle = document.getElementById('theme-toggle');

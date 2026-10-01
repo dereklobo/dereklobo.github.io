@@ -1,0 +1,225 @@
+/* About page. Palette matches the travel map: parchment, ink navy, antique gold. */
+.about-page {
+    --bg: #f7efdb;
+    --bg-2: #f1e4c4;
+    --ink: #2a2f45;
+    --muted: #5c5a52;
+    --gold: #7a5f25;
+    --accent: #9b1c1c;
+    --card: rgba(255, 252, 244, 0.75);
+    --line: rgba(138, 106, 59, 0.35);
+    --link: #1e3a8a;
+    height: auto;
+    min-height: 100vh;
+    color: var(--ink) !important;
+    background: linear-gradient(to bottom right, var(--bg), var(--bg-2));
+    font-weight: 400;
+    line-height: 1.6;
+}
+html:has(.about-page) { height: auto; }
+html.dark .about-page {
+    --bg: #263043;
+    --bg-2: #3a4760;
+    --ink: #ece4d0;
+    --muted: #c6c1b2;
+    --gold: #d9c48c;
+    --accent: #e0a458;
+    --card: rgba(20, 27, 40, 0.55);
+    --line: rgba(217, 196, 140, 0.3);
+    --link: #9ec1ff;
+}
+html:not(.dark) { background-color: #f7efdb; }
+html.dark { background-color: #263043; }
+
+.about-page a { color: var(--link); }
+.about-page a:hover { color: var(--accent); }
+.about-page a:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 3px; }
+
+/* Skip link */
+.about-page .sr-only:focus { z-index: 1000; left: 12px; top: 12px; }
+
+/* Decorative particles sit behind everything and never take clicks */
+#particles-js {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.6;
+}
+
+.top-nav {
+    position: absolute;
+    top: 18px;
+    right: 14px;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+.top-nav a {
+    color: var(--muted);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: .1rem;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+.top-nav a:hover { text-decoration: underline; }
+.about-page .top-nav button { font-size: 1.1rem; }
+
+.page {
+    position: relative;
+    z-index: 1;
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 56px 20px 24px;
+    text-align: center;
+}
+
+.hero .name {
+    margin: 0 0 18px;
+    font-size: clamp(2.6rem, 9vw, 4.6rem);
+    font-weight: 200;
+    letter-spacing: .01em;
+}
+.photo {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    filter: grayscale(100%);
+    border: 3px solid var(--gold);
+    box-shadow: 0 0 0 5px var(--line), 0 6px 18px rgba(0, 0, 0, 0.18);
+    transition: filter .4s ease;
+}
+.photo:hover { filter: none; }
+.tagline {
+    margin: 22px 0 8px;
+    font-size: clamp(1.15rem, 3.6vw, 1.5rem);
+    font-weight: 400;
+}
+.intro {
+    margin: 0 auto;
+    max-width: 34em;
+    color: var(--muted);
+    font-size: 1.05rem;
+}
+
+/* Small pill after "hiking" and in the Laracasts links */
+.chip-link, .pill {
+    display: inline-block;
+    margin-left: .35em;
+    padding: 0 .55em;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    font-size: .68em;
+    font-weight: 600;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    text-decoration: none;
+    vertical-align: .15em;
+    line-height: 1.7;
+}
+.pill { color: var(--muted); }
+
+.cta {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    margin: 26px 0 8px;
+}
+.btn {
+    padding: 10px 22px;
+    border: 1.5px solid var(--gold);
+    border-radius: 999px;
+    color: var(--ink) !important;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background .2s ease, transform .2s ease;
+}
+.btn:hover { background: var(--card); transform: translateY(-1px); }
+.btn-primary { background: var(--accent); border-color: var(--accent); color: #fff !important; }
+.btn-primary:hover { background: var(--accent); filter: brightness(1.12); }
+
+.block { margin-top: 44px; }
+.block h2 {
+    margin: 0 0 14px;
+    color: var(--gold);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: .18rem;
+    text-transform: uppercase;
+}
+.block ul { list-style: none; margin: 0; padding: 0; }
+
+.tags, .explore, .links-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+.tags li {
+    padding: 5px 14px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: var(--card);
+    font-size: .95rem;
+}
+.explore li a, .links-row li a {
+    display: inline-block;
+    padding: 4px 4px;
+    font-weight: 600;
+    letter-spacing: .04em;
+    text-decoration: none;
+}
+.explore li a:hover, .links-row li a:hover { text-decoration: underline; }
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 14px;
+    text-align: left;
+}
+.card {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    height: 100%;
+    box-sizing: border-box;
+    padding: 16px 18px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: var(--card);
+    color: var(--ink) !important;
+    text-decoration: none;
+    transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+}
+.card strong { color: var(--link); }
+.card span { color: var(--muted); font-size: .92rem; }
+.card:hover { transform: translateY(-3px); border-color: var(--gold); box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); }
+
+.site-footer { position: relative; z-index: 1; padding: 30px 0 36px; text-align: center; }
+.site-footer .contact { color: var(--muted); }
+
+@media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; }
+}
+
+/* WCAG 1.4.3 / 2.5.8: readable button text on the amber dark-mode button, and a comfortable toggle target. */
+html.dark .about-page .btn-primary { color: #1b2330 !important; }
+
+/* Theme toggle: the yellow moon vanishes on cream, so sit it on a navy chip; the sun gets a soft gold ring on dark. */
+#theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
+    min-height: 36px;
+    border-radius: 50%;
+    background: #2a2f45;
+    border: 2px solid #7a5f25;
+    line-height: 1;
+    transition: transform .2s ease, background .2s ease;
+}
+#theme-toggle:hover { transform: scale(1.08); }
+#theme-toggle:focus-visible { outline: 2px solid #1e3a8a; outline-offset: 3px; }
+html.dark #theme-toggle { background: rgba(255, 255, 255, 0.1); border-color: #d9c48c; }
+html.dark #theme-toggle:focus-visible { outline-color: #d9c48c; }
