@@ -223,3 +223,23 @@ html.dark .about-page .btn-primary { color: #1b2330 !important; }
 #theme-toggle:focus-visible { outline: 2px solid #1e3a8a; outline-offset: 3px; }
 html.dark #theme-toggle { background: rgba(255, 255, 255, 0.1); border-color: #d9c48c; }
 html.dark #theme-toggle:focus-visible { outline-color: #d9c48c; }
+
+/* Experience timeline */
+.timeline { list-style: none; padding: 0; max-width: 640px; margin: 0 auto !important; text-align: left; border-left: 2px solid var(--line); }
+.timeline li { position: relative; padding: 0 0 22px 22px; }
+.timeline li::before {
+    content: "";
+    position: absolute;
+    left: -7px;
+    top: 5px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--gold);
+    border: 2px solid var(--bg);
+}
+.timeline p { margin: 0 0 4px; }
+.timeline .role { font-size: 1.05rem; }
+.timeline .where { color: var(--muted); font-size: .9rem; margin-left: .4em; }
+.timeline .when { color: var(--muted); font-size: .85rem; letter-spacing: .04em; }
+.timeline li > p:last-child { color: var(--muted); font-size: .95rem; }
