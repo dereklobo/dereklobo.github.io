@@ -99,9 +99,48 @@ let particlesJSON = {
   
   particlesJS("particles-js", particlesJSON);
 
-  // WCAG 2.2.2: decorative motion must not run for more than 5 seconds. Freeze the hexagons after 5s.
-  setTimeout(function () {
-    if (window.pJSDom && window.pJSDom[0]) {
-      window.pJSDom[0].pJS.particles.move.enable = false;
+  // WCAG 2.2.2: moving background needs a pause control. Particles run until the visitor pauses them.
+  (function () {
+    var KEY = 'bg-motion';
+    var pJS = function () { return window.pJSDom && window.pJSDom[0] && window.pJSDom[0].pJS; };
+    var paused = false;
+    try { paused = localStorage.getItem(KEY) === 'paused'; } catch (e) {}
+
+    var style = document.createElement('style');
+    style.textContent =
+      '#motion-toggle{position:fixed;right:16px;bottom:16px;z-index:5;width:36px;height:36px;border-radius:50%;' +
+      'display:inline-flex;align-items:center;justify-content:center;cursor:pointer;font-size:14px;line-height:1;' +
+      'background:#2a2f45;color:#f5e6c0;border:2px solid #7a5f25;transition:transform .2s ease}' +
+      '#motion-toggle:hover{transform:scale(1.08)}' +
+      '#motion-toggle:focus-visible{outline:2px solid #1e3a8a;outline-offset:3px}' +
+      'html.dark #motion-toggle{background:rgba(255,255,255,.1);color:#d9c48c;border-color:#d9c48c}' +
+      'html.dark #motion-toggle:focus-visible{outline-color:#d9c48c}';
+    document.head.appendChild(style);
+
+    var btn = document.createElement('button');
+    btn.id = 'motion-toggle';
+    btn.type = 'button';
+
+    function apply() {
+      var s = pJS();
+      if (s) {
+        var wasPaused = !s.particles.move.enable;
+        s.particles.move.enable = !paused;
+        // particles.js cancels its draw loop while motion is off, so restart it on resume.
+        if (wasPaused && !paused) s.fn.vendors.draw();
+      }
+      btn.textContent = paused ? '\u25B6' : '\u23F8';
+      btn.setAttribute('aria-label', paused ? 'Play background animation' : 'Pause background animation');
+      btn.setAttribute('aria-pressed', paused ? 'true' : 'false');
+      btn.title = paused ? 'Play background animation' : 'Pause background animation';
     }
-  }, 5000);
+
+    btn.addEventListener('click', function () {
+      paused = !paused;
+      try { localStorage.setItem(KEY, paused ? 'paused' : 'running'); } catch (e) {}
+      apply();
+    });
+
+    document.body.appendChild(btn);
+    apply();
+  })();
