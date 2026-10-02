@@ -23,7 +23,17 @@
     '.cluster-card h3{margin:0 0 6px;font-size:.78rem;font-style:italic;letter-spacing:.08em;text-transform:uppercase;color:#6b5030}' +
     '.cluster-card h4{margin:6px 0 2px;font-size:.9rem;font-weight:700;color:#14532d}' +
     '.cluster-card ul{margin:0;padding:0 0 0 1.1rem;list-style:disc;font-size:.9rem}' +
-    '@media (prefers-reduced-motion:reduce){.pin-cluster{transition:none}}';
+    '@media (prefers-reduced-motion:reduce){.pin-cluster{transition:none}}' +
+    /* HDR glow: only on HDR-capable displays. The AVIF is PQ/Rec.2020 and peaks well above SDR white,
+       so the halo reads brighter than the page. SDR displays and browsers never load or draw it. */
+    '@media (dynamic-range:high){' +
+        '.pin::before,.pin-cluster::before{content:"";position:absolute;left:50%;top:42%;width:96px;height:96px;' +
+            'transform:translate(-50%,-50%);background:url(images/glow-hdr.avif) center/contain no-repeat;' +
+            'opacity:0;transition:opacity .25s ease;pointer-events:none;z-index:-1}' +
+        '.pin:hover::before,.pin:focus-visible::before,.pin-cluster:hover::before,' +
+        '.pin-cluster:focus-visible::before,.pin-cluster[aria-expanded="true"]::before{opacity:1}' +
+    '}' +
+    '@media (dynamic-range:high) and (prefers-reduced-motion:reduce){.pin::before,.pin-cluster::before{transition:none}}';
 
     var style = document.createElement('style');
     style.textContent = css;
