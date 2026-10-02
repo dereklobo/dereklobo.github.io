@@ -93,6 +93,31 @@ html.dark { background-color: #263043; }
     transition: filter .4s ease;
 }
 .photo:hover { filter: none; }
+.photo-wrap { position: relative; display: inline-block; line-height: 0; }
+.photo-wrap .photo { position: relative; z-index: 1; }
+
+/* HDR halo: a PQ/Rec.2020 ring that peaks well above SDR white. Only HDR-capable displays load or draw it. */
+@media (dynamic-range: high) {
+    .photo-wrap::before {
+        content: "";
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 240px;
+        height: 240px;
+        transform: translate(-50%, -50%);
+        background: url(../images/avatar-glow-hdr.avif) center / contain no-repeat;
+        opacity: .55;
+        transition: opacity .4s ease;
+        pointer-events: none;
+        animation: halo-breathe 4s ease-in-out infinite;
+    }
+    .photo-wrap:hover::before, .photo-wrap:focus-within::before { opacity: 1; animation: none; }
+}
+@keyframes halo-breathe { 0%, 100% { opacity: .4; } 50% { opacity: .75; } }
+@media (prefers-reduced-motion: reduce) {
+    .photo-wrap::before { animation: none !important; transition: none; }
+}
 .tagline {
     margin: 22px 0 8px;
     font-size: clamp(1.15rem, 3.6vw, 1.5rem);
