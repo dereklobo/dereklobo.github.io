@@ -129,7 +129,7 @@ let particlesJSON = {
         // particles.js cancels its draw loop while motion is off, so restart it on resume.
         if (wasPaused && !paused) s.fn.vendors.draw();
       }
-      btn.textContent = paused ? '\u25B6' : '\u23F8';
+      btn.textContent = paused ? '\u25B6\uFE0E' : '\u23F8\uFE0E';
       btn.setAttribute('aria-label', paused ? 'Play background animation' : 'Pause background animation');
       btn.setAttribute('aria-pressed', paused ? 'true' : 'false');
       btn.title = paused ? 'Play background animation' : 'Pause background animation';
