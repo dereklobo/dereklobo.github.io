@@ -81,6 +81,14 @@
     color: #1f2937;
   }
   .card .card-title, .card .card-text { color: #1f2937 !important; }
+  /* Expandable recipes; cards keep their own height so opening one doesn't stretch its row. */
+  .d-flex.flex-wrap > .card, .container > .d-flex > .card { align-self: flex-start; }
+  .recipe { margin-top: .75rem; text-align: left; font-size: .9rem; color: #1f2937; }
+  .recipe summary { cursor: pointer; font-weight: 700; color: #14532d; padding: .25rem 0; }
+  .recipe summary:focus-visible { outline: 2px solid #1e3a8a; outline-offset: 3px; border-radius: 3px; }
+  .recipe h3 { margin: .6rem 0 .2rem; font-size: .8rem; letter-spacing: .08em; text-transform: uppercase; color: #6b5030; }
+  .recipe ul, .recipe ol { margin: 0; padding-left: 1.2rem; }
+  .recipe li { margin-bottom: .2rem; }
 </style>
 </head>
     <body>
@@ -309,6 +317,43 @@
                       <div class="card-body">
                         <h2 class="card-title">Stuffed Eggplant - Bharlelli Vangi </h2>
                         <p class="card-text">Eggplant stuffed with masala, papadams on side</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="card m-3" style="max-width: 540px;">
+                  <div class="row g-0">
+                    <div class="col-md-4 align-self-center">
+                      <picture>
+                        <source type="image/avif" srcset="images/foods/web/piri-piri-sauce-360.avif 360w, images/foods/web/piri-piri-sauce-800.avif 800w" sizes="(min-width: 768px) 180px, 100vw">
+                        <img class="img-fluid rounded-start" src="images/foods/web/piri-piri-sauce-800.jpg" srcset="images/foods/web/piri-piri-sauce-360.jpg 360w, images/foods/web/piri-piri-sauce-800.jpg 800w" sizes="(min-width: 768px) 180px, 100vw" width="800" height="1066" loading="lazy" decoding="async" alt="Roasted Portuguese hot pepper sauce in a glass jar on a Portugal tile coaster">
+                      </picture>
+                    </div>
+                    <div class="col-md-8">
+                      <div class="card-body">
+                        <h2 class="card-title">Portuguese Hot Pepper Sauce</h2>
+                        <p class="card-text">Charred hot peppers blended with garlic, lime and olive oil</p>
+                        <details class="recipe">
+                          <summary>Recipe</summary>
+                          <h3>Ingredients</h3>
+                          <ul>
+                            <li>8 Portuguese hot peppers</li>
+                            <li>2 fat garlic cloves</li>
+                            <li>1 tsp fleur de sel</li>
+                            <li>Juice of 1 lime</li>
+                            <li>2 tbsp olive oil</li>
+                            <li>1/2 tbsp vinegar</li>
+                          </ul>
+                          <h3>Method</h3>
+                          <ol>
+                            <li>Wash and wipe the peppers. Slit lengthwise and remove the seeds.</li>
+                            <li>Peel and slit the garlic cloves.</li>
+                            <li>Place the peppers and garlic on a baking tray and broil on low for 12&ndash;15 minutes, until evenly charred.</li>
+                            <li>Remove from the oven and let cool for 10 minutes.</li>
+                            <li>Peel off the pepper skins. Blend the peppers, garlic, salt, lime juice, olive oil and vinegar until fully emulsified.</li>
+                          </ol>
+                        </details>
                       </div>
                     </div>
                   </div>
