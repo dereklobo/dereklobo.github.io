@@ -35,10 +35,18 @@ python3 -m http.server 8000
 ## Structure
 
 ```
-css/        shared styles (main, about, theme)
+css/        shared styles (main, about, theme); tailwind.css is generated, see below
 images/     photos, certificate, travel map SVG, share image
-*.html      one file per page; each *-darkmode.html mirrors its light page
+*.html      one file per page; light and dark themes live in the same file
 particles.js, bg-particles.js   decorative background
+```
+
+## Rebuilding Tailwind
+
+The travel pages use a pre-built `css/tailwind.css` (no CDN). After adding new Tailwind classes, rebuild it:
+
+```
+npx tailwindcss@3.4.17 -c tailwind.config.js -i css/tailwind.input.css -o css/tailwind.css --minify
 ```
 
 ## Credits

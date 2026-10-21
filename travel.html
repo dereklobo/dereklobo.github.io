@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="text-gray-900 dark:text-gray-100 antialiased">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -36,25 +36,18 @@
     <meta name="msapplication-square310x310logo" content="mstile-310x310.png" />
 
 
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- Spam Referal blocker -->
-        <script src="https://github.com/MohamedBassem/spam-referrals-blocker/releases/download/v0.2/spam-referrals-blocker.min.js"></script>
-
-        <!-- Global site tag (gtag.js) - Google Analytics -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-168463636-1"></script>
-
-        <script type="text/javascript">
-            if( !isSpamReferral() ){
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                gtag('js', new Date());
-
-                gtag('config', 'UA-168463636-1');
+    <script>
+        // Apply the saved/system theme before first paint so there is no flash.
+        try {
+            var pref = localStorage.getItem('theme');
+            if (pref === 'dark' || (!pref && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
             }
-        </script>
-    <link rel="stylesheet" href="css/theme.css">
+        } catch (e) {}
+    </script>
+    <link rel="stylesheet" href="css/tailwind.css">
+
+<link rel="stylesheet" href="css/theme.css">
 </head>
 <body class="min-h-screen">
     <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:left-2 focus:top-2 focus:z-50 focus:bg-white focus:text-gray-900 focus:px-3 focus:py-2 focus:rounded">Skip to main content</a>
@@ -64,11 +57,11 @@
             <!-- Sun for light, moon for dark (swap with JS) -->
             <span id="theme-icon">🌙</span>
         </button>
-        <a href="index.html" class="text-gray-600 p-3 text-[13px] font-semibold tracking-wider no-underline uppercase focus:outline-none focus:ring-2 focus:ring-blue-500 rounded hover:underline transition" aria-label="Home page of Derek Lobo">Home</a>
+        <a href="index.html" class="text-gray-600 p-3 text-[13px] font-semibold tracking-wider no-underline uppercase focus:outline-none focus:ring-2 focus:ring-blue-500 rounded hover:underline transition dark:text-gray-300" aria-label="Home page of Derek Lobo">Home</a>
     </nav>
     <main id="main" class="max-w-5xl mx-auto p-4" role="main">
         <header class="mb-8">
-            <h1 class="text-3xl font-extrabold text-gray-800 mb-2 flex items-center gap-3">
+            <h1 class="text-3xl font-extrabold text-gray-800 mb-2 flex items-center gap-3 dark:text-gray-100">
                 <span class="inline-block w-10 h-10 relative">
                     <!-- Rotating Globe SVG -->
                     <svg class="animate-spin-slow absolute inset-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none" aria-hidden="true">
@@ -88,10 +81,10 @@
                 </span>
                 Travel List
             </h1>
-            <p class="text-lg text-gray-600 ">Countries and cities visited, with highlights and flags.</p>
+            <p class="text-lg text-gray-600 dark:text-gray-300">Countries and cities visited, with highlights and flags.</p>
         </header>
         <section class="mb-8">
-            <h2 class="text-xl font-bold text-gray-700 mb-3 flex items-center gap-2">
+            <h2 class="text-xl font-bold text-gray-700 mb-3 flex items-center gap-2 dark:text-gray-200">
                 Countries Visited
                 <a href="travel-map.html" aria-label="View travel map" class="ml-2 text-blue-600 hover:text-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded transition">
                     <!-- Map icon SVG -->
@@ -162,26 +155,32 @@
                     </a>
                 </li>
                 <li>
+                    <a href="#Vatican_City" class="flex items-center gap-2 px-4 py-2 rounded-lg bg-gradient-to-r from-yellow-200 to-yellow-400 text-yellow-900 font-semibold shadow">
+                        <img src="https://cdn.jsdelivr.net/npm/svg-country-flags@1.2.10/svg/va.svg" alt="Vatican City flag" class="w-6 h-6 rounded" />
+                        Vatican City
+                    </a>
+                </li>
+                <li>
                     <a href="#Scotland" class="flex items-center gap-2 px-4 py-2 rounded-lg bg-gradient-to-r from-purple-300 to-purple-500 text-purple-900 font-semibold shadow">
-                        <img src="https://cdn.jsdelivr.net/npm/svg-country-flags@1.2.10/svg/gb-sct.svg" alt="Scotland flag" class="w-6 h-6 rounded " />
+                        <img src="https://cdn.jsdelivr.net/npm/svg-country-flags@1.2.10/svg/gb-sct.svg" alt="Scotland flag" class="w-6 h-6 rounded" />
                         Scotland
                     </a>
                 </li>
             </ul>
         </section>
         <section aria-label="Travel List Table">
-            <div class="overflow-x-auto rounded-lg shadow-lg bg-white bg-opacity-90">
-            <table class="min-w-full divide-y divide-gray-200 ">
-                <thead class="bg-gradient-to-r from-blue-200 via-green-200 to-gray-100">
+            <div class="overflow-x-auto rounded-lg shadow-lg bg-white bg-opacity-90 dark:bg-gray-900 dark:bg-opacity-90">
+            <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+                <thead class="bg-gradient-to-r from-blue-200 via-green-200 to-gray-100 dark:from-gray-800 dark:via-gray-700 dark:to-gray-900">
                     <tr>
-                        <th scope="col" class="px-4 py-3 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">Flag</th>
-                        <th scope="col" class="px-4 py-3 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">Country</th>
-                        <th scope="col" class="px-4 py-3 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">City/Town</th>
-                        <th scope="col" class="px-4 py-3 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">Year Visited</th>
-                        <th scope="col" class="px-4 py-3 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">Highlights/Notes</th>
+                        <th scope="col" class="px-4 py-3 text-left text-xs font-bold text-gray-700 uppercase tracking-wider dark:text-gray-200">Flag</th>
+                        <th scope="col" class="px-4 py-3 text-left text-xs font-bold text-gray-700 uppercase tracking-wider dark:text-gray-200">Country</th>
+                        <th scope="col" class="px-4 py-3 text-left text-xs font-bold text-gray-700 uppercase tracking-wider dark:text-gray-200">City/Town</th>
+                        <th scope="col" class="px-4 py-3 text-left text-xs font-bold text-gray-700 uppercase tracking-wider dark:text-gray-200">Year Visited</th>
+                        <th scope="col" class="px-4 py-3 text-left text-xs font-bold text-gray-700 uppercase tracking-wider dark:text-gray-200">Highlights/Notes</th>
                     </tr>
                 </thead>
-                <tbody class="divide-y divide-gray-100">
+                <tbody class="divide-y divide-gray-100 dark:divide-gray-800">
                          <!-- Canada: blue gradient -->
                         <tr id="Canada" class="bg-gradient-to-r from-blue-100 to-blue-200 hover:from-blue-200 hover:to-blue-300 transition">
                             <td class="px-4 py-2"><img src="https://cdn.jsdelivr.net/npm/svg-country-flags@1.2.10/svg/ca.svg" alt="Canada flag" class="w-6 h-6 rounded " /></td>
@@ -264,11 +263,20 @@
                                 <img src="https://cdn.jsdelivr.net/npm/svg-country-flags@1.2.10/svg/it.svg" alt="Italy flag" class="w-6 h-6 rounded" />
                             </td>
                             <td class="px-4 py-2 font-semibold text-green-900">Italy</td>
-                            <td class="px-4 py-2 text-gray-900">Rome, Vatican City</td>
+                            <td class="px-4 py-2 text-gray-900">Rome</td>
                             <td class="px-4 py-2 text-gray-700">2025</td>
-                            <td class="px-4 py-2 text-gray-700">Archbasilica St. John Lateran<sub><u><a href="https://www.strava.com/activities/16545416774" target="_blank" rel="noopener noreferrer external" aria-label="Archbasilica St. John Lateran" target="_blank" rel="noopener">,</a></u></sub> Basilica of St. Paul outside the walls<sub><a href="https://www.strava.com/activities/16531381607" target="_blank" rel="noopener noreferrer external" aria-label="Basilica of St. Paul outside the walls" target="_blank" rel="noopener">,</a></sub> Basilica of St. Mary Major, St. Peter's Basilica<sub><a href="https://www.strava.com/activities/16536886114" target="_blank" rel="noopener noreferrer external" aria-label="St. Peter's Basilica" target="_blank" rel="noopener">,</a></sub> Vatican Museum:Sistine Chapel<sub><a href="https://www.strava.com/activities/16527314644" target="_blank" rel="noopener noreferrer external" aria-label="Vatican Museum" target="_blank" rel="noopener">,</a></sub> St. Peter's Square<sub><u><a href="http://strava.com/activities/16542327117" target="_blank" rel="noopener noreferrer external" aria-label="View Jubliee Of Choir's 2025" target="_blank" rel="noopener">Jubilee of Choirs</a></u></sub></td>
+                            <td class="px-4 py-2 text-gray-700">Archbasilica St. John Lateran<sub><u><a href="https://www.strava.com/activities/16545416774" target="_blank" rel="noopener noreferrer external" aria-label="Archbasilica St. John Lateran" target="_blank" rel="noopener">,</a></u></sub> Basilica of St. Paul outside the walls<sub><a href="https://www.strava.com/activities/16531381607" target="_blank" rel="noopener noreferrer external" aria-label="Basilica of St. Paul outside the walls" target="_blank" rel="noopener">,</a></sub> Basilica of St. Mary Major</td>
                         </tr>
-                        <tr id="Italy" class="bg-gradient-to-r from-green-100 to-green-200 hover:from-green-200 hover:to-green-300 transition">
+                        <tr id="Vatican_City" class="bg-gradient-to-r from-yellow-100 to-yellow-200 hover:from-yellow-200 hover:to-yellow-300 transition">
+                            <td class="px-4 py-2">
+                                <img src="https://cdn.jsdelivr.net/npm/svg-country-flags@1.2.10/svg/va.svg" alt="Vatican City flag" class="w-6 h-6 rounded" />
+                            </td>
+                            <td class="px-4 py-2 font-semibold text-yellow-900">Vatican City</td>
+                            <td class="px-4 py-2 text-gray-900">Vatican City</td>
+                            <td class="px-4 py-2 text-gray-700">2025</td>
+                            <td class="px-4 py-2 text-gray-700">St. Peter's Basilica<sub><a href="https://www.strava.com/activities/16536886114" target="_blank" rel="noopener noreferrer external" aria-label="St. Peter's Basilica" target="_blank" rel="noopener">,</a></sub> Vatican Museum:Sistine Chapel<sub><a href="https://www.strava.com/activities/16527314644" target="_blank" rel="noopener noreferrer external" aria-label="Vatican Museum" target="_blank" rel="noopener">,</a></sub> St. Peter's Square<sub><u><a href="http://strava.com/activities/16542327117" target="_blank" rel="noopener noreferrer external" aria-label="View Jubliee Of Choir's 2025" target="_blank" rel="noopener">Jubilee of Choirs</a></u></sub></td>
+                        </tr>
+                        <tr id="Fatima" class="bg-gradient-to-r from-green-100 to-green-200 hover:from-green-200 hover:to-green-300 transition">
                             <td class="px-4 py-2">
                                 <img src="https://cdn.jsdelivr.net/npm/svg-country-flags@1.2.10/svg/pt.svg" alt="Portugal flag" class="w-6 h-6 rounded" />
                             </td>
@@ -318,15 +326,16 @@
                 html.classList.add('dark');
                 themeIcon.textContent = '☀️';
                 themeToggle.setAttribute('aria-label', 'Switch to light mode');
-                window.location.replace("travel-darkmode.html");
-            } 
-            localStorage.setItem('theme', dark ? 'dark' : 'light');
+            } else {
+                html.classList.remove('dark');
+                themeIcon.textContent = '🌙';
+                themeToggle.setAttribute('aria-label', 'Switch to dark mode');
+            }
+            try { localStorage.setItem('theme', dark ? 'dark' : 'light'); } catch (e) {}
         }
 
         // Initial theme
-        const userPref = localStorage.getItem('theme');
-        const systemPref = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        setTheme(userPref === 'dark' || (!userPref && systemPref));
+        setTheme(html.classList.contains('dark'));
 
         // Toggle on click
         themeToggle.addEventListener('click', () => {

@@ -34,8 +34,16 @@
     <meta name="msapplication-square150x150logo" content="mstile-150x150.png" />
     <meta name="msapplication-wide310x150logo" content="mstile-310x150.png" />
     <meta name="msapplication-square310x310logo" content="mstile-310x310.png" />
-    <!-- Tailwind CSS CDN for responsiveness and accessibility utilities -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        // Apply the saved/system theme before first paint so there is no flash.
+        try {
+            var pref = localStorage.getItem('theme');
+            if (pref === 'dark' || (!pref && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+            }
+        } catch (e) {}
+    </script>
+    <link rel="stylesheet" href="css/tailwind.css">
     <style>
         .map-container {
             position: relative;
@@ -134,6 +142,7 @@
         .pin-amsterdam { left: 49.05%; top: 27.69%; }
         .pin-belgium { left: 48.90%; top: 28.59%; }
         .pin-italy { left: 51.17%; top: 33.59%; }
+        .pin-vatican { left: 51.16%; top: 33.58%; }
         .pin-spain { left: 45.30%; top: 33.06%; }
         .pin-northernireland { left: 46.03%; top: 26.34%; }
         .pin-edinburgh { left: 46.79%; top: 25.50%; }
@@ -169,6 +178,35 @@
             border: 1px solid rgba(138, 106, 59, 0.35);
             box-shadow: 0 4px 14px rgba(60, 40, 15, 0.12);
         }
+        /* Dark mode overrides */
+        html.dark body {
+            background: linear-gradient(to bottom right, #263043, #2f3b50 60%, #3a4760) !important;
+            color: #f3f4f6;
+        }
+        html.dark, html.dark body { background-color: #2b364a !important; }
+        html.dark .about,
+        html.dark .text-gray-700 { color: #d1d5db !important; }
+        html.dark .text-gray-800 { color: #f3f4f6 !important; }
+        html.dark .text-blue-700 { color: #93c5fd !important; }
+        html.dark .text-gray-500,
+        html.dark .footer { color: #9ca3af !important; }
+        html.dark .map-container {
+            border-color: #5b4a30;
+            outline-color: #5b4a30;
+            background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .35  0 0 0 0 .22  0 0 0 0 .1  0 0 0 .22 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>"), url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='600' height='400'><filter id='b'><feTurbulence type='fractalNoise' baseFrequency='.012' numOctaves='4' seed='7' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .55  0 0 0 0 .35  0 0 0 0 .15  0 0 0 .9 -.45'/></filter><rect width='100%' height='100%' filter='url(%23b)'/></svg>") center / 100% 100% no-repeat, radial-gradient(ellipse at center, #2b3445 0%, #1b2330 70%, #10151d 100%);
+            box-shadow: 0 6px 24px rgba(0,0,0,.5), inset 0 0 90px rgba(0,0,0,.55);
+        }
+        html.dark .world-map { filter: invert(1) brightness(.78) sepia(1) saturate(1.1) brightness(.85); }
+        html.dark section[aria-label="Visited Cities by Country"] > div {
+            background: rgba(20, 27, 40, 0.55) !important;
+            border-color: rgba(217, 196, 140, 0.3);
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+        }
+        html.dark section[aria-label="Visited Cities by Country"] .font-bold { color: #d9c48c !important; }
+        html.dark section[aria-label="Visited Cities by Country"] li,
+        html.dark section[aria-label="Visited Cities by Country"] ul { color: #ece4d0 !important; }
+        html.dark section[aria-label="Visited Cities by Country"] .text-gray-600 { color: #b9b4a4 !important; }
+        html.dark .map-label { color: #d9c48c; opacity: 0.75; text-shadow: 0 0 4px rgba(16, 21, 29, 0.9); }
         /* Ocean names and compass, printed on the map like an old chart. */
         .map-label {
             position: absolute;
@@ -232,11 +270,11 @@
         <button id="theme-toggle" aria-label="Toggle dark mode" class="text-md mr-3 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded" type="button">
             <span id="theme-icon">🌙</span>
         </button>
-        <a href="index.html" class="text-gray-600 px-6 text-[13px] font-semibold tracking-wider no-underline uppercase focus:outline-none focus:ring-2 focus:ring-blue-500 rounded hover:underline transition" aria-label="Home page of Derek Lobo">Home</a>
+        <a href="index.html" class="text-gray-600 px-6 text-[13px] font-semibold tracking-wider no-underline uppercase focus:outline-none focus:ring-2 focus:ring-blue-500 rounded hover:underline transition dark:text-gray-300" aria-label="Home page of Derek Lobo">Home</a>
     </nav>
     <main id="main" class="max-w-5xl mx-auto p-4 sm:p-6" role="main">
         <header class="mb-8">
-            <h1 class="text-xl font-bold text-gray-700 mb-2 flex items-center gap-3">
+            <h1 class="text-xl font-bold text-gray-700 dark:text-gray-200 mb-2 flex items-center gap-3">
                 <span class="inline-block w-10 h-10 relative">
                     <!-- Horizontally spinning globe SVG -->
                     <svg class="animate-spin-slow absolute inset-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none" aria-hidden="true">
@@ -254,14 +292,14 @@
                         }
                     </style>
                 </span>
-                <a href="travel.html" class="text-blue-700 hover:underline focus:outline-none focus:ring-2 focus:ring-blue-500 rounded">
+                <a href="travel.html" class="text-blue-700 hover:underline focus:outline-none focus:ring-2 focus:ring-blue-500 rounded dark:text-blue-300">
                     Travel Destinations
                 </a>
             </h1>
         </header>
         <section class="about mb-6">
             
-            <p class="text-gray-700">
+            <p class="text-gray-700 dark:text-gray-300">
                 Here are some cities I've visited.
                 <span class="sr-only">Focus or hover on a map marker to reveal its destination. The full destination list follows.</span>
                 <span aria-hidden="true">Focus or hover on a pin to reveal its destination.</span>
@@ -367,6 +405,15 @@
                     </svg>
                 </span>
                 <span class="pin-label">Rome</span>
+            </div>
+            <div class="pin pin-vatican visited" role="img" tabindex="0" aria-label="Vatican City, Vatican City, visited">
+                <span aria-hidden="true">
+                    <svg width="22" height="28" viewBox="0 0 28 36" focusable="false" aria-hidden="true">
+                        <path class="pin-body" d="M14 35C14 35 3 21.5 3 13.5a11 11 0 0 1 22 0C25 21.5 14 35 14 35z"/>
+                        <circle class="pin-dot" cx="14" cy="13.5" r="4.2"/>
+                    </svg>
+                </span>
+                <span class="pin-label">Vatican City</span>
             </div>
             <div class="pin pin-spain visited" role="img" tabindex="0" aria-label="Santiago de Compostela, Spain, visited">
                 <span aria-hidden="true">
@@ -708,8 +755,8 @@
     </div>
 </section>
     </main>
-    <footer class="footer mt-8 text-center text-gray-500" role="contentinfo">
-        <p class="text-sm text-gray-600">
+    <footer class="footer mt-8 text-center text-gray-500 dark:text-gray-300" role="contentinfo">
+        <p class="text-sm text-gray-600 dark:text-gray-300">
             Map artwork by <a href="https://commons.wikimedia.org/wiki/File:World_map_-_low_resolution.svg" class="underline">Al MacDonald</a>, licensed under <a href="https://creativecommons.org/licenses/by-sa/3.0/" class="underline">CC BY-SA 3.0</a>.
         </p>
     </footer>
@@ -723,19 +770,16 @@
                 html.classList.add('dark');
                 themeIcon.textContent = '☀️';
                 themeToggle.setAttribute('aria-label', 'Switch to light mode');
-                window.location.replace("travel-map-darkmode.html");
             } else {
                 html.classList.remove('dark');
                 themeIcon.textContent = '🌙';
                 themeToggle.setAttribute('aria-label', 'Switch to dark mode');
             }
-            localStorage.setItem('theme', dark ? 'dark' : 'light');
+            try { localStorage.setItem('theme', dark ? 'dark' : 'light'); } catch (e) {}
         }
 
         // Initial theme
-        const userPref = localStorage.getItem('theme');
-        const systemPref = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        setTheme(userPref === 'dark' || (!userPref && systemPref));
+        setTheme(html.classList.contains('dark'));
 
         // Toggle on click
         themeToggle.addEventListener('click', () => {
