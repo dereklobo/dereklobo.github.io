@@ -1,0 +1,21 @@
+/* Table styled like the travel map cards: translucent parchment on the page gradient. */
+.overflow-x-auto.rounded-lg {
+    background: rgba(255, 252, 244, 0.75) !important;
+    border: 1px solid rgba(138, 106, 59, 0.35);
+    box-shadow: 0 4px 14px rgba(60, 40, 15, 0.12);
+}
+.overflow-x-auto thead { background: rgba(201, 169, 108, 0.3) !important; }
+.overflow-x-auto th { color: #6b5426 !important; }
+.overflow-x-auto tbody, .overflow-x-auto table { --tw-divide-opacity: 1; }
+.overflow-x-auto tbody > tr + tr, .overflow-x-auto table > * + * { border-color: rgba(138, 106, 59, 0.2) !important; }
+.overflow-x-auto tbody tr:hover, .overflow-x-auto tbody tr:focus-within { background: rgba(201, 169, 108, 0.18) !important; }
+html.dark .overflow-x-auto.rounded-lg {
+    background: rgba(20, 27, 40, 0.55) !important;
+    border-color: rgba(217, 196, 140, 0.3);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+}
+html.dark .overflow-x-auto thead { background: rgba(217, 196, 140, 0.14) !important; }
+html.dark .overflow-x-auto th { color: #d9c48c !important; }
+html.dark .overflow-x-auto td, html.dark .overflow-x-auto td * { color: #ece4d0 !important; }
+html.dark .overflow-x-auto tbody > tr + tr, html.dark .overflow-x-auto table > * + * { border-color: rgba(217, 196, 140, 0.2) !important; }
+html.dark .overflow-x-auto tbody tr:hover, html.dark .overflow-x-auto tbody tr:focus-within { background: rgba(217, 196, 140, 0.12) !important; }
